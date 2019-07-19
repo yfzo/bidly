@@ -1,0 +1,28 @@
+{
+  "name": "api",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.1",
+    "uuid": "^3.3.2",
+    "ws": "7.0.1",
+    "body-parser": "^1.15.2",
+    "dotenv": "^2.0.0",
+    "knex": "^0.11.7",
+    "knex-logger": "^0.1.0",
+    "node-sass-middleware": "^0.9.8",
+    "pg": "^6.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
