@@ -1,8 +1,18 @@
 var express = require("express");
 var router = express.Router();
 
+module.exports = (knex) => {
+
 router.get("/", function(req, res, next) {
-  res.send("auctions get routes");
+  console.log('reached auctions route')
+  knex
+    .select("*")
+    .from("auctions")
+    .then((row) => {
+      console.log(row)
+      console.log(row[0].id)
+      res.send(row);
+    })
 });
 
 router.get("/new", function(req, res, next) {
@@ -17,4 +27,5 @@ router.post("/", function(req, res, next) {
   res.send("auctions post routes");
 });
 
-module.exports = router;
+return router
+}
