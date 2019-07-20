@@ -1,25 +1,16 @@
-export default class Login {
+import React, {Component} from 'react';
+import LoginForm from '../components/LoginForm.jsx'; 
+
+export default class Login extends Component {
   login = (e) => {
-    // axios.post('/api/login')
-    // fetch()
+    axios.post('/api/login')
   }
 
   render() {
     return (
       <div>
-        <h1>Login!</h1>
         <LoginForm onSubmit={this.login} />
       </div>
-    )
-  }
-}
-
-
-// Dumb Component
-export default class LoginForm {
-  render() {
-    return (
-      <form onSubmit={this.props.onSubmit}></form>
     )
   }
 }

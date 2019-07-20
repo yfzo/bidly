@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import NavBar from './components/NavBar.jsx';
+import Auctions from './containers/Auctions.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -33,6 +35,8 @@ class App extends Component {
           <h2>Welcome to React</h2>
         </div>
         <p className="App-intro">{this.state.apiResponse}</p>
+        <div><NavBar /></div>
+        <div><Auctions /></div>
       </div>
       
       // <Router>
