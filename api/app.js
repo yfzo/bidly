@@ -4,7 +4,12 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require("cors");
+const ENV         = process.env.ENV || "development";
+const knexConfig = require('./knexfile')    // require environment's settings from knexfile
+const knex = require('knex')(knexConfig[ENV]);              // connect to DB via knex using env's settings
+// const bidly = require('./')
 
+//listing routes
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 // var testAPIRouter = require("./routes/testAPI");
@@ -29,7 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 // app.use("/testAPI", testAPIRouter);
-app.use('/auctions', auctionsRouter);
+app.use('/auctions', auctionsRouter(knex));
 app.use('/bids', bidsRouter);
 app.use("/register", registerRouter);
 app.use("/login", loginRouter);
