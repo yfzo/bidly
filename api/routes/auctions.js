@@ -20,7 +20,16 @@ router.get("/new", function(req, res, next) {
 });
 
 router.get("/:id", function(req, res, next) {
-  res.send("auctions id get routes");
+  console.log('reached auctions/:id route')
+  knex
+    .table("auctions")
+    .where('id', '=', req.params.id)
+    .first('*')
+    .then((row) => {
+      console.log(row)
+      res.send(row);
+    })
+  // res.send("auctions id get routes");
 });
 
 router.post("/", function(req, res, next) {

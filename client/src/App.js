@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import NavBar from './components/NavBar.jsx';
 import Auctions from './containers/Auctions.jsx';
+import AuctionDetail from './containers/AuctionDetail.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class App extends Component {
   }
 
   callAPI() {
-      fetch("http://localhost:3001/auctions")
+      fetch("http://localhost:3001/")
           .then(res => res.text())
           .then(res => this.setState({ apiResponse: res }));
   }
@@ -36,7 +37,7 @@ class App extends Component {
         </div>
         <p className="App-intro">{this.state.apiResponse}</p>
         <div><NavBar /></div>
-        <div><Auctions /></div>
+        <div><AuctionDetail /></div>
       </div>
       
       // <Router>
