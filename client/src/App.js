@@ -14,7 +14,7 @@ class App extends Component {
   }
 
   callAPI() {
-      fetch("http://localhost:3001/")
+      fetch("http://localhost:3001/auctions")
           .then(res => res.text())
           .then(res => this.setState({ apiResponse: res }));
   }
