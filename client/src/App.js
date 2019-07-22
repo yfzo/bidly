@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 import NavBar from './components/NavBar.jsx';
 import Auctions from './containers/Auctions.jsx';
 import AuctionDetail from './containers/AuctionDetail.jsx';
+import Home from './containers/Home.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -30,21 +32,21 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+      <Router>
+        <div className="App">
+          <div className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <h2>Welcome to React</h2>
+          </div>
+          <p className="App-intro">{this.state.apiResponse}</p>
+          <div><NavBar /></div>
+          {/* <div><AuctionDetail /></div> */}
         </div>
-        <p className="App-intro">{this.state.apiResponse}</p>
-        <div><NavBar /></div>
-        <div><AuctionDetail /></div>
-      </div>
-      
-      // <Router>
-      //   <Route path="/" component={Home} />
-      //   <Route path="/login" component={Login} />
 
-      // </Router>
+        {/* <Route path="/auctions/:id" component={AuctionDetail} /> */}
+        {/* <Route path="/login" component={Login} /> */}
+
+      </Router>
     );
   }
 }

@@ -9,7 +9,7 @@ export default class AuctionDetail extends Component {
   }
 
   callAPI() {
-      fetch("http://localhost:3001/auctions/1")
+      fetch("http://localhost:3001/auctions/:id")
           .then(res => res.json())
           .then(res => this.setState({ auction: res }))
           .then(() => console.log(this.state.auction));
