@@ -10,13 +10,13 @@ import Home from './containers/Home.jsx';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { apiResponse: "" };
+    this.state = { apiResponse: "" , loggedIn: true };
     console.log("blahblah")
 
   }
 
   callAPI() {
-      fetch("http://localhost:3001/auctions")
+      fetch("http://localhost:3001")
           .then(res => res.text())
           .then(res => this.setState({ apiResponse: res }));
   }
@@ -31,6 +31,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(window.location);
     return (
       <Router>
         <div className="App">
