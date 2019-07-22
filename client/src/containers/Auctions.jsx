@@ -24,7 +24,6 @@ export default class Auctions extends Component {
     // login = (e) => {
     //   axios.post('/api/auctions')
     // }
-
     render() {
       // const a = [{category_id: 1, name: 'snickers ice cream', description: 'lots of chocolate and tasty', min_bid: '100', start_time: '2019-05-04 10:10:10', end_time: '2019-05-04 15:10:10' , image: 'https://i.imgur.com/EZjcSmV.jpg', user_id: 1}];
       const auctions_arr = this.state.apiResponse
