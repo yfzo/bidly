@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Auctions from '../containers/Auctions.jsx';
+import Login from '../containers/Login.jsx';
+import Register from '../containers/Register.jsx';
 
 export default class NavBar extends Component {
   render() {
@@ -13,6 +15,8 @@ export default class NavBar extends Component {
         <Link to="/register">Register</Link>
 
         <Route path="/auctions" component={Auctions} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
       </div>
     )
   }

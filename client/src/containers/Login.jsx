@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import LoginForm from '../components/LoginForm.jsx'; 
+import '../login.css';
 
 export default class Login extends Component {
-  login = (e) => {
-    axios.post('/api/login')
-  }
+  // login = (e) => {
+  //   axios.post('/api/login')
+  // }
 
   render() {
     return (
