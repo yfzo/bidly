@@ -42,24 +42,45 @@ router.get("/:id", function(req, res, next) {
 
 //create a new auction
 router.post("/", function(req, res, next) {
+
+  if (JSON.stringify(req.body) !== '{}') {
+
+    let newAuction = {
+      category_id: req.body.category,
+      name: req.body.name,
+      description: req.body.description,
+      min_bid: req.body.min_bid,
+      start_time: "",
+      end_time: req.body.end_time,
+      image: req.body.image,
+      user_id: req.body.user_id
+    };
+
+    let valid = newAuction.name && 
+      (newAuction.description !== undefined) &&
+      newAuction.min_bid &&
+      newAuction.end_time &&
+      newAuction.image &&
+      newAuction.user_id;
   //find category id from category name from knex?
-  let cat_id = req.body.category
   //find start time from somewhere in req.body? or automatically create by created_at?
   //where can I find user_id?
-  knex('user').insert({
-    category_id: req.body.category,
-    name: req.body.name,
-    description: req.body.description,
-    min_bid: req.body.min_bid,
-    start_time: "",
-    end_time: req.body.end_time,
-    image: req.body.image,
-    user_id: req.body.user_id
+  if(valid){
+  knex('auctions').insert({
+    'category_id': newAuction.category,
+    'name': newAuction.name,
+    'description': newAuction.description,
+    'min_bid': newAuction.min_bid,
+    'start_time': "",
+    'end_time': newAuction.end_time,
+    'image': newAuction.image,
+    'user_id': newAuction.user_id
   })
   .then( function (result) {
     res.json({ success: true, message: 'ok' });     // respond back to request
   })
-});
+  }
+}});
 
 return router
 }
