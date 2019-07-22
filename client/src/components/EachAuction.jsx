@@ -4,7 +4,7 @@ import AuctionDetail from '../containers/AuctionDetail.jsx';
 
 export default class EachAuction extends Component {
   render() {
-    console.log(this.props.auction.image)
+    // console.log(this.props.auction.image)
     return (
       <div>
         <Link to={'/auctions/' + this.props.auction.id}>

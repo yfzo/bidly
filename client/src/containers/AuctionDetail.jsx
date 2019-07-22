@@ -4,24 +4,37 @@ import Bid from '../components/Bid.jsx';
 export default class AuctionDetail extends Component {
   constructor(props) {
     super(props);
-    this.state = { auction: null };
+    this.state = { 
+      auction: null,
+    };
     console.log("blahblah")
   }
 
   callAPI() {
-      fetch("http://localhost:3001/auctions/:id")
+      fetch("http://localhost:3001/auctions/1")
           .then(res => res.json())
-          .then(res => this.setState({ auction: res }))
-          .then(() => console.log(this.state.auction));
+          .then(res => this.setState({ auction: res.auctions[this.props.match.params.id] }))
+          .then(() => console.log(this.props.match.params.id))
   }
 
   componentDidMount() {
-      console.log("in auction detail")
       this.callAPI();
   }
   
   bidHandler = (e) => {
-    // axios.post('/api/auctions/:id')
+    if(e && e > this.state.auction.min_bid){
+      const newBid = {
+        auction_id: this.state.auction.id,
+        // user_id: ,
+        amount: e
+      }
+    // fetch("http://localhost:3001/bids")
+    //   .then(res.send(newBid))
+    
+    }
+
+    console.log(e)
+
   }
   
   render() {

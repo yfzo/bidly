@@ -40,7 +40,7 @@ class App extends Component {
           </div>
           <p className="App-intro">{this.state.apiResponse}</p>
           <div><NavBar /></div>
-          {/* <div><AuctionDetail /></div> */}
+          <div><AuctionDetail /></div>
         </div>
 
         {/* <Route path="/auctions/:id" component={AuctionDetail} /> */}
