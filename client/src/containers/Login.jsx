@@ -9,6 +9,7 @@ export default class Login extends Component {
   render() {
     return (
       <div>
+        <h2>Sign in</h2>
         <LoginForm onSubmit={this.login} />
       </div>
     )
