@@ -1,12 +1,30 @@
 import React, {Component} from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { Redirect } from 'react-router-dom';
 
 export default class LoginForm extends Component {
+  constructor(props) {
+    super(props);
+    this.onSubmit = this.onSubmit.bind(this)
+    this.state = {
+      redirect: false
+    }
+  }
+
+  onSubmit(e) {
+    
+    e.preventDefault();
+    this.setState({ redirect: true});
+    console.log("redirect to home page");
+  }
   render() {
+    if (this.state.redirect == true ) {
+      return <Redirect to='/' />
+    }
     return (
       <div>
-        <Form onSubmit={this.props.onSubmit}>
+        <Form onSubmit={this.onSubmit}>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
             <Form.Control type="email" placeholder="Enter email" />

@@ -4,13 +4,27 @@ import CardDeck from 'react-bootstrap/CardDeck';
 import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import '../home.css';
+import { Redirect } from 'react-router-dom'
 
 export default class Home extends Component {
-    // home = (e) => {
-    //   axios.post('/api/')
-    // }
+  constructor(props) {
+    super(props);
+    this.onClick = this.onClick.bind(this)
+    this.state = {
+      redirect: false
+    }
+  }
+
+  onClick(e) {
+    e.preventDefault();
+    this.setState({ redirect: true});
+    console.log("redirect to register page");
+  }
   
     render() {
+      if (this.state.redirect == true ) {
+        return <Redirect to='/register' />
+      }
       return (
         <div className="home">
           <Card body>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ex risus, egestas aliquam felis quis, ultricies
@@ -76,7 +90,7 @@ export default class Home extends Component {
           </CardDeck>
           <ButtonToolbar>
             <Button className="browse" variant="outline-primary">Browse Auctions</Button>
-            <Button className="signup" variant="outline-primary">Sign up</Button>
+            <Button onClick={this.onClick} className="signup" variant="outline-primary">Sign up</Button>
           </ButtonToolbar>
         </div>
       )
