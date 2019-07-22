@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Auctions from '../containers/Auctions.jsx';
 import Login from '../containers/Login.jsx';
 import Register from '../containers/Register.jsx';
+import Home from '../containers/Home.jsx';
 
 export default class NavBar extends Component {
   render() {
@@ -17,6 +18,7 @@ export default class NavBar extends Component {
         <Route path="/auctions" component={Auctions} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
+        <Route path="/" component={Home} />
       </div>
     )
   }
