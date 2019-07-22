@@ -1,0 +1,18 @@
+.home {
+    text-align: justify;
+}
+
+.btn-toolbar {
+    justify-content: flex-end;
+    margin-top: 15px;
+}
+
+.signup {
+    margin-right: 15px;
+    margin-left: 10px;
+}
+
+.card-title {
+    text-align: center;
+}
+
