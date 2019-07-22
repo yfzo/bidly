@@ -16,6 +16,12 @@ exports.seed = function(knex, Promise) {
   }) 
   .then(function () {
     return Promise.all([
+      //set the auto increment id to 1
+      knex.raw('ALTER SEQUENCE users_id_seq RESTART WITH 1'),
+      knex.raw('ALTER SEQUENCE notifications_id_seq RESTART WITH 1'),
+      knex.raw('ALTER SEQUENCE auctions_id_seq RESTART WITH 1'),
+      knex.raw('ALTER SEQUENCE categories_id_seq RESTART WITH 1'),
+      knex.raw('ALTER SEQUENCE bids_id_seq RESTART WITH 1'),
 
     // Inserts seed entries
     knex('categories').insert({name: 'Food'}),
