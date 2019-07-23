@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import queryString from 'query-string'
 
 import SideBar from '../components/SideBar.jsx'; 
-import EachAuction from '../components/EachAuction.jsx'; 
+import EachAuction from '../components/EachAuction.jsx';
 
 export default class Auctions extends Component {
 
@@ -34,12 +34,13 @@ export default class Auctions extends Component {
       // console.log('Are there query values?', this.props.location.search == false)
 
       if (auctions_arr) {
+        // Show all auctions if there is no query, else show filtered by category
         var auctions = auctions_arr.map(auction => (
           ((auction.category_id == queryValues.category) || !this.props.location.search) && <EachAuction key={auction.id} auction={auction} />
         ));
-        console.log(auctions_arr)
+        // console.log(auctions_arr)
       }
-      console.log('******', queryValues.category)
+      // console.log('******', queryValues.category)
 
       return (
         <div>
