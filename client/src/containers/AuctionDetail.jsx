@@ -7,14 +7,14 @@ export default class AuctionDetail extends Component {
     this.state = { 
       auction: null,
     };
-    console.log("blahblah")
   }
 
   callAPI() {
-      fetch("http://localhost:3001/auctions/1")
-          .then(res => res.json())
-          .then(res => this.setState({ auction: res.auctions[this.props.match.params.id] }))
-          .then(() => console.log(this.props.match.params.id))
+    const path = "http://localhost:3001/auctions/" + this.props.match.params.id;
+    fetch(path)
+        .then(res => res.json())
+        .then(res => this.setState({ auction: res }))
+        .then(() => console.log(this.state.auction));
   }
 
   componentDidMount() {
@@ -22,18 +22,27 @@ export default class AuctionDetail extends Component {
   }
   
   bidHandler = (e) => {
+    debugger
     if(e && e > this.state.auction.min_bid){
       const newBid = {
         auction_id: this.state.auction.id,
-        // user_id: ,
+        user_id: 1, //for now
         amount: e
       }
-    // fetch("http://localhost:3001/bids")
-    //   .then(res.send(newBid))
+      
+    fetch("http://localhost:3001/bids", {
+      method: 'POST',
+      body: JSON.stringify(newBid), 
+      headers: {"Content-Type": "application/json"}
+    })
+    .then(function(response){
+      return response.send()
+    }).then(function(body){
+      console.log(body)
+    }).error((err) => console.log('error' + err))
     
     }
 
-    console.log(e)
 
   }
   
