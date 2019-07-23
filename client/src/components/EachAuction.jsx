@@ -5,7 +5,7 @@ import Timer from '../components/Timer.jsx';
 
 export default class EachAuction extends Component {
   render() {
-    // console.log("Start time for auction", this.props.auction.id, this.props.auction.start_time)
+
     var currentTime = new Date();
     var minutes = 1;
     var futureTime = currentTime.getTime() + (minutes * 60000)
