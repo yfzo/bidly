@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Bid from '../components/Bid.jsx'; 
+import Timer from '../components/Timer.jsx';
 
 export default class AuctionDetail extends Component {
   constructor(props) {
@@ -26,13 +27,19 @@ export default class AuctionDetail extends Component {
   }
   
   render() {
+    var currentTime = new Date();
+    var minutes = 1;
+    var futureTime = currentTime.getTime() + (minutes * 60000)
+    var endTime = new Date(futureTime)
+    var timeRemaining = endTime - currentTime;
+    
     return (
       <div>
         <img alt='' src={this.state.auction && this.state.auction.image} />
         <div>{this.state.auction && this.state.auction.name}</div>
         <div>{this.state.auction && this.state.auction.description}</div>
         <div>{this.state.auction && this.state.auction.min_bid}</div>
-        <div>{this.state.auction && this.state.auction.start_time}</div>
+        <Timer timeRemaining={timeRemaining} />
         <Bid onEnter={(bid_amount) => {
           this.bidHandler(bid_amount) }}/>
       </div>
