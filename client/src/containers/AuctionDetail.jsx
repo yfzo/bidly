@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Bid from '../components/Bid.jsx'; 
+import '../modal.css';
 
 export default class AuctionDetail extends Component {
   constructor(props) {
@@ -35,7 +36,7 @@ export default class AuctionDetail extends Component {
   render() {
     console.log("This is auction", this.state.auction)
     return (
-      <div
+      <div className="modal-container"
         onClick={this.back}
         style={{
           position: "absolute",

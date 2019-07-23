@@ -1,0 +1,4 @@
+/* remove bootstrap default display none */
+.modal-container .modal {
+  display: flex
+}
