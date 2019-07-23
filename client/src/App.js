@@ -11,7 +11,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = { apiResponse: "" , loggedIn: true };
-    console.log("blahblah")
+    // console.log("blahblah")
 
   }
 
@@ -22,7 +22,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-      console.log("blahblah")
+      // console.log("blahblah")
       this.callAPI();
       this.socket = new WebSocket('ws://localhost:3001/');
         this.socket.addEventListener('open', () => {

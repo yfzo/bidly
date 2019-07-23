@@ -7,4 +7,4 @@ ReactDOM.render(
   <App />,
   document.getElementById('root')
 );
-console.log("blahblah")
+// console.log("blahblah")
