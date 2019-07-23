@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Bid from '../components/Bid.jsx'; 
 
+
 export default class AuctionDetail extends Component {
   constructor(props) {
     super(props);
@@ -21,13 +22,12 @@ export default class AuctionDetail extends Component {
       this.callAPI();
   }
   
-  bidHandler = (e) => {
-    debugger
-    if(e && e > this.state.auction.min_bid){
+  bidHandler = (num) => {
+    if(num && num > this.state.auction.min_bid){
       const newBid = {
         auction_id: this.state.auction.id,
         user_id: 1, //for now
-        amount: e
+        amount: num
       }
       
     fetch("http://localhost:3001/bids", {
@@ -35,15 +35,16 @@ export default class AuctionDetail extends Component {
       body: JSON.stringify(newBid), 
       headers: {"Content-Type": "application/json"}
     })
-    .then(function(response){
+    .then(response => {
+      if(response.ok){
       return response.send()
+    } else {
+      throw Error(`Request rejected with status ${response.status}`);
+    }
     }).then(function(body){
       console.log(body)
-    }).error((err) => console.log('error' + err))
-    
+    }).catch((err) => console.log('error' + err))
     }
-
-
   }
   
   render() {
