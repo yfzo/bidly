@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import logo from './logo.svg';
+import logo from '../public/logo.svg';
 import './App.css';
 import NavBar from './components/NavBar.jsx';
 import Auctions from './containers/Auctions.jsx';
 import AuctionDetail from './containers/AuctionDetail.jsx';
 import Home from './containers/Home.jsx';
+import Login from './containers/Login.jsx';
+import Register from './containers/Register.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -34,6 +36,7 @@ class App extends Component {
     console.log(window.location);
     return (
       <Router>
+        <Route path="/auctions/:id" component={AuctionDetail} />
         <div className="App">
           <div className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
@@ -42,9 +45,12 @@ class App extends Component {
           <p className="App-intro">{this.state.apiResponse}</p>
           <div><NavBar /></div>
           {/* <div><AuctionDetail /></div> */}
-        </div>
 
-        {/* <Route path="/auctions/:id" component={AuctionDetail} /> */}
+        <Route path="/auctions" component={Auctions} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        <Route exact path="/" component={Home} />
+        </div>
         {/* <Route path="/login" component={Login} /> */}
 
       </Router>

@@ -4,3 +4,14 @@
 .modal-container .modal {
   display: flex
 }
+
+.modal {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: none;
+  height: none;
+  background: "#fff";
+  padding: 15;
+}

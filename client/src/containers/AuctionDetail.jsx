@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Bid from '../components/Bid.jsx'; 
 import '../modal.css';
+import leftArrow from '../../public/triangle-left.svg';
+import rightArrow from '../../public/triangle-right.svg';
 
 export default class AuctionDetail extends Component {
   constructor(props) {
@@ -48,16 +51,18 @@ export default class AuctionDetail extends Component {
         }}
       >
         <div
-          className="modal"
-          style={{
-            position: "absolute",
-            background: "#fff",
-            top: 25,
-            left: "10%",
-            right: "10%",
-            padding: 15,
-            border: "2px solid #444"
-          }}
+          id="modal"
+          onClick={(e) => e.stopPropagation()}
+          // style={{
+          //   position: "relative",
+          //   top: "50%",
+          //   left: "50%",
+          //   transform: "translate(-50%, -50%)",
+          //   width: "none",
+          //   height: "none",
+          //   background: "#fff",
+          //   padding: 15,
+          // }}
         >
           <div>
             <img alt='' src={this.state.auction && this.state.auction.image} />
@@ -65,14 +70,27 @@ export default class AuctionDetail extends Component {
             <div>{this.state.auction && this.state.auction.description}</div>
             <div>{this.state.auction && this.state.auction.min_bid}</div>
             <div>{this.state.auction && this.state.auction.start_time}</div>
+            
             <Bid onEnter={(bid_amount) => {
               this.bidHandler(bid_amount) }}/>
           </div>
+          
 
           <button type="button" onClick={this.back}>
             Close
           </button>
         </div>
+
+          <button className="nav-btn prev">
+            {/* <span class="octicon octicon-triangle-left"></span> */}
+            <img src={leftArrow}></img>
+        </button>
+        
+        <button className="nav-btn next" onClick={() => this.props.history.push(`/auctions/${this.state.auction.id + 1}`)}>
+            {/* <span class="octicon octicon-triangle-right"></span> */}
+            <img src={rightArrow}></img>
+        </button>
+        {/* <Route path="/auctions/:id" component={AuctionDetail} /> */}
       </div>
     )
   }

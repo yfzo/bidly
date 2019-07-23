@@ -37,7 +37,7 @@ export default class EachAuction extends Component {
             </div>
           </Link>
           {/* <Route path="/auctions/:id" component={AuctionDetail} /> */}
-          {isModal ? <Route path="/auctions/:id" component={AuctionDetail} /> : null}
+          {/* {isModal ? <Route path="/auctions/:id" component={AuctionDetail} /> : null} */}
         </div>
 
       
