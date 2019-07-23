@@ -6,6 +6,7 @@ import NavBar from './components/NavBar.jsx';
 import Auctions from './containers/Auctions.jsx';
 import AuctionDetail from './containers/AuctionDetail.jsx';
 import Home from './containers/Home.jsx';
+import NewAuction from './containers/NewAuction';
 
 class App extends Component {
   constructor(props) {
@@ -35,18 +36,18 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <div className="App-header">
+          {/* <div className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
             <h2>Welcome to React</h2>
           </div>
-          <p className="App-intro">{this.state.apiResponse}</p>
+          <p className="App-intro">{this.state.apiResponse}</p> */}
           <div><NavBar /></div>
           {/* <div><AuctionDetail /></div> */}
         </div>
 
         {/* <Route path="/auctions/:id" component={AuctionDetail} /> */}
         {/* <Route path="/login" component={Login} /> */}
-
+        <Route exact path="/auctions/new" component={NewAuction} />
       </Router>
     );
   }
