@@ -14,7 +14,6 @@ export default class NavBar extends Component {
         <Link to="/auctions">Browse Auctions</Link>
         <Link to="/login">Login</Link>
         <Link to="/register">Register</Link>
-
         <Route path="/auctions" component={Auctions} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />

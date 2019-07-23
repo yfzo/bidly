@@ -4,8 +4,9 @@ import Bid from '../components/Bid.jsx';
 export default class AuctionDetail extends Component {
   constructor(props) {
     super(props);
-    this.state = { auction: null };
-    console.log("blahblah")
+    this.state = { 
+      auction: null,
+    };
   }
 
   callAPI() {
@@ -17,12 +18,32 @@ export default class AuctionDetail extends Component {
   }
 
   componentDidMount() {
-      console.log("in auction detail")
       this.callAPI();
   }
   
   bidHandler = (e) => {
-    // axios.post('/api/auctions/:id')
+    debugger
+    if(e && e > this.state.auction.min_bid){
+      const newBid = {
+        auction_id: this.state.auction.id,
+        user_id: 1, //for now
+        amount: e
+      }
+      
+    fetch("http://localhost:3001/bids", {
+      method: 'POST',
+      body: JSON.stringify(newBid), 
+      headers: {"Content-Type": "application/json"}
+    })
+    .then(function(response){
+      return response.send()
+    }).then(function(body){
+      console.log(body)
+    }).error((err) => console.log('error' + err))
+    
+    }
+
+
   }
   
   render() {
