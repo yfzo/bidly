@@ -18,7 +18,6 @@ router.post("/", function(req, res, next) {
     .first('*')
     .then((user) => {
       console.log('correct user!')
-      console.log(user)
       res.cookie('user_id', user.id).send()
       // console.log(res.getHeaders())
       // res.send('okay')
