@@ -5,6 +5,7 @@ import Bid from '../components/Bid.jsx';
 import '../modal.css';
 import leftArrow from '../../public/triangle-left.svg';
 import rightArrow from '../../public/triangle-right.svg';
+import Timer from '../components/Timer.jsx';
 
 export default class AuctionDetail extends Component {
   constructor(props) {
@@ -12,7 +13,6 @@ export default class AuctionDetail extends Component {
     this.state = { auction: null };
     // console.log("blahblah")
     console.log("This is history from details", this.props.history)
-
   }
 
   callAPI() {
@@ -24,12 +24,32 @@ export default class AuctionDetail extends Component {
   }
 
   componentDidMount() {
-      console.log("in auction detail")
       this.callAPI();
   }
   
-  bidHandler = (e) => {
-    // axios.post('/api/auctions/:id')
+  bidHandler = (num) => {
+    if(num && num > this.state.auction.min_bid){
+      const newBid = {
+        auction_id: this.state.auction.id,
+        user_id: 1, //for now
+        amount: num
+      }
+      
+    fetch("http://localhost:3001/bids", {
+      method: 'POST',
+      body: JSON.stringify(newBid), 
+      headers: {"Content-Type": "application/json"}
+    })
+    .then(response => {
+      if(response.ok){
+      return response.send()
+    } else {
+      throw Error(`Request rejected with status ${response.status}`);
+    }
+    }).then(function(body){
+      console.log(body)
+    }).catch((err) => console.log('error' + err))
+    }
   }
   
   back = e => {
@@ -42,11 +62,19 @@ export default class AuctionDetail extends Component {
   }
 
   render() {
+
     console.log("This is auction", this.state.auction)
     if (this.state.redirect) {
       console.log(`**********/auctions/${this.state.auction.id + 1}`)
       return <Redirect push to={`/auctions/${this.state.auction.id + 1}`} />
     }
+        
+    var currentTime = new Date();
+    var minutes = 1;
+    var futureTime = currentTime.getTime() + (minutes * 60000)
+    var endTime = new Date(futureTime)
+    var timeRemaining = endTime - currentTime;
+        
     return (
       <div className="modal-container"
         onClick={this.back}
@@ -69,7 +97,7 @@ export default class AuctionDetail extends Component {
             <div>{this.state.auction && this.state.auction.description}</div>
             <div>{this.state.auction && this.state.auction.min_bid}</div>
             <div>{this.state.auction && this.state.auction.start_time}</div>
-            
+            <Timer timeRemaining={timeRemaining} />
             <Bid onEnter={(bid_amount) => {
               this.bidHandler(bid_amount) }}/>
           </div>
@@ -91,6 +119,7 @@ export default class AuctionDetail extends Component {
               <img src={rightArrow}></img>
           </button>
         {/* </Link>} */}
+
       </div>
     )
   }

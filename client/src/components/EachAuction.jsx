@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import AuctionDetail from '../containers/AuctionDetail.jsx';
+import Timer from '../components/Timer.jsx';
 
 export default class EachAuction extends Component {
   constructor(props) {
@@ -27,6 +28,14 @@ export default class EachAuction extends Component {
     console.log("This is location from EachAuction", location)
     console.log("Is modal?", isModal)
 
+    var currentTime = new Date();
+    var minutes = 1;
+    var futureTime = currentTime.getTime() + (minutes * 60000)
+    var endTime = new Date(futureTime)
+    // console.log("original date", currentTime);
+    // console.log("end date", endTime);
+    var timeRemaining = endTime - currentTime;    
+    
     return (
         <div>
           <Link to={{pathname: '/auctions/' + auction.id, state: { modal: true }}}>
@@ -34,13 +43,13 @@ export default class EachAuction extends Component {
               <img alt='' src={auction.image} />
               <div>{auction.name}</div>
               <div>This is an auction!</div>
+              <Timer timeRemaining={timeRemaining}/>
             </div>
           </Link>
           {/* <Route path="/auctions/:id" component={AuctionDetail} /> */}
           {/* {isModal ? <Route path="/auctions/:id" component={AuctionDetail} /> : null} */}
         </div>
 
-      
     )
   }
 }
