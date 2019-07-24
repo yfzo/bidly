@@ -9,6 +9,7 @@ import Home from './containers/Home.jsx';
 import Login from './containers/Login.jsx';
 import Register from './containers/Register.jsx';
 import NewAuction from './containers/NewAuction';
+import Profile from './containers/Profile';
 
 class App extends Component {
   constructor(props) {
@@ -54,6 +55,7 @@ class App extends Component {
         </div>
         {/* <Route path="/login" component={Login} /> */}
         <Route exact path="/auctions/new" component={NewAuction} />
+        <Route exact path="/users/:id" component={Profile} />
       </Router>
     );
   }

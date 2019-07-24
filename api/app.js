@@ -35,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //routers
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/users', usersRouter(knex));
 // app.use("/testAPI", testAPIRouter);
 app.use('/auctions', auctionsRouter(knex));
 app.use('/bids', bidsRouter(knex));

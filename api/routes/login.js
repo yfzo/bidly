@@ -19,6 +19,7 @@ router.post("/", function(req, res, next) {
     .first('*')
     .then((user) => {
       res.cookie('user_id', user.id)
+      res.send({userid: user.id})
     })
     .catch(error => {
       console.log(error)
