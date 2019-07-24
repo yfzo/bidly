@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Redirect } from 'react-router';
 import Bid from '../components/Bid.jsx'; 
 import '../modal.css';
 import leftArrow from '../../public/triangle-left.svg';
@@ -36,8 +37,16 @@ export default class AuctionDetail extends Component {
     this.props.history.goBack();
   };
 
+  handleOnClick = () => {
+    this.setState({redirect: true});
+  }
+
   render() {
     console.log("This is auction", this.state.auction)
+    if (this.state.redirect) {
+      console.log(`**********/auctions/${this.state.auction.id + 1}`)
+      return <Redirect push to={`/auctions/${this.state.auction.id + 1}`} />
+    }
     return (
       <div className="modal-container"
         onClick={this.back}
@@ -53,16 +62,6 @@ export default class AuctionDetail extends Component {
         <div
           id="modal"
           onClick={(e) => e.stopPropagation()}
-          // style={{
-          //   position: "relative",
-          //   top: "50%",
-          //   left: "50%",
-          //   transform: "translate(-50%, -50%)",
-          //   width: "none",
-          //   height: "none",
-          //   background: "#fff",
-          //   padding: 15,
-          // }}
         >
           <div>
             <img alt='' src={this.state.auction && this.state.auction.image} />
@@ -81,16 +80,17 @@ export default class AuctionDetail extends Component {
           </button>
         </div>
 
-          <button className="nav-btn prev">
-            {/* <span class="octicon octicon-triangle-left"></span> */}
-            <img src={leftArrow}></img>
+        <button className="nav-btn prev">
+          {/* <span class="octicon octicon-triangle-left"></span> */}
+          <img src={leftArrow}></img>
         </button>
         
-        <button className="nav-btn next" onClick={() => this.props.history.push(`/auctions/${this.state.auction.id + 1}`)}>
-            {/* <span class="octicon octicon-triangle-right"></span> */}
-            <img src={rightArrow}></img>
-        </button>
-        {/* <Route path="/auctions/:id" component={AuctionDetail} /> */}
+        {/* {this.state.auction && <Link to={{pathname: '/auctions/' + (this.state.auction.id + 1), state: { modal: true }}}> */}
+          <button className="nav-btn next" onClick={() => this.props.history.replace(`/auctions/${this.state.auction.id + 1}`)}>
+              {/* <span class="octicon octicon-triangle-right"></span> */}
+              <img src={rightArrow}></img>
+          </button>
+        {/* </Link>} */}
       </div>
     )
   }
