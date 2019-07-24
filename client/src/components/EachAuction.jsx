@@ -4,7 +4,29 @@ import AuctionDetail from '../containers/AuctionDetail.jsx';
 import Timer from '../components/Timer.jsx';
 
 export default class EachAuction extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  back = e => {
+    e.stopPropagation();
+    this.props.history.goBack();
+  };
+
   render() {
+    // console.log(this.props.auction.image)
+    const auction = this.props.auction;
+    console.log("This is history", this.props.history)
+    let { location } = this.props;
+
+    let isModal = !!(
+      location.state &&
+      location.state.modal &&
+      this.previousLocation !== location
+    );
+
+    console.log("This is location from EachAuction", location)
+    console.log("Is modal?", isModal)
 
     var currentTime = new Date();
     var minutes = 1;
@@ -12,20 +34,22 @@ export default class EachAuction extends Component {
     var endTime = new Date(futureTime)
     // console.log("original date", currentTime);
     // console.log("end date", endTime);
-    var timeRemaining = endTime - currentTime;
-
+    var timeRemaining = endTime - currentTime;    
+    
     return (
-      <div>
-        <Link to={'/auctions/' + this.props.auction.id}>
-          <div>
-            <img alt='' src={this.props.auction.image} />
-            <div>{this.props.auction.name}</div>
-            <div>This is an auction!</div>
-            <Timer timeRemaining={timeRemaining}/>
-          </div>
-        </Link>
-        <Route path="/auctions/:id" component={AuctionDetail} />
-      </div>
+        <div>
+          <Link to={{pathname: '/auctions/' + auction.id, state: { modal: true }}}>
+            <div>
+              <img alt='' src={auction.image} />
+              <div>{auction.name}</div>
+              <div>This is an auction!</div>
+              <Timer timeRemaining={timeRemaining}/>
+            </div>
+          </Link>
+          {/* <Route path="/auctions/:id" component={AuctionDetail} /> */}
+          {/* {isModal ? <Route path="/auctions/:id" component={AuctionDetail} /> : null} */}
+        </div>
+
     )
   }
 }
