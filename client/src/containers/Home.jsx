@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import '../home.css';
 import { Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default class Home extends Component {
   constructor(props) {
@@ -89,7 +90,7 @@ export default class Home extends Component {
             </Card>
           </CardDeck>
           <ButtonToolbar>
-            <Button className="browse" variant="outline-primary">Browse Auctions</Button>
+            <Button id="homeBrowseButton" variant="outline-primary"><Link to="/auctions" id="homeBrowseLink">Browse Auctions</Link></Button>
             <Button onClick={this.onClick} className="signup" variant="outline-primary">Sign up</Button>
           </ButtonToolbar>
         </div>

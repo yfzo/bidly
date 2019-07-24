@@ -1,3 +1,17 @@
+#homeBrowseLink {
+    text-decoration: none;
+    color: #007bff;
+}
+
+#homeBrowseButton:hover {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+#homeBrowseButton:hover #homeBrowseLink {
+    color: #fff;
+}
+
 .home {
     text-align: justify;
 }
