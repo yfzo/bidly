@@ -20,29 +20,26 @@ export default class Login extends Component {
         email: email,
         password: password,
       }
+    console.log('reached login frontend' + email + password)
+    let t = this
     fetch("http://localhost:3000/login", {
       method: 'POST',
       body: JSON.stringify(user), 
       headers: {"Content-Type": "application/json"},
       // credentials: 'include'
     })
+    .then((response) => response.json())
     .then(function(response){
-      if(response.ok){
-        return response.json()
-      } else {
-        throw Error(`Request rejected with status ${response.status}`);
-      }
-    }).then(function(body){
-      console.log(body)
+      localStorage.setItem("user_id", response.userid)
+      t.setState({ redirect: true});
     }).catch((err) => console.log('error' + err))
-
-    this.setState({ redirect: true});
     }
   }
 
   render() {
-    if (this.state.redirect == true ) {
-      return <Redirect to='/' />
+    if (this.state.redirect === true ) {
+      
+      return <Redirect to={'/users/' + localStorage.getItem("user_id")} />
     }
     return (
       <div>

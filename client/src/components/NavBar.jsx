@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+
 import Auctions from '../containers/Auctions.jsx';
 import Login from '../containers/Login.jsx';
 import Register from '../containers/Register.jsx';
@@ -16,14 +17,6 @@ export default class NavBar extends Component {
         <Link to="/login">Login</Link>
         <Link to="/register">Register</Link>
         <Link to="/auctions/new">Create auction</Link>
-
-        <Route exact path="/auctions" component={Auctions} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/" component={Home} />
-        {/* <Route exact path="/auctions/new" component={NewAuction} /> */}
-
-        
       </div>
     )
   }

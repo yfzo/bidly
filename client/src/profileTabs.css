@@ -1,0 +1,26 @@
+#profile_tabs_link {
+    text-decoration: none;
+    color: white;
+}
+
+.profile_tabs {
+    text-align: left;
+    padding-left: 15px;
+}
+
+#profile_tabs_button {
+    margin-right: 80%;
+}
+
+#balance {
+    display: inline-block;
+}
+
+#profile_tabs_form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+

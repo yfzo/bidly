@@ -17,10 +17,8 @@ router.post("/", function(req, res, next) {
     .where('password', '=', req.body.password)
     .first('*')
     .then((user) => {
-      console.log('correct user!')
-      res.cookie('user_id', user.id).send()
-      // console.log(res.getHeaders())
-      // res.send('okay')
+      res.cookie('user_id', user.id)
+      res.send({userid: user.id})
     })
     .catch(error => {
       console.log(error)
