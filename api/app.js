@@ -7,7 +7,6 @@ var cors = require("cors");
 const ENV         = process.env.ENV || "development";
 const knexConfig = require('./knexfile')    // require environment's settings from knexfile
 const knex = require('knex')(knexConfig[ENV]);              // connect to DB via knex using env's settings
-// const bidly = require('./')
 
 //listing routes
 var indexRouter = require('./routes/index');
@@ -23,7 +22,7 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-app.use(cors());
+app.use(cors({credentials: true}));
 
 app.use(logger('dev'));
 app.use(express.json());

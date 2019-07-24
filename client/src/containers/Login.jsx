@@ -20,11 +20,11 @@ export default class Login extends Component {
         email: email,
         password: password,
       }
-    console.log('reached login frontend' + email + password)
     fetch("http://localhost:3000/login", {
       method: 'POST',
       body: JSON.stringify(user), 
-      headers: {"Content-Type": "application/json"}
+      headers: {"Content-Type": "application/json"},
+      // credentials: 'include'
     })
     .then(function(response){
       if(response.ok){

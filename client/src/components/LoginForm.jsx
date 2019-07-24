@@ -3,12 +3,12 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 export default class LoginForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      redirect: false
-    }
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     redirect: false
+  //   }
+  // }
 
   loginHandler = (e) => {
     e.preventDefault();

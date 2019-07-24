@@ -15,12 +15,14 @@ export default class NavBar extends Component {
         <Link to="/auctions">Browse Auctions</Link>
         <Link to="/login">Login</Link>
         <Link to="/register">Register</Link>
-        
+        <Link to="/auctions/new">Create auction</Link>
 
         <Route exact path="/auctions" component={Auctions} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/" component={Home} />
+        {/* <Route exact path="/auctions/new" component={NewAuction} /> */}
+
         
       </div>
     )

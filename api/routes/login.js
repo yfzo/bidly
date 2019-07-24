@@ -5,7 +5,6 @@ module.exports = (knex) => {
 
 router.get("/", function(req, res, next) {
     res.send("login get routes here");
-
 });
 
   //select data where email and password match and attach userid on cookie
@@ -18,7 +17,11 @@ router.post("/", function(req, res, next) {
     .where('password', '=', req.body.password)
     .first('*')
     .then((user) => {
-      res.cookie('user_id', user.id)
+      console.log('correct user!')
+      console.log(user)
+      res.cookie('user_id', user.id).send()
+      // console.log(res.getHeaders())
+      // res.send('okay')
     })
     .catch(error => {
       console.log(error)
