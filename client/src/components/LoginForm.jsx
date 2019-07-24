@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { Redirect } from 'react-router-dom';
 
 export default class LoginForm extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ export default class LoginForm extends Component {
     const email = e.target.elements['email'].value;
     const password = e.target.elements['password'].value;
     this.props.onSubmit(email, password)
+    this.setState({ redirect: true});
   }
   render() {
     return (

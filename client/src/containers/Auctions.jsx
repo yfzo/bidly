@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import queryString from 'query-string'
-
 import SideBar from '../components/SideBar.jsx'; 
 import EachAuction from '../components/EachAuction.jsx';
 
