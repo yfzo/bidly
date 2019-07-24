@@ -36,32 +36,41 @@ router.get("/:id", function(req, res, next) {
       console.log(row)
       res.send(row);
     })
-  // res.send("auctions id get routes");
 });
+
+// router.post('/image-upload', (req, res) => {
+//   console.log('reached image upload route')
+//   const path = Object.values(Object.values(req.files)[0])[0].path
+//   cloudinary.uploader.upload(path)
+//     .then(image => res.json([image]))
+// })
+
 
 //create a new auction
 router.post("/", function(req, res, next) {
-  if (JSON.stringify(req.body) !== '{}') {
-    //how should i get the start-time?
-    //how should i conver the time?
+  //calculate one minute ahead 
+  var currentTime = new Date();
+  var minutes = 1;
+  var futureTime = currentTime.getTime() + (minutes * 60000)
+  var endTime = new Date(futureTime)
 
-      knex('auction').insert({
-          id: uuid(2), //for now
+  if (JSON.stringify(req.body) !== '{}') {
+    console.log('reached post route for new auction')
+    console.log(req.body)
+      knex('auctions').insert({
           category_id: req.body.category,
           name: req.body.name,
           description: req.body.description,
           min_bid: req.body.min_bid,
-          start_time: "",
-          end_time: req.body.end_time,
+          end_time: endTime,
           image: req.body.image,
           user_id: req.body.user_id
       }).then(() => {
-          console.log('bid posted')
+          console.log('auction posted')
       }).catch((err) => {
-          console.log(err)
-      })
+          console.log(err)      
+    })
   }
 })
-
 return router
 }

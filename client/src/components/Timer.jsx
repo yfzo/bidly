@@ -6,8 +6,6 @@ export default class Timer extends Component {
   constructor(props) {
       super(props);
       this.state = { seconds: '00', minutes: (this.props.timeRemaining / MILLISECONDS_IN_MIN).toString() }
-      this.secondsRemaining; 
-      this.intervalHandle;
       this.startCountDown = this.startCountDown.bind(this);
       this.tick = this.tick.bind(this);
       this.startCountDown()

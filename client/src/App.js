@@ -35,7 +35,7 @@ class App extends Component {
   }
 
   render() {
-    console.log(window.location);
+    // console.log(window.location);
     return (
       <Router>
         <Route path="/auctions/:id" component={AuctionDetail} />
