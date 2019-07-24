@@ -4,12 +4,12 @@ import CardDeck from 'react-bootstrap/CardDeck';
 import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import '../home.css';
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
 
 export default class Home extends Component {
   constructor(props) {
     super(props);
-    this.onClick = this.onClick.bind(this)
+    this.onClick = this.onClick.bind(this);
     this.state = {
       redirect: false
     }

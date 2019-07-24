@@ -2,8 +2,17 @@ var express = require('express');
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/:id', function(req, res, next) {
-  res.send('user get routes here');
-});
+module.exports = (knex) => {
 
-module.exports = router;
+  router.get('/:id', function(req, res, next) {
+    knex
+      .table("users")
+      .where('id', '=', req.params.id)
+      .first('*')
+      .then((row) => {
+        console.log(row)
+        res.send(row);
+      })
+  });
+  return router
+}
