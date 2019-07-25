@@ -1,3 +1,13 @@
+auction_name_wrapper {
+    display: inline-block;
+}
+
+#button_auction_wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 #profile_tabs_link {
     text-decoration: none;
     color: white;
@@ -8,9 +18,9 @@
     padding-left: 15px;
 }
 
-#profile_tabs_button {
+/* #profile_tabs_button {
     margin-right: 80%;
-}
+} */
 
 #balance {
     display: inline-block;
