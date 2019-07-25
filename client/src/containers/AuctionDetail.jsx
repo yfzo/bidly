@@ -24,8 +24,10 @@ export default class AuctionDetail extends Component {
   }
 
   componentDidMount() {
+    if(this.props.match.params.id !== 'new'){
       this.callAPI();
-  }
+    }
+}
   
   bidHandler = (num) => {
     if(num && num > this.state.auction.min_bid){
@@ -63,12 +65,16 @@ export default class AuctionDetail extends Component {
 
   render() {
 
-    console.log("This is auction", this.state.auction)
-    if (this.state.redirect) {
-      console.log(`**********/auctions/${this.state.auction.id + 1}`)
-      return <Redirect push to={`/auctions/${this.state.auction.id + 1}`} />
-    }
+    // console.log("This is auction", this.state.auction)
+    // if (this.state.redirect) {
+    //   console.log(`**********/auctions/${this.state.auction.id + 1}`)
+    //   return <Redirect push to={`/auctions/${this.state.auction.id + 1}`} />
+    // }
         
+    if(this.props.match.params.id === 'new'){
+      return (<React.Fragment></React.Fragment>)
+    }
+
     var currentTime = new Date();
     var minutes = 1;
     var futureTime = currentTime.getTime() + (minutes * 60000)
