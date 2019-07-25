@@ -13,7 +13,6 @@ export default class ProfileTabs extends Component {
   }
 
   render() {
-    console.log(this.props.data);
     return (
       <div>
         <Tabs defaultActiveKey="accountInfo" id="uncontrolled-tab-example">
@@ -34,14 +33,34 @@ export default class ProfileTabs extends Component {
             </Card>
           </Tab>
           <Tab eventKey="myBids" title="My bids">
+            {this.props.data ? this.props.data.amounts.map(namedBid => {
+                console.log("this is nameBid " + namedBid)
+              
+             return ( 
             <Card body className="profile_tabs">
-              <div>{this.props.data.name} - {this.props.data.amount}</div>
+
+              
+              <div>{namedBid.name} - {namedBid.amount}</div>
+              
             </Card>
+            )})
+            :
+            ""}
           </Tab>
           <Tab eventKey="myAuctions" title="My auctions">
             <Card body className="profile_tabs">
               <Form id="profile_tabs_form">
-                <div id="balance">{this.props.data.name}</div>
+                <div id="balance">
+                {this.props.data ? this.props.data.amounts.map(namedBid => {
+              
+              return ( 
+              
+              <div>{namedBid.name}</div>
+              
+            )})
+            :
+            ""}
+                </div>
                 <Button id="profile_tabs_button" variant="primary" type="submit"><Link to={{pathname: '/auctions/' + this.props.data.auc_id, state: { modal: true }}} id="profile_tabs_link" >Info</Link></Button>
               </Form>
             </Card>
