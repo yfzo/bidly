@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { Redirect } from 'react-router';
 import Bid from '../components/Bid.jsx'; 
 import '../modal.css';
-import leftArrow from '../../public/triangle-left.svg';
-import rightArrow from '../../public/triangle-right.svg';
+import leftArrow from '../triangle-left.svg';
+import rightArrow from '../triangle-right.svg';
 import Timer from '../components/Timer.jsx';
 
 export default class AuctionDetail extends Component {
@@ -20,7 +20,7 @@ export default class AuctionDetail extends Component {
     fetch(path)
         .then(res => res.json())
         .then(res => this.setState({ auction: res }))
-        .then(() => console.log(this.state.auction));
+        // .then(() => console.log(this.state.auction));
   }
 
   componentDidMount() {

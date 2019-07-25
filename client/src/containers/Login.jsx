@@ -25,7 +25,8 @@ export default class Login extends Component {
     fetch("http://localhost:3000/login", {
       method: 'POST',
       body: JSON.stringify(user), 
-      headers: {"Content-Type": "application/json"}
+      headers: {"Content-Type": "application/json"},
+      // credentials: 'include'
     })
     .then((response) => response.json())
     .then(function(response){

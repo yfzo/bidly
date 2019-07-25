@@ -4,54 +4,70 @@ import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 
 export default class ProfileTabs extends Component {
+  constructor(props) {
+    super(props);
+    // redirect: false
+  }
+
   render() {
-    
-    console.log(this.props.user_info);
     return (
       <div>
         <Tabs defaultActiveKey="accountInfo" id="uncontrolled-tab-example">
           <Tab eventKey="accountInfo" title="Account info">
             <Card body className="profile_tabs">
-              <p>{this.props.user_info.first_name}</p>
+              <p>{this.props.data.first_name}{this.props.data.last_name}</p>
             </Card>
             <Card body className="profile_tabs">
-              <p>Email address</p>
-            </Card>
-            <Card body className="profile_tabs">
-              <p>Address</p>
+              <p>{this.props.data.email}</p>
             </Card>
             <Card body className="profile_tabs">
               <Form id="profile_tabs_form">
-                <div id="balance">Balance</div>
-                  <Button id="profile_tabs_button" variant="primary" type="submit">
+                <div id="balance">{this.props.data.balance}</div>
+                  <Button onClick={this.props.onClick} id="profile_tabs_button" variant="primary" type="submit">
                     Topup
                   </Button>
               </Form>
             </Card>
           </Tab>
           <Tab eventKey="myBids" title="My bids">
+            {this.props.data ? this.props.data.amounts.map(namedBid => {
+                console.log("this is nameBid " + namedBid)
+              
+             return ( 
             <Card body className="profile_tabs">
-              <div>Name Bid</div>
+
+              
+              <div>{namedBid.name} - {namedBid.amount}</div>
+              
             </Card>
-            <Card body className="profile_tabs">
-              <div>Name Bid</div>
-            </Card>
+            )})
+            :
+            ""}
           </Tab>
           <Tab eventKey="myAuctions" title="My auctions">
             <Card body className="profile_tabs">
               <Form id="profile_tabs_form">
-                <div id="balance">Auction name</div>
-                  <Button id="profile_tabs_button" variant="primary" type="submit">
-                    info
-                  </Button>
+                <div id="balance">
+                {this.props.data ? this.props.data.amounts.map(namedBid => {
+              
+              return ( 
+              
+              <div>{namedBid.name}</div>
+              
+            )})
+            :
+            ""}
+                </div>
+                <Button id="profile_tabs_button" variant="primary" type="submit"><Link to={{pathname: '/auctions/' + this.props.data.auc_id, state: { modal: true }}} id="profile_tabs_link" >Info</Link></Button>
               </Form>
             </Card>
           </Tab>
           <Tab eventKey="notifications" title="Notifications">
             <Card body className="profile_tabs">
-              <div>Notification text</div>
+              <div></div>
             </Card>
           </Tab>
         </Tabs>

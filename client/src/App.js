@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import logo from '../public/logo.svg';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import './App.css';
 import NavBar from './components/NavBar.jsx';
 import Auctions from './containers/Auctions.jsx';
@@ -44,16 +43,16 @@ class App extends Component {
   }
 
   render() {
-    console.log(window.location);
+    // console.log(window.location);
     return (
       <Router>
-        <Route path="/auctions/:id" component={AuctionDetail} />
+        <Switch>
+          <Route path="/auctions/new" component={NewAuction} />
+          <Route path="/auctions/:id" component={AuctionDetail} />
+        </Switch>
+        <Route exact path="/auctions" component={Auctions} />
+      
         <div className="App">
-          {/* <div className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h2>Welcome to React</h2>
-          </div>
-          <p className="App-intro">{this.state.apiResponse}</p> */}
           <div><NavBar /></div>
           {/* <div><AuctionDetail /></div> */}
           <div
@@ -74,15 +73,13 @@ class App extends Component {
             </Toast>
           </div>
           
-
-          <Route path="/auctions" component={Auctions} />
+          {/* {localStorage.getItem('showAuctions') ? <Route path="/auctions" component={Auctions} /> : null} */}
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route exact path="/" component={Home} />
+          <Route exact path="/users/:id" component={Profile} />
         </div>
-        {/* <Route path="/login" component={Login} /> */}
-        <Route exact path="/auctions/new" component={NewAuction} />
-        <Route exact path="/users/:id" component={Profile} />
+
       </Router>
     );
   }

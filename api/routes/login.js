@@ -5,7 +5,6 @@ module.exports = (knex) => {
 
 router.get("/", function(req, res, next) {
     res.send("login get routes here");
-
 });
 
   //select data where email and password match and attach userid on cookie
