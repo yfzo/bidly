@@ -57,7 +57,7 @@ export default class Auctions extends Component {
       if (auctions_arr) {
         // Show all auctions if there is no query, else show filtered by category
         var auctions = auctions_arr.map(auction => (
-          ((auction.category_id === queryValues.category) || !this.props.location.search) && <EachAuction key={auction.id} auction={auction} location={location} history={this.props.history}/>
+          ((auction.category_id == queryValues.category) || !this.props.location.search) && <EachAuction key={auction.id} auction={auction} location={location} history={this.props.history}/>
         ));
       }
 

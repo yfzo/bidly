@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import ProfileTabs from '../components/ProfileTabs.jsx';
 import '../profileTabs.css';
 import { Redirect } from 'react-router-dom';
-import Card from 'react-bootstrap/Card';
 
 export default class Profile extends Component {
   constructor(props) {
@@ -25,10 +24,10 @@ export default class Profile extends Component {
   componentDidMount() {
       console.log("blahblah")
       this.callAPI();
-      this.socket = new WebSocket('ws://localhost:3001/');
-        this.socket.addEventListener('open', () => {
-            console.log('Connected to server');
-        });
+      // this.socket = new WebSocket('ws://localhost:3001/');
+      //   this.socket.addEventListener('open', () => {
+      //       console.log('Connected to server');
+      //   });
   }
   
     render() {
