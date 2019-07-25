@@ -31,6 +31,7 @@ export default class Login extends Component {
     .then((response) => response.json())
     .then(function(response){
       localStorage.setItem("user_id", response.userid)
+      t.props.changeState();
       t.setState({ redirect: true});
     }).catch((err) => console.log('error' + err))
     }
@@ -46,11 +47,17 @@ export default class Login extends Component {
   //   }
   //   currentUserId && socket.send(JSON.stringify(userInfo))
   // }
+  //s 
 
   render() {
+    // console.log(50, this.props)
+    // console.log(51, this.state.redirect)
     if (this.state.redirect === true ) {
+
+      console.log(52, "user loggedin!")
+      return <Redirect to={'/users/' + localStorage.getItem("user_id")} />
       window.location.href = `/users/${localStorage.getItem("user_id")}`;
-      // return <Redirect to={'/users/' + localStorage.getItem("user_id")} />
+      
     }
     return (
       <div>
