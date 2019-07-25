@@ -46,11 +46,8 @@ class App extends Component {
     // console.log(window.location);
     return (
       <Router>
-        <Switch>
-          <Route path="/auctions/new" component={NewAuction} />
           <Route path="/auctions/:id" component={AuctionDetail} />
-        </Switch>
-      
+
         <div className="App">
           <div><NavBar /></div>
           {/* <div><AuctionDetail /></div> */}
@@ -72,8 +69,10 @@ class App extends Component {
             </Toast>
           </div>
           
-          {/* {localStorage.getItem('showAuctions') ? <Route path="/auctions" component={Auctions} /> : null} */}
-          <Route path="/auctions" component={Auctions} />
+          <Switch>
+            <Route path="/auctions/new" component={NewAuction} />
+            <Route path="/auctions" component={Auctions} />
+          </Switch>
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route exact path="/" component={Home} />
