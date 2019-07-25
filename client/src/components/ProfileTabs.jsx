@@ -9,7 +9,6 @@ import { Link } from 'react-router-dom';
 export default class ProfileTabs extends Component {
   constructor(props) {
     super(props);
-    // redirect: false
   }
 
   render() {
@@ -55,7 +54,9 @@ export default class ProfileTabs extends Component {
                   <Form>
                     <div id="button_auction_wrapper">
                       <div id="auction_name_wrapper" >{auction.name}</div>
-                      <Button id="profile_tabs_button" key={this.props.data.auctions.id} variant="primary" type="submit"><Link to={ '/auctions/' + this.props.data.auctions.id} id="profile_tabs_link">Info</Link></Button>
+                      <Button id="profile_tabs_button" key={auction.id} variant="primary" type="submit">
+                        <Link to={ '/auctions/' + auction.id} id="profile_tabs_link">Info</Link>
+                      </Button>
                     </div>
                   </Form>
                 </Card>

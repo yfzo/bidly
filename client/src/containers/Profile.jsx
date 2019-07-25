@@ -8,7 +8,6 @@ export default class Profile extends Component {
     super(props);
     this.state = { data: null,
     redirect: false}
-    
     console.log("blahblah")
   }
 
@@ -24,10 +23,6 @@ export default class Profile extends Component {
   componentDidMount() {
       console.log("blahblah")
       this.callAPI();
-      // this.socket = new WebSocket('ws://localhost:3001/');
-      //   this.socket.addEventListener('open', () => {
-      //       console.log('Connected to server');
-      //   });
   }
   
     render() {
