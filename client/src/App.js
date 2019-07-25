@@ -50,7 +50,6 @@ class App extends Component {
           <Route path="/auctions/new" component={NewAuction} />
           <Route path="/auctions/:id" component={AuctionDetail} />
         </Switch>
-        <Route exact path="/auctions" component={Auctions} />
       
         <div className="App">
           <div><NavBar /></div>
@@ -74,6 +73,7 @@ class App extends Component {
           </div>
           
           {/* {localStorage.getItem('showAuctions') ? <Route path="/auctions" component={Auctions} /> : null} */}
+          <Route path="/auctions" component={Auctions} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route exact path="/" component={Home} />
