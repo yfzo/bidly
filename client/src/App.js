@@ -70,8 +70,8 @@ class App extends Component {
           </div>
           
           <Switch>
-            <Route path="/auctions" component={Auctions} />
             <Route path="/auctions/new" component={NewAuction} />
+            <Route path="/auctions" component={Auctions} />
           </Switch>
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
