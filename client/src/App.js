@@ -28,8 +28,12 @@ function PrivateRoute ({component: Component, isLoggedIn, ...rest}) {
 class App extends Component {
   constructor(props) {
     super(props);
+<<<<<<< HEAD
     this.state = { apiResponse: "" , loggedIn: false };
     // console.log("blahblah")
+=======
+    this.state = { apiResponse: "" , loggedIn: true };
+>>>>>>> bd3ef300e4fd442b5b54edfc7e41bebec436d804
 
   }
 
@@ -40,7 +44,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-      // console.log("blahblah")
       this.callAPI();
       this.socket = new WebSocket('ws://localhost:3001/');
       localStorage.setItem("socket", this.socket);
@@ -55,11 +58,15 @@ class App extends Component {
         });
   }
 
+<<<<<<< HEAD
   changeState() {
     this.setState({ loggedIn: true });
   }
 
   render() {   
+=======
+  render() {
+>>>>>>> bd3ef300e4fd442b5b54edfc7e41bebec436d804
     return (
       <Router>
           <PrivateRoute isLoggedIn={this.state.loggedIn} path="/auctions/:id" component={AuctionDetail} />
