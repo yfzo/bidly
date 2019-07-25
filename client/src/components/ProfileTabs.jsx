@@ -18,7 +18,7 @@ export default class ProfileTabs extends Component {
         <Tabs defaultActiveKey="accountInfo" id="uncontrolled-tab-example">
           <Tab eventKey="accountInfo" title="Account info">
             <Card body className="profile_tabs">
-              <p>{this.props.data.first_name}{this.props.data.last_name}</p>
+              <p>{this.props.data.first_name} {this.props.data.last_name}</p>
             </Card>
             <Card body className="profile_tabs">
               <p>{this.props.data.email}</p>
@@ -39,7 +39,6 @@ export default class ProfileTabs extends Component {
              return ( 
             <Card body className="profile_tabs">
 
-              
               <div>{namedBid.name} - {namedBid.amount}</div>
               
             </Card>
@@ -48,22 +47,22 @@ export default class ProfileTabs extends Component {
             ""}
           </Tab>
           <Tab eventKey="myAuctions" title="My auctions">
-            <Card body className="profile_tabs">
-              <Form id="profile_tabs_form">
-                <div id="balance">
-                {this.props.data ? this.props.data.amounts.map(namedBid => {
+            
+            {this.props.data ? this.props.data.amounts.map(namedBid => {
               
-              return ( 
-              
-              <div>{namedBid.name}</div>
-              
+              return (
+                <Card body >
+                  <Form>
+                    <div id="button_auction_wrapper">
+                      <div id="auction_name_wrapper" >{namedBid.name}</div>
+                      <Button id="profile_tabs_button" key={this.props.data.auctions.id} variant="primary" type="submit"><Link to={ '/auctions/' + this.props.data.auctions.id} id="profile_tabs_link">Info</Link></Button>
+                    </div>
+                  </Form>
+                </Card>
             )})
             :
             ""}
-                </div>
-                <Button id="profile_tabs_button" variant="primary" type="submit"><Link to={{pathname: '/auctions/' + this.props.data.auc_id, state: { modal: true }}} id="profile_tabs_link" >Info</Link></Button>
-              </Form>
-            </Card>
+               
           </Tab>
           <Tab eventKey="notifications" title="Notifications">
             <Card body className="profile_tabs">
