@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import NewAuctionForm from '../components/NewAuctionForm.jsx';
 import { Redirect } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
+import Alert from 'react-bootstrap/Button';
+
+
 // import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
 import ImageUpload from '../components/ImageUpload.jsx';
 
@@ -12,7 +15,8 @@ export default class NewAuction extends Component {
       data: "" ,
       redirect: false,
       newImage: "",
-      thumbnails: ""
+      thumbnails: "",
+      error: false
     };
   }
 
@@ -27,7 +31,6 @@ export default class NewAuction extends Component {
   }
 
   newAuctionHandler = (data) =>{
-
     //set data to be sent to db in newAuction
     const newAuction = {
       user_id: localStorage.getItem('user_id'),
@@ -46,15 +49,16 @@ export default class NewAuction extends Component {
     .then((response) => {
       console.log(response)
       if(response.ok){
+        this.setState({ redirect: true })
         return response.json()
       } else {
+        this.setState({error: true})
         throw Error(`Request rejected with status ${response.status}`);
       }
     }).then((response) => 
       console.log(response)
     ).catch((err) => console.log('error' + err))
 
-    this.setState({ redirect: true });
   }
 
   showWidget = (widget) => {
@@ -77,6 +81,7 @@ export default class NewAuction extends Component {
     });
   }
     render() {
+
       if (this.state.redirect == true ) {
         return <Redirect to='/' />
       }
@@ -86,17 +91,15 @@ export default class NewAuction extends Component {
           <NewAuctionForm onSubmit={(data) => {
             this.newAuctionHandler(data)
           }} 
-          url={this.state.newImage} 
+          url={this.state.newImage} upload={this.imageUpload}   
           />
         {/* <CloudinaryContext cloudName="dnbiul08h"> */}
           {/* <Image publicId={this.state.thumbnails} type="fetch">
             <Transformation width="200" height="200" crop="thumb" fetchFormat="auto" />
           </Image> */}
         {/* </CloudinaryContext> */}
-        <div className="image_upload">
-          <Button onClick={this.imageUpload}>Upload photo</Button>
-        </div>
-        <div id="photo-form"></div>
+        {this.state.error && 
+          <Alert variant="danger">Please fill in all fields</Alert>}
         </div>
       )
     }

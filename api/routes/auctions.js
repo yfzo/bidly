@@ -62,6 +62,8 @@ router.post("/", function(req, res, next) {
           res.send(err)
           console.log(err)      
     })
+  } else {
+    res.send(err)
   }
 })
 return router
