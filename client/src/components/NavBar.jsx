@@ -9,14 +9,17 @@ export default class NavBar extends Component {
   }
 
   render() {
+    //store user specific URL
+    const profileUrl = "users/" + localStorage.getItem('user_id')
+    const isLoggedIn = localStorage.getItem('user_id') !== null
     return (<div className="NavBar">
-
-    {localStorage.getItem('user_id') !== null ? (
+    
+    {isLoggedIn ? (
       <div>
         <Link to="/">Home</Link>
         <Link to="/auctions">Browse Auctions</Link>
         <Link to="/auctions/new">Create auction</Link>
-        <Link to="/users/:id">Profile</Link>
+        <Link to={profileUrl}>Profile</Link>
         <button onClick={this.Logout}>Logout</button>
       </div>
       ) : (
