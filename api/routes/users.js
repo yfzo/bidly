@@ -20,17 +20,15 @@ module.exports = (knex) => {
         knex
         .table("auctions")
         .where('user_id', '=', req.params.id)
-        .first('*')
         .then((auc_row) => {
-          data.name = auc_row.name;
-          data.auc_id = auc_row.id;
+          console.log("auctions" + auc_row);
+          data.auctions = auc_row;
           console.log(auc_row)
-        knex
-        .table("bids")
-        .where('auction_id', '=', req.params.id)
-        .first('*')
+        knex("bids")
+        .join("auctions", "bids.auction_id", "auctions.id")
+        .where('bids.user_id', '=', req.params.id)
         .then((amount_row) => {
-          data.amount = amount_row.amount;
+          data.amounts = amount_row;
         res.send(data);
        })
       })
