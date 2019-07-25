@@ -40,14 +40,19 @@ class App extends Component {
         <div className="App">
           <div><NavBar /></div>
         <Switch>
+          <Route path="/auctions/new" component={NewAuction} />
+          <Route path="/auctions/:id" component={AuctionDetail} />
+        </Switch>
+        <Route exact path="/auctions" component={Auctions} />
+
+        {/* {localStorage.getItem('showAuctions') ? <Route path="/auctions" component={Auctions} /> : null} */}
+        {/* <Route path="/auctions/:id" component={AuctionDetail} /> */}
+        {/* <Route path="/auctions/new" component={NewAuction} /> */}
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
         <Route exact path="/" component={Home} />
-        <Route exact path="/auctions/new" component={NewAuction} />
-        <Route exact path="/auctions" component={Auctions} />
-        <Route exact path="/auctions/:id" component={AuctionDetail} />
+    
         <Route exact path="/users/:id" component={Profile} />
-        </Switch>
         </div>
 
       </Router>
