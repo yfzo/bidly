@@ -40,7 +40,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-      // console.log("blahblah")
       this.callAPI();
       this.socket = new WebSocket('ws://localhost:3001/');
       localStorage.setItem("socket", this.socket);
@@ -60,8 +59,6 @@ class App extends Component {
   }
 
   render() {
-    // console.log(window.location);
-   
     return (
       <Router>
           <PrivateRoute isLoggedIn={this.state.loggedIn} path="/auctions/:id" component={AuctionDetail} />

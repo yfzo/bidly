@@ -9,8 +9,21 @@ export default class NewAuctionForm extends Component {
 
   submitHandler = (e) => {
     e.preventDefault();
+
+    //convert category name to integer
+    const categoryConverter = (category) => {
+      switch(category){
+        case 'Food':
+          return 1;
+        case 'Beauty':
+          return 2;
+        case 'Home stuff':
+          return 3;
+      }
+    }
+
     const newAuction = {
-      category: e.target.elements['category'].value,
+      category: categoryConverter(e.target.elements['category'].value),
       name: e.target.elements['item_name'].value,
       description: e.target.elements['description'].value,
       image: e.target.elements['image'].value,
@@ -47,12 +60,13 @@ export default class NewAuctionForm extends Component {
               </Form.Group>
               <Form.Group controlId="formImage">
                 <Form.Label>Image upload</Form.Label>
-                <Form.Control type="button" placeholder="image" name="image" alt="upload image"/>
                 <Form.Group as={Row} controlId="formPlaintextEmail">
-                  <Form.Label column sm="4">Image URL</Form.Label>
+                  <Form.Label className="image_upload"column sm="4">Image URL</Form.Label>
                   <Col sm="8">
                     <Form.Control plaintext readOnly defaultValue={this.props.url} />
                   </Col>
+                  <Button onClick={this.props.upload} type="button" placeholder="image" name="image" alt="upload image">
+                  Upload Image</Button>
                 </Form.Group>
               </Form.Group>
               <Form.Group controlId="formMinBid">

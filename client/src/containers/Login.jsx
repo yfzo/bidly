@@ -53,8 +53,11 @@ export default class Login extends Component {
     // console.log(50, this.props)
     // console.log(51, this.state.redirect)
     if (this.state.redirect === true ) {
+
       console.log(52, "user loggedin!")
       return <Redirect to={'/users/' + localStorage.getItem("user_id")} />
+      window.location.href = `/users/${localStorage.getItem("user_id")}`;
+      
     }
     return (
       <div>
