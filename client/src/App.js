@@ -59,9 +59,7 @@ class App extends Component {
     this.setState({ loggedIn: true });
   }
 
-  render() {
-    // console.log(window.location);
-   
+  render() {   
     return (
       <Router>
           <PrivateRoute isLoggedIn={this.state.loggedIn} path="/auctions/:id" component={AuctionDetail} />
