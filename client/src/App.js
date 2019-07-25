@@ -9,13 +9,26 @@ import Login from './containers/Login.jsx';
 import Register from './containers/Register.jsx';
 import NewAuction from './containers/NewAuction';
 import Profile from './containers/Profile';
+import { Redirect } from 'react-router-dom';
 
 import Toast from 'react-bootstrap/Toast';
+
+function PrivateRoute ({component: Component, isLoggedIn, ...rest}) {
+  return (
+    <Route
+      {...rest}
+      render={(props) => isLoggedIn === true
+        ? <Component {...props} />
+        : <Redirect to={{pathname: '/login', state: {from: props.location}}} />}
+    />
+  )
+}
+
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { apiResponse: "" , loggedIn: true };
+    this.state = { apiResponse: "" , loggedIn: false };
     // console.log("blahblah")
 
   }
@@ -42,11 +55,16 @@ class App extends Component {
         });
   }
 
+  changeState() {
+    this.setState({ loggedIn: true });
+  }
+
   render() {
     // console.log(window.location);
+   
     return (
       <Router>
-          <Route path="/auctions/:id" component={AuctionDetail} />
+          <PrivateRoute isLoggedIn={this.state.loggedIn} path="/auctions/:id" component={AuctionDetail} />
 
         <div className="App">
           <div><NavBar /></div>
@@ -70,13 +88,14 @@ class App extends Component {
           </div>
           
           <Switch>
-            <Route path="/auctions/new" component={NewAuction} />
+            <PrivateRoute isLoggedIn={this.state.loggedIn} path="/auctions/new" component={NewAuction} />
             <Route path="/auctions" component={Auctions} />
           </Switch>
-          <Route path="/login" component={Login} />
+          <Route path="/login" render={() => (<Login changeState={() => this.changeState()}/>)}/>
           <Route path="/register" component={Register} />
           <Route exact path="/" component={Home} />
-          <Route exact path="/users/:id" component={Profile} />
+
+          <PrivateRoute isLoggedIn={this.state.loggedIn} path='/users/:id' component={Profile} />
         </div>
 
       </Router>
