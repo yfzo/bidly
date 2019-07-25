@@ -3,6 +3,10 @@ var router = express.Router();
 
 module.exports = (knex) => {
 
+  router.get("/new", function(req, res, next) {
+    res.json("new route!");
+  });
+  
   //send all categories(for side bar) and auctions data
 router.get("/", function(req, res, next) {
   sendingData = []
@@ -20,9 +24,7 @@ router.get("/", function(req, res, next) {
     })
 });
 
-router.get("/new", function(req, res, next) {
-  res.send("auctions/new get routes");
-});
+
 
 //find the id from params and send its data
 router.get("/:id", function(req, res, next) {

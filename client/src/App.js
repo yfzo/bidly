@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import logo from '../public/logo.svg';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import './App.css';
 import NavBar from './components/NavBar.jsx';
 import Auctions from './containers/Auctions.jsx';
@@ -38,24 +37,19 @@ class App extends Component {
     // console.log(window.location);
     return (
       <Router>
-        <Route path="/auctions/:id" component={AuctionDetail} />
         <div className="App">
-          {/* <div className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h2>Welcome to React</h2>
-          </div>
-          <p className="App-intro">{this.state.apiResponse}</p> */}
           <div><NavBar /></div>
-          {/* <div><AuctionDetail /></div> */}
-
-        <Route path="/auctions" component={Auctions} />
+        <Switch>
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
         <Route exact path="/" component={Home} />
-        </div>
-        {/* <Route path="/login" component={Login} /> */}
         <Route exact path="/auctions/new" component={NewAuction} />
+        <Route exact path="/auctions" component={Auctions} />
+        <Route exact path="/auctions/:id" component={AuctionDetail} />
         <Route exact path="/users/:id" component={Profile} />
+        </Switch>
+        </div>
+
       </Router>
     );
   }

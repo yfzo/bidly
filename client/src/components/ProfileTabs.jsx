@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 export default class ProfileTabs extends Component {
   constructor(props) {
     super(props);
-    redirect: false
+    // redirect: false
   }
 
   render() {
