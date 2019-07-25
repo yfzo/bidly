@@ -11,7 +11,7 @@ export default class NavBar extends Component {
   render() {
     return (<div className="NavBar">
 
-    {localStorage.getItem('user_id') ? (
+    {localStorage.getItem('user_id') !== null ? (
       <div>
         <Link to="/">Home</Link>
         <Link to="/auctions">Browse Auctions</Link>
