@@ -49,8 +49,8 @@ export default class Login extends Component {
 
   render() {
     if (this.state.redirect === true ) {
-      
-      return <Redirect to={'/users/' + localStorage.getItem("user_id")} />
+      window.location.href = `/users/${localStorage.getItem("user_id")}`;
+      // return <Redirect to={'/users/' + localStorage.getItem("user_id")} />
     }
     return (
       <div>

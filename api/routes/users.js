@@ -30,7 +30,7 @@ module.exports = (knex) => {
         .then((amount_row) => {
           data.amounts = amount_row;
         res.send(data);
-       })
+      })
       })
     })
   });
