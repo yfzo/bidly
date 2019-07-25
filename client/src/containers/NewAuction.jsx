@@ -44,7 +44,6 @@ export default class NewAuction extends Component {
       headers: {"Content-Type": "application/json"}
     })
     .then((response) => {
-      debugger
       console.log(response)
       if(response.ok){
         return response.json()

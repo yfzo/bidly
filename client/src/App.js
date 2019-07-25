@@ -16,7 +16,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = { apiResponse: "" , loggedIn: true };
-    // console.log("blahblah")
 
   }
 
@@ -27,7 +26,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-      // console.log("blahblah")
       this.callAPI();
       this.socket = new WebSocket('ws://localhost:3001/');
       localStorage.setItem("socket", this.socket);
@@ -43,7 +41,6 @@ class App extends Component {
   }
 
   render() {
-    // console.log(window.location);
     return (
       <Router>
           <Route path="/auctions/:id" component={AuctionDetail} />
