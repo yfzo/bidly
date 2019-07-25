@@ -48,13 +48,13 @@ export default class ProfileTabs extends Component {
           </Tab>
           <Tab eventKey="myAuctions" title="My auctions">
             
-            {this.props.data ? this.props.data.amounts.map(namedBid => {
+            {this.props.data ? this.props.data.auctions.map(auction => {
               
               return (
                 <Card body >
                   <Form>
                     <div id="button_auction_wrapper">
-                      <div id="auction_name_wrapper" >{namedBid.name}</div>
+                      <div id="auction_name_wrapper" >{auction.name}</div>
                       <Button id="profile_tabs_button" key={this.props.data.auctions.id} variant="primary" type="submit"><Link to={ '/auctions/' + this.props.data.auctions.id} id="profile_tabs_link">Info</Link></Button>
                     </div>
                   </Form>
