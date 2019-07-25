@@ -12,8 +12,7 @@ export default class NavBar extends Component {
   Logout = () => {
     console.log('logout')
     localStorage.clear()
-    // window.browserHistory.push('/')
-    // return (<Redirect to={'/'} />)
+    window.location.href = '/';
   }
   
   render() {
