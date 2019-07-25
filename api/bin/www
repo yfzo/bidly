@@ -8,6 +8,9 @@ var app = require('../app');
 var debug = require('debug')('api:server');
 var http = require('http');
 const SocketServer = require('ws').Server;
+const ENV         = process.env.ENV || "development";
+const knexConfig = require('../knexfile')    // require environment's settings from knexfile
+const knex = require('knex')(knexConfig[ENV]);  
 
 
 /**
@@ -36,6 +39,11 @@ wss.on('connection', (ws) => {
   ws.on('close', () => {
     console.log('Client disconnected');
   });
+
+  ws.onmessage = evt => {
+    const userInfo = JSON.parse(evt.data);
+    console.log(`From ws server: ${userInfo.id}`);
+  }
 });
 
 /**
@@ -105,3 +113,38 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+function findWinner(auction) {
+  const winner = null;
+
+  return winner;
+}
+
+function sendNotifications() {
+
+}
+
+// function checkAuctionEnd() {
+//   const currentTime = Date.now();
+  
+//   // Select all auctions that have ended but have not had notifications sent yet
+//   knex('auctions')
+//     .where('end_time', '<=', currentTime)
+//     .andWhere('notifications_sent', false)
+//     .then((auctions) => {
+//       const auction_ids = auctions.map(auction => auction.id);
+//       console.log(auctions)
+//       console.log("Auction ids:", auction_ids)
+//       // Update notifications_sent to true
+//       knex('auctions')
+//         .whereIn('id', auction_ids)
+//         .update({ notifications_sent: true })
+//         .then((updatedRows) => {
+//           console.log("updated:", updatedRows)
+//         })
+//     })
+//     .then(() => console.log("All notifications sent"))
+
+// }
+
+// setInterval(checkAuctionEnd, 5000);

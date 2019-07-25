@@ -10,6 +10,8 @@ import Register from './containers/Register.jsx';
 import NewAuction from './containers/NewAuction';
 import Profile from './containers/Profile';
 
+import Toast from 'react-bootstrap/Toast';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -28,8 +30,15 @@ class App extends Component {
       // console.log("blahblah")
       this.callAPI();
       this.socket = new WebSocket('ws://localhost:3001/');
+      localStorage.setItem("socket", this.socket);
         this.socket.addEventListener('open', () => {
             console.log('Connected to server');
+
+            const currentUserId = localStorage.getItem("user_id") || "someuser";
+            const userInfo = {
+              id: currentUserId
+            }
+            currentUserId && this.socket.send(JSON.stringify(userInfo))
         });
   }
 
@@ -37,22 +46,38 @@ class App extends Component {
     // console.log(window.location);
     return (
       <Router>
-        <div className="App">
-          <div><NavBar /></div>
         <Switch>
           <Route path="/auctions/new" component={NewAuction} />
           <Route path="/auctions/:id" component={AuctionDetail} />
         </Switch>
         <Route exact path="/auctions" component={Auctions} />
-
-        {/* {localStorage.getItem('showAuctions') ? <Route path="/auctions" component={Auctions} /> : null} */}
-        {/* <Route path="/auctions/:id" component={AuctionDetail} /> */}
-        {/* <Route path="/auctions/new" component={NewAuction} /> */}
-        <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
-        <Route exact path="/" component={Home} />
-    
-        <Route exact path="/users/:id" component={Profile} />
+      
+        <div className="App">
+          <div><NavBar /></div>
+          {/* <div><AuctionDetail /></div> */}
+          <div
+            aria-live="polite"
+            aria-atomic="true"
+            style={{
+              position: 'relative',
+              minHeight: '100px',
+            }}
+          >
+            <Toast className="end-notification">
+              <Toast.Header>
+                {/* <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" /> */}
+                <strong className="mr-auto">Some Auction Name</strong>
+                <small>11 mins ago</small>
+              </Toast.Header>
+              <Toast.Body>This auction ended. Click to view.</Toast.Body>
+            </Toast>
+          </div>
+          
+          {/* {localStorage.getItem('showAuctions') ? <Route path="/auctions" component={Auctions} /> : null} */}
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/users/:id" component={Profile} />
         </div>
 
       </Router>

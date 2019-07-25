@@ -36,6 +36,17 @@ export default class Login extends Component {
     }
   }
 
+  componentWillUnmount() {
+    const socket = localStorage.getItem("socket");
+    // console.log(`******${!!socket}`)
+    console.log("socket:", socket)
+    const currentUserId = localStorage.getItem("user_id") || "someuserfromlogin";
+    const userInfo = {
+      id: currentUserId
+    }
+    currentUserId && socket.send(JSON.stringify(userInfo))
+  }
+
   render() {
     if (this.state.redirect === true ) {
       
