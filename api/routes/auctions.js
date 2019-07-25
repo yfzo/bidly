@@ -18,12 +18,10 @@ router.get("/", function(req, res, next) {
         .select("*")
         .from("categories")
         .then((cat_row) => {
-        // console.log({category: cat_row, auctions: auc_row})
         res.send({category: cat_row, auctions: auc_row});
       })
     })
 });
-
 
 
 //find the id from params and send its data
@@ -40,36 +38,28 @@ router.get("/:id", function(req, res, next) {
     })
 });
 
-// router.post('/image-upload', (req, res) => {
-//   console.log('reached image upload route')
-//   const path = Object.values(Object.values(req.files)[0])[0].path
-//   cloudinary.uploader.upload(path)
-//     .then(image => res.json([image]))
-// })
-
 
 //create a new auction
 router.post("/", function(req, res, next) {
-  //calculate one minute ahead 
-  var currentTime = new Date();
-  var minutes = 1;
-  var futureTime = currentTime.getTime() + (minutes * 60000)
-  var endTime = new Date(futureTime)
+  console.log('reached auction post route')
 
-  if (JSON.stringify(req.body) !== '{}') {
-    console.log('reached post route for new auction')
-    console.log(req.body)
+  //calculate one minute ahead 
+  oneHourAhead = Date.now() + 1000 * 60 * 60
+
+  if (JSON.stringify(req.body) !== '{}' && req.body.category && req.body.name && req.body.description && req.body.min_bid && req.body.image) {
       knex('auctions').insert({
           category_id: req.body.category,
           name: req.body.name,
           description: req.body.description,
           min_bid: req.body.min_bid,
-          end_time: endTime,
+          end_time: oneHourAhead,
           image: req.body.image,
           user_id: req.body.user_id
-      }).then(() => {
+      }).then((response) => {
           console.log('auction posted')
+          res.send(response)
       }).catch((err) => {
+          res.send(err)
           console.log(err)      
     })
   }

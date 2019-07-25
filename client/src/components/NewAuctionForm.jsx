@@ -9,8 +9,21 @@ export default class NewAuctionForm extends Component {
 
   submitHandler = (e) => {
     e.preventDefault();
+    
+    //convert category name to integer
+    const categoryConverter = (category) => {
+      switch(category){
+        case 'Food':
+          return 1;
+        case 'Beauty':
+          return 2;
+        case 'Home stuff':
+          return 3;
+      }
+    }
+
     const newAuction = {
-      category: e.target.elements['category'].value,
+      category: categoryConverter(e.target.elements['category'].value),
       name: e.target.elements['item_name'].value,
       description: e.target.elements['description'].value,
       image: e.target.elements['image'].value,
