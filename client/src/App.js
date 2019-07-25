@@ -31,8 +31,15 @@ class App extends Component {
       // console.log("blahblah")
       this.callAPI();
       this.socket = new WebSocket('ws://localhost:3001/');
+      localStorage.setItem("socket", this.socket);
         this.socket.addEventListener('open', () => {
             console.log('Connected to server');
+
+            const currentUserId = localStorage.getItem("user_id") || "someuser";
+            const userInfo = {
+              id: currentUserId
+            }
+            currentUserId && this.socket.send(JSON.stringify(userInfo))
         });
   }
 
