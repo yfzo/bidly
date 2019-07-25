@@ -6,7 +6,7 @@ export default class RegisterForm extends Component {
   render () {
   return (
     <div>
-        <Form className="register" onSubmit={this.props.onSubmit}>
+        <Form className="register">
 
           <Form.Group controlId="validationCustom01">
             <Form.Label>First name</Form.Label>
@@ -36,7 +36,7 @@ export default class RegisterForm extends Component {
             <Form.Control type="password" placeholder="Password" />
           </Form.Group>
           
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="button">
             Submit
           </Button>
         </Form>
