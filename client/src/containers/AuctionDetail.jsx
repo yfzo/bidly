@@ -28,28 +28,33 @@ export default class AuctionDetail extends Component {
   }
   
   bidHandler = (num) => {
-    if(num && num > this.state.auction.min_bid){
+    const currentUserId = localStorage.getItem('user_id');
+    
+    if (currentUserId) {
+      if(num && num > this.state.auction.min_bid){
       const newBid = {
         auction_id: this.state.auction.id,
-        user_id: 1, //for now
+        user_id: localStorage.getItem('user_id'), //for now
         amount: num
       }
       
-    fetch("http://localhost:3001/bids", {
-      method: 'POST',
-      body: JSON.stringify(newBid), 
-      headers: {"Content-Type": "application/json"}
-    })
-    .then(response => {
-      if(response.ok){
-      return response.send()
-    } else {
-      throw Error(`Request rejected with status ${response.status}`);
+      fetch("http://localhost:3001/bids", {
+        method: 'POST',
+        body: JSON.stringify(newBid), 
+        headers: {"Content-Type": "application/json"}
+      })
+      .then(response => {
+        if(response.ok){
+        return response.send()
+      } else {
+        throw Error(`Request rejected with status ${response.status}`);
+      }
+      }).then(function(body){
+        console.log(body)
+      }).catch((err) => console.log('error' + err))
+      }
     }
-    }).then(function(body){
-      console.log(body)
-    }).catch((err) => console.log('error' + err))
-    }
+    
   }
   
   back = e => {
