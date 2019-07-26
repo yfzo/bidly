@@ -14,7 +14,7 @@ export default class NavBar extends Component {
 
   render() {
     //store user specific URL
-    const profileUrl = "users/" + localStorage.getItem('user_id')
+    const profileUrl = "/users/" + localStorage.getItem('user_id')
     const isLoggedIn = localStorage.getItem('user_id') !== null
     return (
       <div>    
@@ -32,7 +32,7 @@ export default class NavBar extends Component {
                   <Button onClick={this.Logout}>Logout</Button>
                 </Nav>
               </Navbar.Collapse>
-             </Navbar>
+            </Navbar>
         </div>
           ) : (
             <div>

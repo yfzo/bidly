@@ -3,9 +3,6 @@ import RegisterForm from '../components/RegisterForm.jsx';
 import '../register.css';
 
 export default class Register extends Component {
-    // register = (e) => {
-    //   axios.post('/api/register')
-    // }
   
     render() {
       return (
