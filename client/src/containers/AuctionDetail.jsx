@@ -78,7 +78,7 @@ export default class AuctionDetail extends Component {
 
   render() {
 
-    if(this.props.match.params.id !== NaN ){
+    if(this.props.match.params.id === 'new' ){
       return (<React.Fragment></React.Fragment>)
     }
 
