@@ -19,7 +19,7 @@ function PrivateRoute ({component: Component, isLoggedIn, ...rest}) {
       {...rest}
       render={(props) => isLoggedIn === true
         ? <Component {...props} />
-        : <Redirect to={{pathname: '/login', state: {from: props.location}}} />}
+        : <Redirect to='/login' />}
     />
   )
 }
@@ -28,8 +28,10 @@ function PrivateRoute ({component: Component, isLoggedIn, ...rest}) {
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { apiResponse: "" , loggedIn: false };
-    // console.log("blahblah")
+    this.state = { 
+      apiResponse: "" , 
+      loggedIn: localStorage.getItem("user_id") ? true : false 
+    };
   }
 
   callAPI() {
@@ -79,8 +81,10 @@ class App extends Component {
             aria-live="polite"
             aria-atomic="true"
             style={{
-              position: 'relative',
-              minHeight: '100px',
+              position: "absolute",   
+              minHeight: "100px",
+              minWidth: "259px",          
+              marginLeft: "75%",
             }}
           >
             <Toast className="end-notification">
