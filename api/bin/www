@@ -145,7 +145,7 @@ function sendNotifications(auction) {
     .then()
 
   wss.broadcast(notification);
-  // console.log("**** sent notifications to everyone");
+
 }
 
 function checkAuctionEnd() {
@@ -160,8 +160,6 @@ function checkAuctionEnd() {
       for(auction of auctions){
         sendNotifications(auction);
       }
-      // console.log(auctions)
-      // console.log("Auction ids:", auction_ids)
       // Update notifications_sent to true
       knex('auctions')
         .whereIn('id', auction_ids)
