@@ -114,7 +114,7 @@ export default class AuctionDetail extends Component {
             <div>{this.state.auction && this.state.auction.description}</div>
             <div>{this.state.auction && this.state.auction.min_bid}</div>
             <div>{this.state.auction && this.state.auction.start_time}</div>
-            {timeRemaining > 0 ? <Timer timeRemaining={timeRemaining}/> : <div>Auction Ended</div>}
+            {timeRemaining > 0 ? <Timer timeRemaining={timeRemaining}/> : <h4>Auction Ended</h4>}
             <Bid onEnter={(bid_amount) => {
               this.bidHandler(bid_amount) }}/>
           </div>

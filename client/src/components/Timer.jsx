@@ -124,7 +124,7 @@ export default class Timer extends Component {
   render() {
     return (
       <div>
-        {!this.state.completed ? <h1>{this.state.minutes}:{this.state.seconds}</h1> : <h1>Auction Ended</h1>}
+        {!this.state.completed ? <h4>{this.state.minutes}:{this.state.seconds}</h4> : <h4>Auction Ended</h4>}
       </div>
     );
   }

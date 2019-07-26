@@ -48,7 +48,7 @@ export default class EachAuction extends Component {
               <img alt='' src={auction.image} />
               <div>{auction.name}</div>
               {/* <div>This is an auction!</div> */}
-              {timeRemaining > 0 ? <Timer timeRemaining={timeRemaining}/> : <div>Auction Ended</div>}
+              {timeRemaining > 0 ? <Timer timeRemaining={timeRemaining}/> : <h4>Auction Ended</h4>}
             </div>
           </Link>
           {/* <Route path="/auctions/:id" component={AuctionDetail} /> */}
