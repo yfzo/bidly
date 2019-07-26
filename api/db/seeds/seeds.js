@@ -31,7 +31,7 @@ exports.seed = function(knex, Promise) {
     knex('notifications').insert({auction_id: 1, type: 'auction-end'}),
     knex('notifications').insert({auction_id: 1, type: 'winning-auction'}),
 
-    knex('auctions').insert({category_id: 1, name: 'snickers ice cream', description: 'lots of chocolate and tasty', min_bid: '100', end_time: 1564102026509, image: 'https://i.imgur.com/EZjcSmV.jpg', user_id: 1}),
+    knex('auctions').insert({category_id: 1, name: 'snickers ice cream', description: 'lots of chocolate and tasty', min_bid: '100', end_time: 1564153006839, image: 'https://i.imgur.com/EZjcSmV.jpg', user_id: 1}),
     knex('auctions').insert({category_id: 1, name: 'oreo ice cream', description: 'creamy and tasty', min_bid: '300', end_time: 1564089869123, image: 'https://i.imgur.com/vDhRudd.jpg', user_id: 2}),
 
     knex('users').insert({first_name: 'Anna', last_name:'Tykhomyrova', email: 'anna@gmail.com', password:'pass123', balance:'1000' }),
