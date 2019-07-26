@@ -1,49 +1,33 @@
 import React, { Component } from 'react';
 import Toast from 'react-bootstrap/Toast';
 
-
 export default class Notification extends Component {
 
   constructor(props) {
     super(props);
-    // this.state = { data: null };
+    this.state = { show: true };
   }
 
-  // callAPI() {
-  //   fetch("http://localhost:3001/auctions")
-  //     .then(res => res.json())
-  //     .then(res => this.setState({ data: res }));
-  // }
+  setShow = () => {
+    this.setState({ show: false })
+  }
 
-  // componentDidMount() {
-  //   this.callAPI();
-  // }
-
-  // componentWillUpdate(nextProps) {
-  //   let { location } = this.props;
-
-  //   // set previousLocation if props.location is not modal
-  //   if (
-  //     nextProps.history.action !== "POP" &&
-  //     (!location.state || !location.state.modal)
-  //   ) {
-  //     this.previousLocation = this.props.location;
-  //   }
-  // }
+  componentDidUpdate(oldProps) {
+    // console.log('oldProps', oldProps);
+    // console.log('newProps', this.props);
+    
+    const newProps = this.props;
+    
+    if(oldProps.notification.id !== newProps.notification.id) {
+      this.setState({ show: true });
+    }
+  }
 
   render() {
-    
-
-    // if (auctions_arr) {
-    //   // Show all auctions if there is no query, else show filtered by category
-    //   var auctions = auctions_arr.map(auction => (
-    //     ((auction.category_id == queryValues.category) || !this.props.location.search) && <EachAuction key={auction.id} auction={auction} location={location} history={this.props.history} />
-    //   ));
-    // }
-
-    return (
-      <div>
-        <div
+    if (this.state.show) {
+      return (
+        <div>
+          <div
             aria-live="polite"
             aria-atomic="true"
             style={{
@@ -51,7 +35,7 @@ export default class Notification extends Component {
               minHeight: '100px',
             }}
           >
-            <Toast className="end-notification">
+            <Toast className="end-notification" show={this.state.show} onClose={this.setShow}>
               <Toast.Header>
                 {/* <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" /> */}
                 <strong className="mr-auto">{this.props.notification.auctionName}</strong>
@@ -60,7 +44,11 @@ export default class Notification extends Component {
               <Toast.Body>{this.props.notification.message}</Toast.Body>
             </Toast>
           </div>
-      </div>
-    )
+        </div>
+      )
+    } else {
+      return null;
+    }
+
   }
 }

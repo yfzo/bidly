@@ -10,7 +10,8 @@ var http = require('http');
 const SocketServer = require('ws').Server;
 const ENV         = process.env.ENV || "development";
 const knexConfig = require('../knexfile')    // require environment's settings from knexfile
-const knex = require('knex')(knexConfig[ENV]);  
+const knex = require('knex')(knexConfig[ENV]); 
+const uuid = require('uuid/v4');
 
 
 /**
@@ -130,6 +131,7 @@ function findWinner(auction) {
 
 function sendNotifications(auction) {
   const notification = {
+    id: uuid(),
     message: `Auction for ${auction.name} has ended. Please check results in profile.`,
     auctionName: auction.name
   }
