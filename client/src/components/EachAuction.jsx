@@ -28,13 +28,18 @@ export default class EachAuction extends Component {
     // console.log("This is location from EachAuction", location)
     // console.log("Is modal?", isModal)
 
-    var currentTime = new Date();
-    var minutes = 1;
-    var futureTime = currentTime.getTime() + (minutes * 60000)
-    var endTime = new Date(futureTime)
-    // console.log("original date", currentTime);
-    // console.log("end date", endTime);
-    var timeRemaining = endTime - currentTime;    
+    // var currentTime = new Date();
+    // var minutes = 1;
+    // var futureTime = currentTime.getTime() + (minutes * 60000)
+    // var endTime = new Date(futureTime)
+    // // console.log("original date", currentTime);
+    // // console.log("end date", endTime);
+    // var timeRemaining = endTime - currentTime;    
+    var endTime = auction.end_time;
+    console.log("auction", auction)
+    var currentTime = Date.now();
+    var timeRemaining = endTime - currentTime;
+    console.log("Time remaining:", timeRemaining);
     
     return (
         <div>
@@ -42,8 +47,8 @@ export default class EachAuction extends Component {
             <div>
               <img alt='' src={auction.image} />
               <div>{auction.name}</div>
-              <div>This is an auction!</div>
-              <Timer timeRemaining={timeRemaining}/>
+              {/* <div>This is an auction!</div> */}
+              {timeRemaining > 0 ? <Timer timeRemaining={timeRemaining}/> : <h4>Auction Ended</h4>}
             </div>
           </Link>
           {/* <Route path="/auctions/:id" component={AuctionDetail} /> */}

@@ -10,7 +10,8 @@ var http = require('http');
 const SocketServer = require('ws').Server;
 const ENV         = process.env.ENV || "development";
 const knexConfig = require('../knexfile')    // require environment's settings from knexfile
-const knex = require('knex')(knexConfig[ENV]);  
+const knex = require('knex')(knexConfig[ENV]); 
+const uuid = require('uuid/v4');
 
 
 /**
@@ -31,6 +32,14 @@ var server = http.createServer(app);
  */
 
 const wss = new SocketServer({ server });
+
+SocketServer.prototype.broadcast = function(msg) {
+  this.clients.forEach((client) => {
+      if (client.readyState === 1) {
+          client.send(JSON.stringify(msg));
+      }
+  });
+};
 
 wss.on('connection', (ws) => {
   console.log('Client connected');
@@ -120,31 +129,51 @@ function findWinner(auction) {
   return winner;
 }
 
-function sendNotifications() {
+function sendNotifications(auction) {
+  const notification = {
+    id: uuid(),
+    message: `Auction for ${auction.name} has ended. Please check results in profile.`,
+    auctionName: auction.name
+  }
+
+  // Save to database
+  knex('notifications')
+    .insert({
+      auction_id: auction.id,
+      message: notification.message
+    })
+    .then(() => {
+      console.log('Notification saved!')
+    })
+
+  wss.broadcast(notification);
+  console.log("**** sent notifications to everyone");
+}
+
+function checkAuctionEnd() {
+  const currentTime = Date.now();
+  
+  // Select all auctions that have ended but have not had notifications sent yet
+  knex('auctions')
+    .where('end_time', '<=', currentTime)
+    .andWhere('notifications_sent', false)
+    .then((auctions) => {
+      const auction_ids = auctions.map(auction => auction.id);
+      for(auction of auctions){
+        sendNotifications(auction);
+      }
+      console.log(auctions)
+      console.log("Auction ids:", auction_ids)
+      // Update notifications_sent to true
+      knex('auctions')
+        .whereIn('id', auction_ids)
+        .update({ notifications_sent: true })
+        .then((updatedRows) => {
+          console.log("updated:", updatedRows)
+        })
+    })
+    .then(() => console.log("All notifications sent"))
 
 }
 
-// function checkAuctionEnd() {
-//   const currentTime = Date.now();
-  
-//   // Select all auctions that have ended but have not had notifications sent yet
-//   knex('auctions')
-//     .where('end_time', '<=', currentTime)
-//     .andWhere('notifications_sent', false)
-//     .then((auctions) => {
-//       const auction_ids = auctions.map(auction => auction.id);
-//       console.log(auctions)
-//       console.log("Auction ids:", auction_ids)
-//       // Update notifications_sent to true
-//       knex('auctions')
-//         .whereIn('id', auction_ids)
-//         .update({ notifications_sent: true })
-//         .then((updatedRows) => {
-//           console.log("updated:", updatedRows)
-//         })
-//     })
-//     .then(() => console.log("All notifications sent"))
-
-// }
-
-// setInterval(checkAuctionEnd, 5000);
+setInterval(checkAuctionEnd, 5000);

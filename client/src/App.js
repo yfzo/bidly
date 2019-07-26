@@ -9,14 +9,31 @@ import Login from './containers/Login.jsx';
 import Register from './containers/Register.jsx';
 import NewAuction from './containers/NewAuction';
 import Profile from './containers/Profile';
+import Notification from './components/Notification.jsx';
+import { Redirect } from 'react-router-dom';
 
 import Toast from 'react-bootstrap/Toast';
+
+function PrivateRoute ({component: Component, isLoggedIn, ...rest}) {
+  return (
+    <Route
+      {...rest}
+      render={(props) => isLoggedIn === true
+        ? <Component {...props} />
+        : <Redirect to='/login' />}
+    />
+  )
+}
+
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { apiResponse: "" , loggedIn: true };
-
+    this.state = { 
+      apiResponse: "" , 
+      loggedIn: localStorage.getItem("user_id") ? true : false,
+      latestNotification: null
+    };
   }
 
   callAPI() {
@@ -28,7 +45,7 @@ class App extends Component {
   componentDidMount() {
       this.callAPI();
       this.socket = new WebSocket('ws://localhost:3001/');
-      localStorage.setItem("socket", this.socket);
+      // localStorage.setItem("socket", this.socket);
         this.socket.addEventListener('open', () => {
             console.log('Connected to server');
 
@@ -38,42 +55,48 @@ class App extends Component {
             }
             currentUserId && this.socket.send(JSON.stringify(userInfo))
         });
+
+        this.socket.onmessage = evt => {
+          const notification = JSON.parse(evt.data);
+          console.log("SOCKET ONMESSAGE REACHED")
+
+          if (notification) {
+              console.log("DISPLAY NOTIFICATION:", notification.message);
+              this.setNotificationState(notification);
+          } else {
+              console.log("DIDN'T RECEIVE NOTIFICATION FROM SERVER");
+          }
+      }
+  }
+
+  changeState() {
+    this.setState({ loggedIn: true });
+  }
+
+  setNotificationState(notification) {
+    this.setState({ latestNotification: notification })
   }
 
   render() {
     return (
       <Router>
-          <Route path="/auctions/:id" component={AuctionDetail} />
+          <PrivateRoute isLoggedIn={this.state.loggedIn} path="/auctions/:id" component={AuctionDetail} />
 
         <div className="App">
           <div><NavBar /></div>
           {/* <div><AuctionDetail /></div> */}
-          <div
-            aria-live="polite"
-            aria-atomic="true"
-            style={{
-              position: 'relative',
-              minHeight: '100px',
-            }}
-          >
-            <Toast className="end-notification">
-              <Toast.Header>
-                {/* <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" /> */}
-                <strong className="mr-auto">Some Auction Name</strong>
-                <small>11 mins ago</small>
-              </Toast.Header>
-              <Toast.Body>This auction ended. Click to view.</Toast.Body>
-            </Toast>
-          </div>
+
+          {this.state.latestNotification && <Notification notification={this.state.latestNotification} />}
           
           <Switch>
-            <Route path="/auctions/new" component={NewAuction} />
+            <PrivateRoute isLoggedIn={this.state.loggedIn} path="/auctions/new" component={NewAuction} />
             <Route path="/auctions" component={Auctions} />
           </Switch>
-          <Route path="/login" component={Login} />
+          <Route path="/login" render={() => (<Login changeState={() => this.changeState()}/>)}/>
           <Route path="/register" component={Register} />
           <Route exact path="/" component={Home} />
-          <Route exact path="/users/:id" component={Profile} />
+
+          <PrivateRoute isLoggedIn={this.state.loggedIn} path='/users/:id' component={Profile} />
         </div>
 
       </Router>

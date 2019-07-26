@@ -81,11 +81,17 @@ export default class AuctionDetail extends Component {
       return (<React.Fragment></React.Fragment>)
     }
 
-    var currentTime = new Date();
-    var minutes = 1;
-    var futureTime = currentTime.getTime() + (minutes * 60000)
-    var endTime = new Date(futureTime)
-    var timeRemaining = endTime - currentTime;
+    // var currentTime = new Date();
+    // var minutes = 1;
+    // var futureTime = currentTime.getTime() + (minutes * 60000)
+    // var endTime = new Date(futureTime)
+    if (this.state.auction) {
+      var endTime = this.state.auction.end_time;
+      var currentTime = Date.now();
+      var timeRemaining = endTime - currentTime;
+      console.log("Time remaining:", timeRemaining);
+    }
+    
         
     return (
       <div className="modal-container"
@@ -109,7 +115,7 @@ export default class AuctionDetail extends Component {
             <div>{this.state.auction && this.state.auction.description}</div>
             <div>{this.state.auction && this.state.auction.min_bid}</div>
             <div>{this.state.auction && this.state.auction.start_time}</div>
-            <Timer timeRemaining={timeRemaining} />
+            {timeRemaining > 0 ? <Timer timeRemaining={timeRemaining}/> : <h4>Auction Ended</h4>}
             <Bid onEnter={(bid_amount) => {
               this.bidHandler(bid_amount) }}/>
             {this.state.min_error && <div>Bid more than minimum bid</div>}

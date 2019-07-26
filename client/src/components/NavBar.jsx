@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import Navbar from 'react-bootstrap/Navbar';
+import Button from 'react-bootstrap/Button';
+import Nav from 'react-bootstrap/Nav';
+import '../NavBar.css';
 
 export default class NavBar extends Component {
   Logout = () => {
@@ -12,25 +16,41 @@ export default class NavBar extends Component {
     //store user specific URL
     const profileUrl = "users/" + localStorage.getItem('user_id')
     const isLoggedIn = localStorage.getItem('user_id') !== null
-    return (<div className="NavBar">
-    
-    {isLoggedIn ? (
-      <div>
-        <Link to="/">Home</Link>
-        <Link to="/auctions">Browse Auctions</Link>
-        <Link to="/auctions/new">Create auction</Link>
-        <Link to={profileUrl}>Profile</Link>
-        <button onClick={this.Logout}>Logout</button>
-      </div>
-      ) : (
-        <div>
-        <Link to="/">Home</Link>
-        <Link to="/auctions">Browse Auctions</Link>
-        <Link to="/login">Login</Link>
-        <Link to="/register">Register</Link>
+    return (
+      <div>    
+        {isLoggedIn ? (
+          <div>
+            <Navbar bg="light" expand="sm">
+              <Navbar.Brand href="/">Bidly</Navbar.Brand>
+              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <Navbar.Collapse id="basic-navbar-nav">
+                <Nav>
+                  <Nav.Link href="/">Home</Nav.Link>
+                  <Nav.Link href="/auctions">Browse Auctions</Nav.Link>
+                  <Nav.Link href="/auctions/new">Create auction</Nav.Link>
+                  <Nav.Link href={profileUrl}>Profile</Nav.Link>
+                  <Button onClick={this.Logout}>Logout</Button>
+                </Nav>
+              </Navbar.Collapse>
+             </Navbar>
         </div>
-      )
-    }
+          ) : (
+            <div>
+              <Navbar bg="light" expand="sm">
+                <Navbar.Brand href="/">Bidly</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                  <Nav>
+                    <Nav.Link href="/">Home</Nav.Link>
+                    <Nav.Link href="/auctions">Browse Auctions</Nav.Link>
+                    <Nav.Link href="/login">Login</Nav.Link>
+                    <Nav.Link href="/register">Register</Nav.Link>
+                  </Nav>
+                </Navbar.Collapse>
+              </Navbar>
+            </div>
+          )
+        }
       </div>)
   }
 }
