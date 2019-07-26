@@ -35,7 +35,7 @@ export default class ProfileTabs extends Component {
             {this.props.data ? this.props.data.amounts.map(namedBid => {
                 console.log("this is nameBid " + namedBid)
               
-             return ( 
+            return ( 
             <Card body className="profile_tabs">
 
               <div>{namedBid.name} - {namedBid.amount}</div>
@@ -63,7 +63,7 @@ export default class ProfileTabs extends Component {
             )})
             :
             ""}
-               
+            
           </Tab>
           <Tab eventKey="notifications" title="Notifications">
             <Card body className="profile_tabs">

@@ -142,12 +142,10 @@ function sendNotifications(auction) {
       auction_id: auction.id,
       message: notification.message
     })
-    .then(() => {
-      console.log('Notification saved!')
-    })
+    .then()
 
   wss.broadcast(notification);
-  console.log("**** sent notifications to everyone");
+  // console.log("**** sent notifications to everyone");
 }
 
 function checkAuctionEnd() {
@@ -162,17 +160,15 @@ function checkAuctionEnd() {
       for(auction of auctions){
         sendNotifications(auction);
       }
-      console.log(auctions)
-      console.log("Auction ids:", auction_ids)
+      // console.log(auctions)
+      // console.log("Auction ids:", auction_ids)
       // Update notifications_sent to true
       knex('auctions')
         .whereIn('id', auction_ids)
         .update({ notifications_sent: true })
-        .then((updatedRows) => {
-          console.log("updated:", updatedRows)
-        })
+        .then()
     })
-    .then(() => console.log("All notifications sent"))
+    .then()
 
 }
 

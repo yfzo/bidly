@@ -43,6 +43,7 @@ export default class AuctionDetail extends Component {
         user_id: parseInt(currentUserId),
         amount: parseInt(num)
       }
+
       //post request checks if the balance is enough, 
       // deducts from balance and store in bids table 
       fetch("http://localhost:3001/bids", {
@@ -77,14 +78,10 @@ export default class AuctionDetail extends Component {
 
   render() {
 
-    if(this.props.match.params.id === 'new'){
+    if(this.props.match.params.id !== NaN ){
       return (<React.Fragment></React.Fragment>)
     }
 
-    // var currentTime = new Date();
-    // var minutes = 1;
-    // var futureTime = currentTime.getTime() + (minutes * 60000)
-    // var endTime = new Date(futureTime)
     if (this.state.auction) {
       var endTime = this.state.auction.end_time;
       var currentTime = Date.now();
