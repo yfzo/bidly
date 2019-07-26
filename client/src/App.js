@@ -41,7 +41,7 @@ class App extends Component {
   componentDidMount() {
       this.callAPI();
       this.socket = new WebSocket('ws://localhost:3001/');
-      localStorage.setItem("socket", this.socket);
+      // localStorage.setItem("socket", this.socket);
         this.socket.addEventListener('open', () => {
             console.log('Connected to server');
 
@@ -51,6 +51,17 @@ class App extends Component {
             }
             currentUserId && this.socket.send(JSON.stringify(userInfo))
         });
+
+        this.socket.onmessage = evt => {
+          const data = JSON.parse(evt.data);
+          console.log("SOCKET ONMESSAGE REACHED")
+
+          if (data.msg) {
+              console.log("DISPLAY NOTIFICATION:", data.msg);
+          } else {
+              console.log("DIDN'T RECEIVE NOTIFICATION FROM SERVER");
+          }
+      }
   }
 
   changeState() {
