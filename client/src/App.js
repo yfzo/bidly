@@ -30,10 +30,6 @@ class App extends Component {
     super(props);
     this.state = { apiResponse: "" , loggedIn: false };
     // console.log("blahblah")
-<<<<<<< HEAD
-=======
-
->>>>>>> 4870c87ae44a253b8244f6a3abd1bc8b356287e5
   }
 
   callAPI() {
@@ -60,13 +56,7 @@ class App extends Component {
   changeState() {
     this.setState({ loggedIn: true });
   }
-
-<<<<<<< HEAD
-  render() {   
-
-=======
   render() {
->>>>>>> 4870c87ae44a253b8244f6a3abd1bc8b356287e5
     return (
       <Router>
           <PrivateRoute isLoggedIn={this.state.loggedIn} path="/auctions/:id" component={AuctionDetail} />
