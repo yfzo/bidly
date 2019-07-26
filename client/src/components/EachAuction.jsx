@@ -16,7 +16,7 @@ export default class EachAuction extends Component {
   render() {
     // console.log(this.props.auction.image)
     const auction = this.props.auction;
-    console.log("This is history", this.props.history)
+    // console.log("This is history", this.props.history)
     let { location } = this.props;
 
     let isModal = !!(
@@ -25,8 +25,8 @@ export default class EachAuction extends Component {
       this.previousLocation !== location
     );
 
-    console.log("This is location from EachAuction", location)
-    console.log("Is modal?", isModal)
+    // console.log("This is location from EachAuction", location)
+    // console.log("Is modal?", isModal)
 
     var currentTime = new Date();
     var minutes = 1;

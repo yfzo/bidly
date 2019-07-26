@@ -40,8 +40,8 @@ export default class Auctions extends Component {
       const auctions_arr = this.state.data && this.state.data.auctions
       const queryValues = queryString.parse(this.props.location.search)
       let { location } = this.props;
-      console.log("This is location from Auctions", this.props.location)
-      console.log("This is previousLocation", this.previousLocation);
+      // console.log("This is location from Auctions", this.props.location)
+      // console.log("This is previousLocation", this.previousLocation);
 
       // let isModal = !!(
       //   location.state &&
