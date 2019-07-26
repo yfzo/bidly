@@ -1,0 +1,11 @@
+.navbar-expand-lg .navbar-collapse {
+    justify-content: flex-end;
+}
+
+.navbar-expand-sm .navbar-collapse {
+    justify-content: flex-end;
+}
+
+.navbar-expand-md .navbar-collapse {
+    justify-content: flex-end;
+}

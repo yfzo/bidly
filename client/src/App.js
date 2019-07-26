@@ -20,7 +20,7 @@ function PrivateRoute ({component: Component, isLoggedIn, ...rest}) {
       {...rest}
       render={(props) => isLoggedIn === true
         ? <Component {...props} />
-        : <Redirect to={{pathname: '/login', state: {from: props.location}}} />}
+        : <Redirect to='/login' />}
     />
   )
 }
@@ -29,8 +29,11 @@ function PrivateRoute ({component: Component, isLoggedIn, ...rest}) {
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { apiResponse: "" , loggedIn: false, latestNotification: null };
-    // console.log("blahblah")
+    this.state = { 
+      apiResponse: "" , 
+      loggedIn: localStorage.getItem("user_id") ? true : false,
+      latestNotification: null
+    };
   }
 
   callAPI() {
@@ -82,6 +85,7 @@ class App extends Component {
         <div className="App">
           <div><NavBar /></div>
           {/* <div><AuctionDetail /></div> */}
+
           {this.state.latestNotification && <Notification notification={this.state.latestNotification} />}
           
           <Switch>
