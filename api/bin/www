@@ -10,7 +10,8 @@ var http = require('http');
 const SocketServer = require('ws').Server;
 const ENV         = process.env.ENV || "development";
 const knexConfig = require('../knexfile')    // require environment's settings from knexfile
-const knex = require('knex')(knexConfig[ENV]);  
+const knex = require('knex')(knexConfig[ENV]); 
+const uuid = require('uuid/v4');
 
 
 /**
@@ -129,8 +130,24 @@ function findWinner(auction) {
 }
 
 function sendNotifications(auction) {
-  wss.broadcast({msg: `Auction for ${auction.name} has ended. Please check results in profile.`})
-  console.log("**** sent notifications?")
+  const notification = {
+    id: uuid(),
+    message: `Auction for ${auction.name} has ended. Please check results in profile.`,
+    auctionName: auction.name
+  }
+
+  // Save to database
+  knex('notifications')
+    .insert({
+      auction_id: auction.id,
+      message: notification.message
+    })
+    .then(() => {
+      console.log('Notification saved!')
+    })
+
+  wss.broadcast(notification);
+  console.log("**** sent notifications to everyone");
 }
 
 function checkAuctionEnd() {
