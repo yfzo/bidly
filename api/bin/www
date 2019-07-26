@@ -129,8 +129,23 @@ function findWinner(auction) {
 }
 
 function sendNotifications(auction) {
-  wss.broadcast({msg: `Auction for ${auction.name} has ended. Please check results in profile.`})
-  console.log("**** sent notifications?")
+  const notification = {
+    message: `Auction for ${auction.name} has ended. Please check results in profile.`,
+    auctionName: auction.name
+  }
+
+  // Save to database
+  knex('notifications')
+    .insert({
+      auction_id: auction.id,
+      message: notification.message
+    })
+    .then(() => {
+      console.log('Notification saved!')
+    })
+
+  wss.broadcast(notification);
+  console.log("**** sent notifications to everyone");
 }
 
 function checkAuctionEnd() {

@@ -9,6 +9,7 @@ import Login from './containers/Login.jsx';
 import Register from './containers/Register.jsx';
 import NewAuction from './containers/NewAuction';
 import Profile from './containers/Profile';
+import Notification from './components/Notification.jsx';
 import { Redirect } from 'react-router-dom';
 
 import Toast from 'react-bootstrap/Toast';
@@ -28,7 +29,7 @@ function PrivateRoute ({component: Component, isLoggedIn, ...rest}) {
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { apiResponse: "" , loggedIn: false };
+    this.state = { apiResponse: "" , loggedIn: false, latestNotification: null };
     // console.log("blahblah")
   }
 
@@ -53,11 +54,12 @@ class App extends Component {
         });
 
         this.socket.onmessage = evt => {
-          const data = JSON.parse(evt.data);
+          const notification = JSON.parse(evt.data);
           console.log("SOCKET ONMESSAGE REACHED")
 
-          if (data.msg) {
-              console.log("DISPLAY NOTIFICATION:", data.msg);
+          if (notification) {
+              console.log("DISPLAY NOTIFICATION:", notification.message);
+              this.setNotificationState(notification);
           } else {
               console.log("DIDN'T RECEIVE NOTIFICATION FROM SERVER");
           }
@@ -67,6 +69,11 @@ class App extends Component {
   changeState() {
     this.setState({ loggedIn: true });
   }
+
+  setNotificationState(notification) {
+    this.setState({ latestNotification: notification })
+  }
+
   render() {
     return (
       <Router>
@@ -75,23 +82,7 @@ class App extends Component {
         <div className="App">
           <div><NavBar /></div>
           {/* <div><AuctionDetail /></div> */}
-          <div
-            aria-live="polite"
-            aria-atomic="true"
-            style={{
-              position: 'relative',
-              minHeight: '100px',
-            }}
-          >
-            <Toast className="end-notification">
-              <Toast.Header>
-                {/* <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" /> */}
-                <strong className="mr-auto">Some Auction Name</strong>
-                <small>11 mins ago</small>
-              </Toast.Header>
-              <Toast.Body>This auction ended. Click to view.</Toast.Body>
-            </Toast>
-          </div>
+          {this.state.latestNotification && <Notification notification={this.state.latestNotification} />}
           
           <Switch>
             <PrivateRoute isLoggedIn={this.state.loggedIn} path="/auctions/new" component={NewAuction} />
