@@ -30,7 +30,6 @@ class App extends Component {
     super(props);
     this.state = { apiResponse: "" , loggedIn: false };
     // console.log("blahblah")
-
   }
 
   callAPI() {
@@ -57,7 +56,6 @@ class App extends Component {
   changeState() {
     this.setState({ loggedIn: true });
   }
-
   render() {
     return (
       <Router>

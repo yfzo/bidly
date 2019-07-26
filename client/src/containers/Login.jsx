@@ -57,7 +57,6 @@ export default class Login extends Component {
       console.log(52, "user loggedin!")
       return <Redirect to={'/users/' + localStorage.getItem("user_id")} />
       window.location.href = `/users/${localStorage.getItem("user_id")}`;
-      
     }
     return (
       <div>
