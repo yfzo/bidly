@@ -10,9 +10,11 @@ import Timer from '../components/Timer.jsx';
 export default class AuctionDetail extends Component {
   constructor(props) {
     super(props);
-    this.state = { auction: null };
-    // console.log("blahblah")
-    console.log("This is history from details", this.props.history)
+    this.state = { 
+      auction: null,
+      balance_error: false,
+      min_error: false};
+    // console.log("This is history from details", this.props.history)
   }
 
   callAPI() {
@@ -33,30 +35,35 @@ export default class AuctionDetail extends Component {
     const currentUserId = localStorage.getItem('user_id');
     
     if (currentUserId) {
+      //checks if typed value is more than minimum bid
       if(num && num > this.state.auction.min_bid){
+        this.setState({min_error: false})
       const newBid = {
         auction_id: this.state.auction.id,
-        user_id: localStorage.getItem('user_id'), //for now
-        amount: num
+        user_id: parseInt(currentUserId),
+        amount: parseInt(num)
       }
-      
+      //post request checks if the balance is enough, 
+      // deducts from balance and store in bids table 
       fetch("http://localhost:3001/bids", {
         method: 'POST',
         body: JSON.stringify(newBid), 
         headers: {"Content-Type": "application/json"}
       })
       .then(response => {
-        if(response.ok){
-        return response.send()
-      } else {
-        throw Error(`Request rejected with status ${response.status}`);
+        if(response.name == 'error'){
+          this.setState({balance_error: true})
+        }else {
+          this.setState({balance_error: false})
+          window.location.href = '/auctions' //redirects to auctions page
+        }
+      }).catch((err) => 
+        console.log(err), //do not remove this console log
+        this.setState({balance_error: true})
+      )} else {
+        this.setState({min_error: true})
       }
-      }).then(function(body){
-        console.log(body)
-      }).catch((err) => console.log('error' + err))
-      }
-    }
-    
+    } 
   }
   
   back = e => {
@@ -70,12 +77,6 @@ export default class AuctionDetail extends Component {
 
   render() {
 
-    // console.log("This is auction", this.state.auction)
-    // if (this.state.redirect) {
-    //   console.log(`**********/auctions/${this.state.auction.id + 1}`)
-    //   return <Redirect push to={`/auctions/${this.state.auction.id + 1}`} />
-    // }
-        
     if(this.props.match.params.id === 'new'){
       return (<React.Fragment></React.Fragment>)
     }
@@ -117,6 +118,9 @@ export default class AuctionDetail extends Component {
             {timeRemaining > 0 ? <Timer timeRemaining={timeRemaining}/> : <h4>Auction Ended</h4>}
             <Bid onEnter={(bid_amount) => {
               this.bidHandler(bid_amount) }}/>
+            {this.state.min_error && <div>Bid more than minimum bid</div>}
+            {this.state.balance_error && <div>You do not have enough balance</div>}
+
           </div>
           
 

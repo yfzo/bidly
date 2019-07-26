@@ -13,6 +13,7 @@ export default class Bid extends Component {
   }
 
   BidSubmitHandler = (e) => {
+    e.preventDefault();
     this.props.onEnter(e.target.elements["bid_amount"].value)
   }
   render () {
