@@ -10,9 +10,10 @@ import Timer from '../components/Timer.jsx';
 export default class AuctionDetail extends Component {
   constructor(props) {
     super(props);
-    this.state = { auction: null };
-    // console.log("blahblah")
-    console.log("This is history from details", this.props.history)
+    this.state = { 
+      auction: null,
+      error: false};
+    // console.log("This is history from details", this.props.history)
   }
 
   callAPI() {
@@ -36,7 +37,7 @@ export default class AuctionDetail extends Component {
       if(num && num > this.state.auction.min_bid){
       const newBid = {
         auction_id: this.state.auction.id,
-        user_id: localStorage.getItem('user_id'), //for now
+        user_id: currentUserId,
         amount: num
       }
       
@@ -46,14 +47,18 @@ export default class AuctionDetail extends Component {
         headers: {"Content-Type": "application/json"}
       })
       .then(response => {
+
+        console.log('response for post request'+ response)
         if(response.ok){
-        return response.send()
+          console.log('ok response' + response)
+          this.setState({error: false})
       } else {
+        this.setState({error: true})
         throw Error(`Request rejected with status ${response.status}`);
       }
-      }).then(function(body){
-        console.log(body)
-      }).catch((err) => console.log('error' + err))
+      }).catch((err) => 
+        console.log('error found hereee' + err),
+        )
       }
     }
     
@@ -111,6 +116,8 @@ export default class AuctionDetail extends Component {
             <Timer timeRemaining={timeRemaining} />
             <Bid onEnter={(bid_amount) => {
               this.bidHandler(bid_amount) }}/>
+            {this.state.error && <div>You do not have enough balance</div>}
+
           </div>
           
 

@@ -26,7 +26,6 @@ export default class Login extends Component {
       method: 'POST',
       body: JSON.stringify(user), 
       headers: {"Content-Type": "application/json"},
-      // credentials: 'include'
     })
     .then((response) => response.json())
     .then(function(response){
@@ -50,7 +49,6 @@ export default class Login extends Component {
   render() {
     if (this.state.redirect === true ) {
       window.location.href = `/users/${localStorage.getItem("user_id")}`;
-      // return <Redirect to={'/users/' + localStorage.getItem("user_id")} />
     }
     return (
       <div>
