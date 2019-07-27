@@ -76,7 +76,7 @@ var timerStarted = false;
 export default class Timer extends Component {
   constructor(props) {
       super(props);
-      this.state = { completed: false, seconds: '00', minutes: (this.props.timeRemaining / MILLISECONDS_IN_MIN).toString() }
+      this.state = { completed: false, seconds: '--', minutes: (this.props.timeRemaining / MILLISECONDS_IN_MIN).toString() }
       this.startCountDown = this.startCountDown.bind(this);
       this.tick = this.tick.bind(this);
       this.startCountDown()
@@ -124,7 +124,7 @@ export default class Timer extends Component {
   render() {
     return (
       <div>
-        {!this.state.completed ? <h4>{this.state.minutes}:{this.state.seconds}</h4> : <h4>Auction Ended</h4>}
+        {!this.state.completed ? <h4>{Math.floor(this.state.minutes)}:{this.state.seconds}</h4> : <h4>Auction Ended</h4>}
       </div>
     );
   }

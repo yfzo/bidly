@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import LoginForm from '../components/LoginForm.jsx'; 
-import '../login.css';
+import '../styles/login.css';
 import { Redirect } from 'react-router-dom';
 
 
@@ -26,7 +26,6 @@ export default class Login extends Component {
       method: 'POST',
       body: JSON.stringify(user), 
       headers: {"Content-Type": "application/json"},
-      // credentials: 'include'
     })
     .then((response) => response.json())
     .then(function(response){

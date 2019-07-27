@@ -4,10 +4,6 @@ import { Redirect } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Button';
 
-
-// import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
-import ImageUpload from '../components/ImageUpload.jsx';
-
 export default class NewAuction extends Component {
   constructor(props) {
     super(props);

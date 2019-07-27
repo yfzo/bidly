@@ -5,24 +5,44 @@ import queryString from 'query-string'
 import SideBar from '../components/SideBar.jsx'; 
 import EachAuction from '../components/EachAuction.jsx';
 import Container from 'react-bootstrap/Container';
+import '../styles/auctions.css';
+import Grid from 'react-bootstrap'
 
 export default class Auctions extends Component {
 
     constructor(props) {
       super(props);
-      this.state = { data: null };
+      this.state = { 
+        data: null,
+        auctions: []
+        };
     }
   
     callAPI() {
         fetch("http://localhost:3001/auctions")
             .then(res => res.json())
-            .then(res => this.setState({ data: res }));
+            .then(res => this.setState({ data: res }))
+            .then(()=>console.log(this.state.data))
     }
   
-    componentDidMount() {
-        this.callAPI();
-    }
+    
+    // createAuction(){
+    //   if(this.state.data.auctions){
+    //     this.state.data.auction.forEach((item, index) => {
+    //       if(index % 2) {
+    //         this.state.auctions.push([this.state.data.auctions[index -1], this.state.data.auctions[index]])
+    //       }
+    //     })
+    //   } 
+    // }
 
+    async componentWillMount() {
+        console.log('before', this.state.data)
+        await this.callAPI();
+        console.log('after', this.state.data)
+        // this.createAuction()
+    }
+    
     previousLocation = this.props.location;
 
     componentWillUpdate(nextProps) {
@@ -42,6 +62,10 @@ export default class Auctions extends Component {
       const auctions_arr = this.state.data && this.state.data.auctions
       const queryValues = queryString.parse(this.props.location.search)
       let { location } = this.props;
+
+      console.log(auctions_arr)
+
+
       // console.log("This is location from Auctions", this.props.location)
       // console.log("This is previousLocation", this.previousLocation);
 
@@ -52,10 +76,18 @@ export default class Auctions extends Component {
       // ); // not initial render
 
       if (auctions_arr) {
+        var auctions = auctions_arr.map((auction, index) => {
+          if((auction.category_id == queryValues.category) || !this.props.location.search){
+            // if(index % 2){
+              return (
+                <EachAuction key={auction.id} auction={auction} location={location} history={this.props.history} className="each_auction"/>
+              )
+              // }
+        }});
         // Show all auctions if there is no query, else show filtered by category
-        var auctions = auctions_arr.map(auction => (
-          ((auction.category_id == queryValues.category) || !this.props.location.search) && <EachAuction key={auction.id} auction={auction} location={location} history={this.props.history}/>
-        ));
+        // var auctions = auctions_arr.map(auction => (
+        //   ((auction.category_id == queryValues.category) || !this.props.location.search) && <EachAuction key={auction.id} auction={auction} location={location} history={this.props.history}/>
+        // ));
       }
 
       return (
@@ -63,14 +95,10 @@ export default class Auctions extends Component {
                      flexDirection: "row",
                      flexWrap: "wrap",
                     }}>
-         
-            
               <SideBar categories={this.state.data && this.state.data.category} />
-           
-           
-              {this.state.data && auctions}
-           
-      
+              <div className="auctions_container">
+                {this.state.data && auctions}
+              </div>
         </div>
       )
     }

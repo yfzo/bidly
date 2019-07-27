@@ -4,7 +4,7 @@ var router = express.Router();
 /* GET users listing. */
 module.exports = (knex) => {
 
-  router.get('/:id', function(req, res, next) {
+  router.get('/:id', function (req, res, next) {
     let data = {}
     knex
       .table("users")
@@ -18,21 +18,28 @@ module.exports = (knex) => {
         data.id = row.id;
         console.log(row)
         knex
-        .table("auctions")
-        .where('user_id', '=', req.params.id)
-        .then((auc_row) => {
-          console.log("auctions" + auc_row);
-          data.auctions = auc_row;
-          console.log(auc_row)
-        knex("bids")
-        .join("auctions", "bids.auction_id", "auctions.id")
-        .where('bids.user_id', '=', req.params.id)
-        .then((amount_row) => {
-          data.amounts = amount_row;
-        res.send(data);
+          .table("auctions")
+          .where('user_id', '=', req.params.id)
+          .then((auc_row) => {
+            console.log("auctions" + auc_row);
+            data.auctions = auc_row;
+            console.log(auc_row)
+            knex("bids")
+              .join("auctions", "bids.auction_id", "auctions.id")
+              .where('bids.user_id', '=', req.params.id)
+              .then((amount_row) => {
+                data.amounts = amount_row;
+                knex
+                  .table("notifications")
+                  .then((notifications) => {
+                    data.notifications = notifications;
+                    res.send(data);
+                  })
+              })
+          })
       })
-      })
-    })
+
+    
   });
-  return router
+  return router;
 }
