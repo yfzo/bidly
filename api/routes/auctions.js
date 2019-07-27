@@ -18,7 +18,7 @@ router.get("/", function(req, res, next) {
         .select("*")
         .from("categories")
         .then((cat_row) => {
-        res.send({category: cat_row, auctions: auc_row});
+          res.json({category: cat_row, auctions: auc_row});
       })
     })
 });
