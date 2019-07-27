@@ -124,6 +124,7 @@ function onListening() {
 }
 
 function findWinner(auction) {
+  // Find the lowest, most unique bid
   knex('bids')
     .select(knex.raw('amount, count(amount)'))
     .where('auction_id', '=', auction.id)
@@ -133,19 +134,28 @@ function findWinner(auction) {
     .then((lowest_bid) => {
       console.log("lowest bid is:", lowest_bid);
       if(lowest_bid) {
+        // Find the user(s) that made that bid
         knex('bids')
         .select('user_id')
         .where('amount', '=', lowest_bid.amount)
         .then((users) => {
           console.log(users)
+
+          const winner;
+          // Chooses winner randomly from pool of users with winning bids if all bid amounts have more than one bidder(i.e., tie) 
           if(users.length > 1) {
-            let winner = users[Math.floor(Math.random() * users.length)].user_id
-            console.log("random winner is:", winner)
-            return winner;
+            winner = users[Math.floor(Math.random() * users.length)].user_id
           } else {
-            console.log("winner id:", users[0].user_id)
-            return users[0].user_id;
+            winner = users[0].user_id
           }
+          console.log("winner is:", winner)
+          // Add the winner for that auction to the auctions table
+          knex('auctions')
+            .where('id', '=', auction.id)
+            .update({winner: winner})
+            .then(() => {
+              return winner;
+            })
         })
       } else {
         return null;
