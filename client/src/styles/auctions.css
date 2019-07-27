@@ -1,11 +1,7 @@
-.auction_image {
- max-width: 100%;
- height: auto;
-}
-
-.modal_image{
- max-width: 70%;
- height: auto;
+img.auction_image {
+ max-width: 20rem;
+ height: 15rem;
+ object-fit: cover;
 }
 
 .auctions_container{
