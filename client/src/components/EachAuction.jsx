@@ -51,8 +51,7 @@ export default class EachAuction extends Component {
     console.log("Time remaining:", timeRemaining);
     
     return (
-        <div>
-            <Card style={{ width: '18rem', textDecoration: 'none' }}>
+            <Card className="auction-card">
               <Link to={{pathname: '/auctions/' + auction.id, state: { modal: true }}}>
               <Card.Img variant="top" className="auction_image" alt='' src={auction.image} />
               <Card.Body>
@@ -62,11 +61,9 @@ export default class EachAuction extends Component {
               </Card.Text>
               </Card.Body>
               </Link>
-            </Card>
           {/* <Route path="/auctions/:id" component={AuctionDetail} /> */}
           {/* {isModal ? <Route path="/auctions/:id" component={AuctionDetail} /> : null} */}
-          </div> 
-
+            </Card>
     )
   }
 }

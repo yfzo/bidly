@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { Redirect } from 'react-router';
 import Bid from '../components/Bid.jsx'; 
-import '../modal.css';
+import '../styles/modal.css';
 import leftArrow from '../triangle-left.svg';
 import rightArrow from '../triangle-right.svg';
 import Timer from '../components/Timer.jsx';

@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card';
 import CardDeck from 'react-bootstrap/CardDeck';
 import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
-import '../home.css';
+import '../styles/home.css';
 import { Redirect } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 

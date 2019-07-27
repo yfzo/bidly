@@ -1,6 +1,6 @@
 import React, {Component} from 'react'; 
 import RegisterForm from '../components/RegisterForm.jsx'; 
-import '../register.css';
+import '../styles/register.css';
 
 export default class Register extends Component {
   
