@@ -12,6 +12,7 @@ export default class ProfileTabs extends Component {
   }
 
   render() {
+    // const calculateRemaining = ()
     return (
       <div>
         <Tabs defaultActiveKey="accountInfo" id="uncontrolled-tab-example">
@@ -34,12 +35,13 @@ export default class ProfileTabs extends Component {
           <Tab eventKey="myBids" title="My bids">
             {this.props.data ? this.props.data.amounts.map(namedBid => {
 
-              console.log("this is nameBid " + namedBid)
+              console.log("this is nameBid ",  namedBid)
 
               return (
                 <Card body className="profile_tabs">
 
                   <div>{namedBid.name} - {namedBid.amount}</div>
+                  {(namedBid.end_time - Date.now()) < 0 && <div>This auction has ended.</div>}
 
                 </Card>
               )
@@ -50,7 +52,6 @@ export default class ProfileTabs extends Component {
           <Tab eventKey="myAuctions" title="My auctions">
 
             {this.props.data ? this.props.data.auctions.map(auction => {
-
               return (
                 <Card body >
                   <Form>
@@ -62,7 +63,6 @@ export default class ProfileTabs extends Component {
                     </div>
                   </Form>
                 </Card>
-
               )
             })
               :
