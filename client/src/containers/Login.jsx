@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import LoginForm from '../components/LoginForm.jsx'; 
-import '../login.css';
+import '../styles/login.css';
 import { Redirect } from 'react-router-dom';
 
 

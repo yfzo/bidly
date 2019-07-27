@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
-import './App.css';
+import './styles/App.css';
 import NavBar from './components/NavBar.jsx';
 import Auctions from './containers/Auctions.jsx';
 import AuctionDetail from './containers/AuctionDetail.jsx';

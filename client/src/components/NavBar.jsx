@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
-import '../NavBar.css';
+import '../styles/NavBar.css';
 
 export default class NavBar extends Component {
   Logout = () => {

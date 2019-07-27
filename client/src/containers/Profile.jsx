@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import ProfileTabs from '../components/ProfileTabs.jsx';
-import '../profileTabs.css';
+import '../styles/profileTabs.css';
 import { Redirect } from 'react-router-dom';
 
 export default class Profile extends Component {
