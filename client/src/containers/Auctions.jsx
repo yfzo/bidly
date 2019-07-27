@@ -1,12 +1,12 @@
+
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import queryString from 'query-string'
 import SideBar from '../components/SideBar.jsx'; 
 import EachAuction from '../components/EachAuction.jsx';
+import Container from 'react-bootstrap/Container';
 import '../styles/auctions.css';
 import Grid from 'react-bootstrap'
-
-
 
 export default class Auctions extends Component {
 
@@ -62,6 +62,7 @@ export default class Auctions extends Component {
       const auctions_arr = this.state.data && this.state.data.auctions
       const queryValues = queryString.parse(this.props.location.search)
       let { location } = this.props;
+
       console.log(auctions_arr)
 
 
@@ -90,11 +91,14 @@ export default class Auctions extends Component {
       }
 
       return (
-        <div>
-        <SideBar categories={this.state.data && this.state.data.category} />
-        <div className="auctions_container">
-          {this.state.data && auctions}   
-        </div>
+        <div style={{display: "flex",
+                     flexDirection: "row",
+                     flexWrap: "wrap",
+                    }}>
+              <SideBar categories={this.state.data && this.state.data.category} />
+              <div className="auctions_container">
+                {this.state.data && auctions}
+              </div>
         </div>
       )
     }

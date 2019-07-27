@@ -8,6 +8,7 @@ img.auction_image {
  display: flex;
  justify-content: center;
  flex-wrap: wrap ;
+ width: 88%;
 }
 
 .auction-card{
