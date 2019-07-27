@@ -192,28 +192,7 @@ function checkAuctionEnd() {
       const auction_ids = auctions.map(auction => auction.id);
       for(auction of auctions){
         sendNotifications(auction);
-        // async function thisWinner() {
-        //   var winner = await findWinner(auction);
-        //   // console.log(winner)
-        //   return winner;
-        // }
-        // thisWinner().then((winner) => console.log(winner));
-
-        let final = (async () => {
-          // let body = ""
-          try {
-            var winner = await findWinner(auction);
-          // console.log(winner)
-          return winner;
-          } catch (e) {
-            console.log('bad bad bad ',e)
-          }
-        })()
-        
-        final.then(() => {
-          console.log(final)
-        })
-        
+        findWinner(auction);
       }
       // Update notifications_sent to true
       knex('auctions')
