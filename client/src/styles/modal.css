@@ -32,3 +32,8 @@
   width: 500%;
   height: auto;
 }
+
+.modal_image{
+  max-width: 60rem;
+  max-height: 40rem;
+}
