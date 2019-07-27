@@ -124,9 +124,43 @@ function onListening() {
 }
 
 function findWinner(auction) {
-  const winner = null;
+  // Find the lowest, most unique bid
+  knex('bids')
+    .select(knex.raw('amount, count(amount)'))
+    .where('auction_id', '=', auction.id)
+    .groupBy('amount')
+    .orderBy(['count', 'amount'])
+    .first()
+    .then((lowest_bid) => {
+      console.log("lowest bid is:", lowest_bid);
+      if(lowest_bid) {
+        // Find the user(s) that made that bid
+        knex('bids')
+        .select('user_id')
+        .where('amount', '=', lowest_bid.amount)
+        .then((users) => {
+          console.log(users)
 
-  return winner;
+          const winner;
+          // Chooses winner randomly from pool of users with winning bids if all bid amounts have more than one bidder(i.e., tie) 
+          if(users.length > 1) {
+            winner = users[Math.floor(Math.random() * users.length)].user_id
+          } else {
+            winner = users[0].user_id
+          }
+          console.log("winner is:", winner)
+          // Add the winner for that auction to the auctions table
+          knex('auctions')
+            .where('id', '=', auction.id)
+            .update({winner: winner})
+            .then(() => {
+              return winner;
+            })
+        })
+      } else {
+        return null;
+      }
+    })
 }
 
 function sendNotifications(auction) {
@@ -159,6 +193,28 @@ function checkAuctionEnd() {
       const auction_ids = auctions.map(auction => auction.id);
       for(auction of auctions){
         sendNotifications(auction);
+        // async function thisWinner() {
+        //   var winner = await findWinner(auction);
+        //   // console.log(winner)
+        //   return winner;
+        // }
+        // thisWinner().then((winner) => console.log(winner));
+
+        let final = (async () => {
+          // let body = ""
+          try {
+            var winner = await findWinner(auction);
+          // console.log(winner)
+          return winner;
+          } catch (e) {
+            console.log('bad bad bad ',e)
+          }
+        })()
+        
+        final.then(() => {
+          console.log(final)
+        })
+        
       }
       // Update notifications_sent to true
       knex('auctions')
