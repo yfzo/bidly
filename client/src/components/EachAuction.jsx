@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import AuctionDetail from '../containers/AuctionDetail.jsx';
 import Timer from '../components/Timer.jsx';
+import Card from 'react-bootstrap/Card'
+import Col from 'react-bootstrap/Col'
+
+import Image from 'react-bootstrap/Image'
 
 export default class EachAuction extends Component {
   constructor(props) {
@@ -12,6 +16,11 @@ export default class EachAuction extends Component {
     e.stopPropagation();
     this.props.history.goBack();
   };
+
+  async componentDidMount() { 
+
+
+  }
 
   render() {
     // console.log(this.props.auction.image)
@@ -43,17 +52,20 @@ export default class EachAuction extends Component {
     
     return (
         <div>
-          <Link to={{pathname: '/auctions/' + auction.id, state: { modal: true }}}>
-            <div>
-              <img alt='' src={auction.image} />
-              <div>{auction.name}</div>
-              {/* <div>This is an auction!</div> */}
+            <Card style={{ width: '18rem', textDecoration: 'none' }}>
+              <Link to={{pathname: '/auctions/' + auction.id, state: { modal: true }}}>
+              <Card.Img variant="top" className="auction_image" alt='' src={auction.image} />
+              <Card.Body>
+              <Card.Title>{auction.name}</Card.Title>
+              <Card.Text>
               {timeRemaining > 0 ? <Timer timeRemaining={timeRemaining}/> : <h4>Auction Ended</h4>}
-            </div>
-          </Link>
+              </Card.Text>
+              </Card.Body>
+              </Link>
+            </Card>
           {/* <Route path="/auctions/:id" component={AuctionDetail} /> */}
           {/* {isModal ? <Route path="/auctions/:id" component={AuctionDetail} /> : null} */}
-        </div>
+          </div> 
 
     )
   }
