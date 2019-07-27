@@ -116,10 +116,9 @@ export default class AuctionDetail extends Component {
             <div>{this.state.auction && this.state.auction.start_time}</div>
             
             {/* if auction is over, hide bid button*/}
-            {timeRemaining > 0 && !isUserAuctioneer ? <div><Timer timeRemaining={timeRemaining}/>
-            <Bid onEnter={(bid_amount) => {
-              this.bidHandler(bid_amount) }}/></div>
-            : <h4>Auction Ended</h4>}
+            {(timeRemaining > 0) ? (!isUserAuctioneer ? <div><Timer timeRemaining={timeRemaining}/>
+            <Bid onEnter={(bid_amount) => {this.bidHandler(bid_amount) }}/></div>
+            : <h4>Awaiting Results</h4>) : <h4>Auction Ended</h4>}
 
             {this.state.min_error && <div>Bid more than minimum bid</div>}
             {this.state.balance_error && <div>You do not have enough balance</div>}
