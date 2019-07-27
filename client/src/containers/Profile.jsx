@@ -15,7 +15,9 @@ export default class Profile extends Component {
     const path = "http://localhost:3001/users/" + this.props.match.params.id;
     fetch(path)
           .then(res => res.json())
-          .then(res => this.setState({ data: res }))
+          .then(res => {
+            this.setState({ data: res })
+          })
           .catch(err => (console.log('This is error' + err )))
           .then(res => ("this is data" + console.log(this.state.data)))
   }
