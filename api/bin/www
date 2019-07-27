@@ -141,12 +141,11 @@ function findWinner(auction) {
         .then((users) => {
           console.log(users)
 
-          const winner;
           // Chooses winner randomly from pool of users with winning bids if all bid amounts have more than one bidder(i.e., tie) 
           if(users.length > 1) {
-            winner = users[Math.floor(Math.random() * users.length)].user_id
+            var winner = users[Math.floor(Math.random() * users.length)].user_id
           } else {
-            winner = users[0].user_id
+            var winner = users[0].user_id
           }
           console.log("winner is:", winner)
           // Add the winner for that auction to the auctions table
