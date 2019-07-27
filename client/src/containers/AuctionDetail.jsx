@@ -88,6 +88,7 @@ export default class AuctionDetail extends Component {
       var currentTime = Date.now();
       var timeRemaining = endTime - currentTime;
       console.log("Time remaining:", timeRemaining);
+      var isUserAuctioneer = this.state.auction.user_id == localStorage.getItem('user_id')
     }
     
         
@@ -113,11 +114,13 @@ export default class AuctionDetail extends Component {
             <div>{this.state.auction && this.state.auction.description}</div>
             <div>{this.state.auction && this.state.auction.min_bid}</div>
             <div>{this.state.auction && this.state.auction.start_time}</div>
-            {timeRemaining > 0 ? <div><Timer timeRemaining={timeRemaining}/>
+            
+            {/* if auction is over, hide bid button*/}
+            {timeRemaining > 0 && !isUserAuctioneer ? <div><Timer timeRemaining={timeRemaining}/>
             <Bid onEnter={(bid_amount) => {
               this.bidHandler(bid_amount) }}/></div>
             : <h4>Auction Ended</h4>}
-            
+
             {this.state.min_error && <div>Bid more than minimum bid</div>}
             {this.state.balance_error && <div>You do not have enough balance</div>}
 
