@@ -82,7 +82,6 @@ export default class NewAuctionForm extends Component {
             </Form>
           </Col >
         </Row>
-        {/* </Container> */}
       </div>
     )
   }

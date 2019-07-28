@@ -1,6 +1,77 @@
+
+.background_img{
+    width: 100%;
+    min-height: 50%;
+}
+
+
+.background_img .card-img-overlay{
+    height: 50%;
+    
+}
+
+.btn-toolbar {
+    justify-content: flex-end;
+    margin-top: 15px;
+}
+
+.card .example .winner{
+    background-color: red !important;
+}
+.card-title {
+    color: #eee;
+    text-align: center;
+}
+
+.card .howToContainer{
+    position: relative;
+    top: 20%;
+    right:70%; 
+    text-align: start;
+}
+.buttonContainer {
+    justify-content: space-evenly;
+    padding: 2rem 0 5rem 0;
+}
+
+.buttonContainer .signup{
+    font-size: 2rem;
+    margin: 0 2rem 0 2rem;    
+}
+
+.home {
+    border: none;
+    text-align: justify;
+    min-height:30rem;
+}
+
+
+.home .header-body{
+    position: relative;
+    top: 12rem;
+    font-size: 5rem;
+}
+
+.home .header-body h3{
+    color: #eee;
+    font-size: 4rem;
+}
+
+.home .header-body span{
+    font-size: 3rem;
+}
+
+#howToButton{
+    font-size: 2rem;
+}
+
 #homeBrowseLink {
     text-decoration: none;
     color: #007bff;
+    font-size: 2rem;
+}
+#homeBroseButton{
+
 }
 
 #homeBrowseButton:hover {
@@ -12,21 +83,47 @@
     color: #fff;
 }
 
-.home {
-    text-align: justify;
+#howToButton{
+
 }
 
-.btn-toolbar {
-    justify-content: flex-end;
-    margin-top: 15px;
+.shade {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
-.signup {
-    margin-right: 15px;
-    margin-left: 10px;
-}
-
-.card-title {
+.howToTitle{
     text-align: center;
+    margin: 5rem;
+    font-size: 3rem;
+} 
+
+.steps-container .step-titles {
+    font-size: 2rem;
+    padding: 1rem;
 }
 
+.steps-container .card-deck  {
+    height: 10rem;
+}
+.title-logo{
+    font-size: 10rem;
+    position: absolute;
+    text-align: left;
+    
+    
+}
+
+@keyframes fadeIn {
+    from {top: 0px;}
+    to {top: 0px;}
+}
+
+@-webkit-keyframes fadeIn{
+    from {top: 0px;}
+    to {top: 0px;}
+}

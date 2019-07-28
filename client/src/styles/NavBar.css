@@ -1,3 +1,13 @@
+.navbar {
+    background-color: rgb(80, 78, 189);
+    /* background-color: #1D4E89; */
+    /* background-color: #A594F9; */
+}
+
+.navbar .button{
+    background-color: #7371FC
+}
+
 .navbar-expand-lg .navbar-collapse {
     justify-content: flex-end;
 }

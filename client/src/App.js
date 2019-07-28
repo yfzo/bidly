@@ -12,6 +12,7 @@ import Profile from './containers/Profile';
 import Notification from './components/Notification.jsx';
 import { Redirect } from 'react-router-dom';
 
+
 import Toast from 'react-bootstrap/Toast';
 
 function PrivateRoute ({component: Component, isLoggedIn, ...rest}) {
