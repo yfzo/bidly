@@ -1,16 +1,16 @@
 /* remove bootstrap default display none */
 #modal {
-  display: inline-block;
+  /* display: inline-block; */
   position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: black;
-  padding: 2em;
+  /* padding: 2em; */
   z-index: 5;
   color: white;
   height: 100vh;
-  width: 79vw;
+  width: 80%;
 }
 
 .modal-container .nav-btn {
@@ -25,13 +25,16 @@
 }
 
 .modal_image{
-  width: auto;
+  /* width: auto; */
   max-height: 100%;
   object-fit: cover;
+  /* height: 100%; */
+  max-width: 100%;
+  
 }
 
 .auction-info {
-  width: 33%;
+  width: 100%;
 }
 
 .close-button {
@@ -45,6 +48,32 @@
   justify-content: space-evenly;
   text-align: left;
   align-items: flex-end;
-  margin-top: 25%;
+  height: 100%;
+}
+
+.modal-image-container {
+  height: 100%;
+  width: 100%;
+  flex-basis: 65%;
+}
+
+.modal-info-container {
+  flex-basis: 35%;
+  padding: 3em 3em 5em 3em;
+}
+
+.wide-img {
+  width: 100%;
+  height: auto;
+  position: relative;
+  top: 50%;
   transform: translateY(-50%);
+}
+
+.tall-img {
+  width: auto;
+  height: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

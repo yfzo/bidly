@@ -1,85 +1,102 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { Redirect } from 'react-router';
-import Bid from '../components/Bid.jsx'; 
+import Bid from '../components/Bid.jsx';
 import '../styles/modal.css';
 import leftArrow from '../triangle-left.svg';
 import rightArrow from '../triangle-right.svg';
 import Timer from '../components/Timer.jsx';
+import { Image } from 'cloudinary-react';
 
 
 export default class AuctionDetail extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       auction: null,
       balance_error: false,
-      min_error: false};
+      min_error: false,
+      imgType: null
+    };
+    // this.onImgLoad = this.onImgLoad.bind(this);
     // console.log("This is history from details", this.props.history)
   }
 
   callAPI() {
     const path = "http://localhost:3001/auctions/" + this.props.match.params.id;
     fetch(path)
-        .then(res => res.json())
-        .then(res => this.setState({ auction: res }))
-        // .then(() => console.log(this.state.auction));
+      .then(res => res.json())
+      .then(res => this.setState({ auction: res }))
+    // .then(() => console.log(this.state.auction));
   }
 
   componentDidMount() {
-    if(this.props.match.params.id !== 'new'){
+    if (this.props.match.params.id !== 'new') {
       this.callAPI();
     }
-}
-  
+  }
+
   bidHandler = (num) => {
     const currentUserId = localStorage.getItem('user_id');
-    
+
     if (currentUserId) {
       //checks if typed value is more than minimum bid
-      if(num && num > this.state.auction.min_bid){
-        this.setState({min_error: false})
-      const newBid = {
-        auction_id: this.state.auction.id,
-        user_id: parseInt(currentUserId),
-        amount: parseInt(num)
-      }
-
-      //post request checks if the balance is enough, 
-      // deducts from balance and store in bids table 
-      fetch("http://localhost:3001/bids", {
-        method: 'POST',
-        body: JSON.stringify(newBid), 
-        headers: {"Content-Type": "application/json"}
-      })
-      .then(response => {
-        if(response.name == 'error'){
-          this.setState({balance_error: true})
-        }else {
-          this.setState({balance_error: false})
-          window.location.href = '/auctions' //redirects to auctions page
+      if (num && num > this.state.auction.min_bid) {
+        this.setState({ min_error: false })
+        const newBid = {
+          auction_id: this.state.auction.id,
+          user_id: parseInt(currentUserId),
+          amount: parseInt(num)
         }
-      }).catch((err) => 
-        console.log(err), //do not remove this console log
-        this.setState({balance_error: true})
-      )} else {
-        this.setState({min_error: true})
+
+        //post request checks if the balance is enough, 
+        // deducts from balance and store in bids table 
+        fetch("http://localhost:3001/bids", {
+          method: 'POST',
+          body: JSON.stringify(newBid),
+          headers: { "Content-Type": "application/json" }
+        })
+          .then(response => {
+            if (response.name == 'error') {
+              this.setState({ balance_error: true })
+            } else {
+              this.setState({ balance_error: false })
+              window.location.href = '/auctions' //redirects to auctions page
+            }
+          }).catch((err) =>
+            console.log(err), //do not remove this console log
+            this.setState({ balance_error: true })
+          )
+      } else {
+        this.setState({ min_error: true })
       }
-    } 
+    }
   }
-  
+
   back = e => {
     e.stopPropagation();
     this.props.history.goBack();
   };
 
   handleOnClick = () => {
-    this.setState({redirect: true});
+    this.setState({ redirect: true });
+  }
+
+  onImgLoad = ({target:img}) => {
+    var height = img.offsetHeight;
+    var width = img.offsetWidth;
+    console.log('height x width:', height, ',', width)
+
+    if(height > width) {
+      this.setState({imgType: "tall-img"});
+    } else {
+      this.setState({imgType: "wide-img"});
+    }
   }
 
   render() {
 
-    if(this.props.match.params.id === 'new' ){
+    if (this.props.match.params.id === 'new') {
       return (<React.Fragment></React.Fragment>)
     }
 
@@ -90,8 +107,11 @@ export default class AuctionDetail extends Component {
       console.log("Time remaining:", timeRemaining);
       var isUserAuctioneer = this.state.auction.user_id == localStorage.getItem('user_id')
     }
-    
-        
+
+    var img = new Image();
+
+    img.src = this.state.auction && this.state.auction.image;
+
     return (
       <div className="modal-container"
         onClick={this.back}
@@ -109,27 +129,28 @@ export default class AuctionDetail extends Component {
           onClick={(e) => e.stopPropagation()}
         >
           <div className="wrapper-flexbox">
-            <div>
-              <img className="modal_image" alt='' src={this.state.auction && this.state.auction.image} />
-              </div>
+            <div className="modal-image-container">
+              <img onLoad={this.onImgLoad} className={this.state.imgType + " modal_image"} alt='' src={img.src} />
+            </div>
+            <div className="modal-info-container">
               <div className="auction-info">
-                  <div>{this.state.auction && this.state.auction.name}</div>
-                  <div>{this.state.auction && this.state.auction.description}</div>
-                  <div>{this.state.auction && this.state.auction.min_bid}</div>
-                  <div>{this.state.auction && this.state.auction.start_time}</div>
-                  
-                  {timeRemaining > 0 ? <div><Timer timeRemaining={timeRemaining}/>
+                <div>{this.state.auction && this.state.auction.name}</div>
+                <div>{this.state.auction && this.state.auction.description}</div>
+                <div>{this.state.auction && this.state.auction.min_bid}</div>
+                <div>{this.state.auction && this.state.auction.start_time}</div>
+
+                {timeRemaining > 0 ? <div><Timer timeRemaining={timeRemaining} />
                   <Bid onEnter={(bid_amount) => {
-                    this.bidHandler(bid_amount) }}/></div>
+                    this.bidHandler(bid_amount)
+                  }} /></div>
                   : <h4>Auction Ended</h4>}
-                  
-                  {this.state.min_error && <div>Bid more than minimum bid</div>}
-                  {this.state.balance_error && <div>You do not have enough balance</div>}
-              
-                <button className="close-button" type="button" onClick={this.back}>
-                  Close
-                </button>
+
+                {this.state.min_error && <div>Bid more than minimum bid</div>}
+                {this.state.balance_error && <div>You do not have enough balance</div>}
+
               </div>
+            </div>
+
           </div>
         </div>
       </div>
