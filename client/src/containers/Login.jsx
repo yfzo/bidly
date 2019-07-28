@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import LoginForm from '../components/LoginForm.jsx'; 
 import '../styles/login.css';
 import { Redirect } from 'react-router-dom';
-import Alert from 'react-bootstrap/Alert'
 
 
 export default class Login extends Component {
@@ -16,7 +15,6 @@ export default class Login extends Component {
   login = (email, password) => {
     if (!email || !password) {
       this.setState({form_error: true})
-      console.log('no info')
     } else {
       this.setState({form_error: false})
       const user = {
@@ -68,13 +66,12 @@ export default class Login extends Component {
       //  window.location.href = `/users/${localStorage.getItem("user_id")}`;
     }
     return (
-      <div>
-        <h2>Sign in</h2>
+      <div class="login-outer-container">
         <LoginForm onSubmit={(email, password) => {
-          this.login(email, password) }} filledform={this.state.filledform} />
-          {this.state.form_error && <Alert variant="danger">Please fill all the fields</Alert>}
-          {this.state.db_error && <Alert variant="danger">Email or password is wrong</Alert>}
-
+          this.login(email, password) }} 
+          filledform={this.state.filledform} 
+          form_error={this.state.form_error}
+          db_error={this.state.db_error} />
       </div>
     )
   }
