@@ -107,40 +107,31 @@ export default class AuctionDetail extends Component {
           id="modal"
           onClick={(e) => e.stopPropagation()}
         >
-          <div>
-            <img className="modal_image" alt='' src={this.state.auction && this.state.auction.image} />
-            <div>{this.state.auction && this.state.auction.name}</div>
-            <div>{this.state.auction && this.state.auction.description}</div>
-            <div>{this.state.auction && this.state.auction.min_bid}</div>
-            <div>{this.state.auction && this.state.auction.start_time}</div>
-            {timeRemaining > 0 ? <div><Timer timeRemaining={timeRemaining}/>
-            <Bid onEnter={(bid_amount) => {
-              this.bidHandler(bid_amount) }}/></div>
-            : <h4>Auction Ended</h4>}
-            
-            {this.state.min_error && <div>Bid more than minimum bid</div>}
-            {this.state.balance_error && <div>You do not have enough balance</div>}
-
-          </div>
-          
-
-          <button type="button" onClick={this.back}>
-            Close
-          </button>
-        </div>
-
-        <button className="nav-btn prev">
-          {/* <span class="octicon octicon-triangle-left"></span> */}
-          <img src={leftArrow}></img>
-        </button>
         
-        {/* {this.state.auction && <Link to={{pathname: '/auctions/' + (this.state.auction.id + 1), state: { modal: true }}}> */}
-          <button className="nav-btn next" onClick={() => this.props.history.replace(`/auctions/${this.state.auction.id + 1}`)}>
-              {/* <span class="octicon octicon-triangle-right"></span> */}
-              <img src={rightArrow}></img>
-          </button>
-        {/* </Link>} */}
-
+          <div className="wrapper-flexbox">
+            <div>
+              <img className="modal_image" alt='' src={this.state.auction && this.state.auction.image} />
+              </div>
+              <div className="auction-info">
+                  <div>{this.state.auction && this.state.auction.name}</div>
+                  <div>{this.state.auction && this.state.auction.description}</div>
+                  <div>{this.state.auction && this.state.auction.min_bid}</div>
+                  <div>{this.state.auction && this.state.auction.start_time}</div>
+                  
+                  {timeRemaining > 0 ? <div><Timer timeRemaining={timeRemaining}/>
+                  <Bid onEnter={(bid_amount) => {
+                    this.bidHandler(bid_amount) }}/></div>
+                  : <h4>Auction Ended</h4>}
+                  
+                  {this.state.min_error && <div>Bid more than minimum bid</div>}
+                  {this.state.balance_error && <div>You do not have enough balance</div>}
+              
+                <button className="close-button" type="button" onClick={this.back}>
+                  Close
+                </button>
+              </div>
+          </div>
+        </div>
       </div>
     )
   }
