@@ -15,8 +15,10 @@ export default class Login extends Component {
 
   login = (email, password) => {
     if (!email || !password) {
+      this.setState({form_error: true})
       console.log('no info')
     } else {
+      this.setState({form_error: false})
       const user = {
         email: email,
         password: password,
@@ -39,7 +41,10 @@ export default class Login extends Component {
         t.props.changeState();
         t.setState({ redirect: true});
       }
-    }).catch((err) => console.log('error' + err))
+    }).catch((err) => {
+      console.log('error' + err)
+      t.setState({db_error: true})
+    })
     }
   }
 
@@ -69,8 +74,8 @@ export default class Login extends Component {
         <h2>Sign in</h2>
         <LoginForm onSubmit={(email, password) => {
           this.login(email, password) }} filledform={this.state.filledform} />
-          {this.state.form_error && <Alert>Please fill all the fields</Alert>}
-          {this.state.db_error && <Alert>Email or password is wrong</Alert>}
+          {this.state.form_error && <Alert variant="danger">Please fill all the fields</Alert>}
+          {this.state.db_error && <Alert variant="danger">Email or password is wrong</Alert>}
 
       </div>
     )
