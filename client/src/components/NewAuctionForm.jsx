@@ -4,6 +4,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Alert from 'react-bootstrap/Alert';
+
 import teacupPic from '../create-auction.jpg';
 import '../styles/newAuction.css';
 
@@ -76,6 +78,8 @@ export default class NewAuctionForm extends Component {
                 <Form.Label>Set Minimum Bid Price</Form.Label>
                 <Form.Control type="money" placeholder="...and finally, a minimum bid amount in dollars!" name="min_bid" step="1" />
               </Form.Group>
+              {this.props.error && 
+          <Alert variant="danger">Please fill in all fields</Alert>}
               <Button variant="primary" type="submit">
                 Submit
               </Button>

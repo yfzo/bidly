@@ -1,11 +1,7 @@
 #login-form-container{
-    /* height: 50vmax; */
     min-height: 40rem;
 }
 
-.row{
-    height: 100vm;
-}
 
 #login-img {
     background: url(../images/login.jpg) no-repeat center;
@@ -20,7 +16,7 @@
 
 .form-group{
     width: 100%;
-    text-align: center;
+    /* text-align: center; */
 }
 
 #formBasicEmail{
