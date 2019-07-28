@@ -36,7 +36,6 @@ export default class NewAuctionForm extends Component {
     return (
       <div>
         <Container>
-          <Row>
             <Col xs={6} >
               <img></img>
             </Col>
@@ -58,9 +57,9 @@ export default class NewAuctionForm extends Component {
                 <Form.Label>Description</Form.Label>
                 <Form.Control type="text" placeholder="Description" name="description"/>
               </Form.Group>
-              <Form.Group controlId="formImage">
-                <Form.Label>Image upload</Form.Label>
-                <Form.Group as={Row} controlId="formPlaintextEmail">
+              {/* <Form.Group controlId="formImage"> */}
+                {/* <Form.Label>Image upload</Form.Label> */}
+                <Form.Group controlId="formPlaintextEmail">
                   <Form.Label className="image_upload"column sm="4">Image URL</Form.Label>
                   <Col sm="8">
                     <Form.Control plaintext readOnly defaultValue={this.props.url} />
@@ -68,7 +67,7 @@ export default class NewAuctionForm extends Component {
                   <Button onClick={this.props.upload} type="button" placeholder="image" name="image" alt="upload image">
                   Upload Image</Button>
                 </Form.Group>
-              </Form.Group>
+              {/* </Form.Group> */}
               <Form.Group controlId="formMinBid">
                 <Form.Label>Set minimum bid price</Form.Label>
                 <Form.Control type="money" placeholder="min_bid" name="min_bid"/>
@@ -78,7 +77,6 @@ export default class NewAuctionForm extends Component {
               </Button>
               </Form>
             </Col >
-          </Row>
         </Container>
       </div>
     )
