@@ -25,7 +25,7 @@ export default class Auctions extends Component {
             .then(()=>console.log(this.state.data))
     }
   
-    
+    z
     // createAuction(){
     //   if(this.state.data.auctions){
     //     this.state.data.auction.forEach((item, index) => {
