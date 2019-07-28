@@ -39,10 +39,10 @@ export default class NewAuctionForm extends Component {
       <div>
         {/* <Container> */}
         <Row id="new-auction-container">
-          <Col xs={6} id="new-auction-img">
+          <Col xs={4} id="new-auction-img">
             {/* <img src={teacupPic} alt="Assorted-color turkish teacups on table" className="create_auction_img"></img> */}
           </Col>
-          <Col xs={6} id="new-auction-form" className="align-self-center">
+          <Col xs={8} id="new-auction-form" className="align-self-center">
             <h4>What do you have to offer?</h4>
             <Form onSubmit={this.submitHandler}>
               <Form.Group controlId="category">
