@@ -88,6 +88,7 @@ export default class AuctionDetail extends Component {
       var currentTime = Date.now();
       var timeRemaining = endTime - currentTime;
       console.log("Time remaining:", timeRemaining);
+      var isUserAuctioneer = this.state.auction.user_id == localStorage.getItem('user_id')
     }
     
         
@@ -107,7 +108,6 @@ export default class AuctionDetail extends Component {
           id="modal"
           onClick={(e) => e.stopPropagation()}
         >
-        
           <div className="wrapper-flexbox">
             <div>
               <img className="modal_image" alt='' src={this.state.auction && this.state.auction.image} />

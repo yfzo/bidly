@@ -9,10 +9,37 @@ import { Link } from 'react-router-dom';
 export default class ProfileTabs extends Component {
   constructor(props) {
     super(props);
+    this.state = { rerender: true }
   }
 
   render() {
     // const calculateRemaining = ()
+    const bids = this.props.data.amounts.map(namedBid => {
+
+      // console.log("this is nameBid ", namedBid)
+      var status;
+      if(namedBid.winner) {
+        // console.log("bid user_id:", namedBid.user_id)
+        // console.log("auction winner:", namedBid.winner)
+        if(namedBid.user_id === namedBid.winner) {
+          status = <div>You won this auction!</div>
+        } else {
+          status = <div>This auction has ended</div>
+        }
+      } else {
+        status = <div>Ongoing</div>
+      }
+
+      return (
+        <Card body className="profile_tabs">
+
+          <div>{namedBid.name} - {namedBid.amount}</div>
+          {status}
+
+        </Card>
+      )
+    })
+
     return (
       <div>
         <Tabs defaultActiveKey="accountInfo" id="uncontrolled-tab-example">
@@ -33,21 +60,7 @@ export default class ProfileTabs extends Component {
             </Card>
           </Tab>
           <Tab eventKey="myBids" title="My bids">
-            {this.props.data ? this.props.data.amounts.map(namedBid => {
-
-              console.log("this is nameBid ",  namedBid)
-
-              return (
-                <Card body className="profile_tabs">
-
-                  <div>{namedBid.name} - {namedBid.amount}</div>
-                  {(namedBid.end_time - Date.now()) < 0 && <div>This auction has ended.</div>}
-
-                </Card>
-              )
-            })
-              :
-              ""}
+            {bids}
           </Tab>
           <Tab eventKey="myAuctions" title="My auctions">
 
@@ -56,7 +69,7 @@ export default class ProfileTabs extends Component {
                 <Card body >
                   <Form>
                     <div id="button_auction_wrapper">
-                      <div id="auction_name_wrapper" >{auction.name}</div>
+                      <div id="auction_name_wrapper" >{auction.name} - {auction.email || null}</div>
                       <Button id="profile_tabs_button" key={auction.id} variant="primary" type="submit">
                         <Link to={'/auctions/' + auction.id} id="profile_tabs_link">Info</Link>
                       </Button>
