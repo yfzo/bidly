@@ -87,15 +87,16 @@ export default class NewAuction extends Component {
           <NewAuctionForm onSubmit={(data) => {
             this.newAuctionHandler(data)
           }} 
-          url={this.state.newImage} upload={this.imageUpload}   
+          url={this.state.newImage} 
+          upload={this.imageUpload}
+          error={this.state.error}    
           />
         {/* <CloudinaryContext cloudName="dnbiul08h"> */}
           {/* <Image publicId={this.state.thumbnails} type="fetch">
             <Transformation width="200" height="200" crop="thumb" fetchFormat="auto" />
           </Image> */}
         {/* </CloudinaryContext> */}
-        {this.state.error && 
-          <Alert variant="danger">Please fill in all fields</Alert>}
+
         </div>
       )
     }
