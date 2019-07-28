@@ -34,3 +34,7 @@
   right: 1em;
   z-index: 1;
 }
+
+html, body {
+  height: 100%;
+}

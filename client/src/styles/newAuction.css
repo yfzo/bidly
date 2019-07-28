@@ -1,0 +1,26 @@
+
+
+#new-auction-container {
+    height: 50vmax;
+    margin-left: 2em;
+    margin-right: 2em;
+}
+
+#new-auction-img {
+    background: url(../new-auction.png) no-repeat center;
+    background-size: cover;
+}
+
+.form-control {
+    width: 60%;
+}
+
+#new-auction-form {
+    padding: 2em 0;
+}
+
+#upload-thumbnail, #upload-thumbnail * {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}

@@ -32,7 +32,8 @@ exports.seed = function(knex, Promise) {
     // knex('notifications').insert({auction_id: 1, message: 'winning-auction'}),
 
     knex('auctions').insert({category_id: 1, name: 'snickers ice cream', description: 'lots of chocolate and tasty', min_bid: '100', end_time: Date.now() + 4000, image: 'https://i.imgur.com/EZjcSmV.jpg', user_id: 1}),
-    knex('auctions').insert({category_id: 1, name: 'oreo ice cream', description: 'creamy and tasty', min_bid: '300', end_time: Date.now() + 4000, image: 'https://i.imgur.com/vDhRudd.jpg', user_id: 2}),
+    knex('auctions').insert({category_id: 1, name: 'oreo ice cream', description: 'creamy and tasty', min_bid: '300', end_time: Date.now() + 8000, image: 'https://i.imgur.com/vDhRudd.jpg', user_id: 2}),
+    knex('auctions').insert({category_id: 2, name: 'corgi', description: 'fluff', min_bid: '200', end_time: Date.now() + 15000, image: 'https://i.imgur.com/aXS6DOU.jpg', user_id: 2}),
 
     knex('users').insert({first_name: 'Anna', last_name:'Tykhomyrova', email: 'anna@gmail.com', password:'pass123', balance:'1000' }),
     knex('users').insert({first_name: 'Asuka', last_name:'Kuwahara', email: 'asuka@gmail.com', password:'pass123', balance:'20000' }),
@@ -50,8 +51,9 @@ exports.seed = function(knex, Promise) {
     knex('bids').insert({user_id: 1, auction_id: 1, amount: 450}),
     knex('bids').insert({user_id: 3, auction_id: 1, amount: 250}),
     knex('bids').insert({user_id: 2, auction_id: 1, amount: 250}),
+    knex('bids').insert({user_id: 3, auction_id: 1, amount: 150}),
     knex('bids').insert({user_id: 1, auction_id: 1, amount: 150}),
-    knex('bids').insert({user_id: 3, auction_id: 1, amount: 150})
+    knex('bids').insert({user_id: 1, auction_id: 3, amount: 350})
     ]);
   })
 }
