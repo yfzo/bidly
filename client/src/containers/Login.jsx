@@ -22,8 +22,6 @@ export default class Login extends Component {
       const user = {
         email: email,
         password: password,
-        form_error: false,
-        db_error: false
       }
     console.log('reached login frontend' + email + password)
     let t = this
