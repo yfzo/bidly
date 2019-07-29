@@ -5,7 +5,7 @@ import Bid from '../components/Bid.jsx';
 import '../styles/modal.css';
 import Timer from '../components/Timer.jsx';
 import { Image } from 'cloudinary-react';
-import { faCoins, faClock } from "@fortawesome/free-solid-svg-icons";
+import { faCoins, faClock, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
@@ -134,6 +134,7 @@ export default class AuctionDetail extends Component {
             </div>
             <div className="modal-info-container">
               <div className="modal-info">
+                
                 <div className="modal-name">{this.state.auction && this.state.auction.name}</div>
                 <div className="modal-description">{this.state.auction && this.state.auction.description}</div>
                 <div className="modal-min-bid">
@@ -148,7 +149,8 @@ export default class AuctionDetail extends Component {
 
                 {this.state.min_error && <div>Bid more than minimum bid</div>}
                 {this.state.balance_error && <div>You do not have enough balance</div>}
-
+                
+                <div className="modal-close-button" onClick={this.back}><FontAwesomeIcon icon={faTimes} size="2x" className="x-icon"/></div>
               </div>
             </div>
 

@@ -131,3 +131,9 @@
 .form-control.bid-input {
   width: 100%;
 }
+
+.x-icon {
+  position: absolute;
+  top: 1em;
+  left: 1em;
+}
