@@ -8,26 +8,14 @@ import Alert from 'react-bootstrap/Alert';
 
 import teacupPic from '../create-auction.jpg';
 import '../styles/newAuction.css';
+import AuctionDetail from '../containers/AuctionDetail';
 
 export default class NewAuctionForm extends Component {
 
   submitHandler = (e) => {
     e.preventDefault();
-
-    //convert category name to integer
-    const categoryConverter = (category) => {
-      switch (category) {
-        case 'Food':
-          return 1;
-        case 'Beauty':
-          return 2;
-        case 'Home stuff':
-          return 3;
-      }
-    }
-
     const newAuction = {
-      category: categoryConverter(e.target.elements['category'].value),
+      category: e.target.elements['category'].value,
       name: e.target.elements['item_name'].value,
       description: e.target.elements['description'].value,
       image: e.target.elements['image'].value,
@@ -37,10 +25,18 @@ export default class NewAuctionForm extends Component {
   }
 
   render() {
+    const category_arr = this.props.category && this.props.category
+    if(category_arr){
+    var showCategory = category_arr.map((cat) => {
+        return(
+          <option key={cat.id} id={cat.id}>{cat.name}</option>
+        )
+      })
+  }
     return (
       <div>
-        {/* <Container> */}
         <Row id="new-auction-container">
+
           <Col xs={4} id="new-auction-img">
             {/* <img src={teacupPic} alt="Assorted-color turkish teacups on table" className="create_auction_img"></img> */}
           </Col>
@@ -50,9 +46,7 @@ export default class NewAuctionForm extends Component {
               <Form.Group controlId="category">
                 <Form.Label>Category</Form.Label>
                 <Form.Control as="select">
-                  <option>Food</option>
-                  <option>Beauty</option>
-                  <option>Home Stuff</option>
+                  {showCategory}
                 </Form.Control>
               </Form.Group>
               <Form.Group controlId="item-name">
