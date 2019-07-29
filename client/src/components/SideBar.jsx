@@ -20,7 +20,8 @@ export default class SideBar extends Component {
         <div style={{ display: "inline-block",
                     }}
                     id="wrapper">
-          <Navbar expand="sm">
+          <Navbar style={{ height: "100%"
+                    }} className="side-bar">
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="flex-column">

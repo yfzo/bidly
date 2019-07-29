@@ -6,7 +6,7 @@ img.auction_image {
 
 .auctions_container{
  display: flex;
- justify-content: center;
+ justify-content: start;
  flex-wrap: wrap ;
  width: 88%;
 }
@@ -14,4 +14,11 @@ img.auction_image {
 .auction-card{
  width: 20rem;
  margin: 2rem;
+ -webkit-box-shadow: 0 8px 6px -6px rgb(168, 136, 172);
+ -moz-box-shadow: 0 8px 6px -6px rgb(168, 136, 172);
+      box-shadow: 0 8px 6px -6px rgb(168, 136, 172);
+}
+
+.auction-card .info{
+ position:relative;
 }

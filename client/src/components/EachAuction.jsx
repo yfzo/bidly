@@ -54,6 +54,7 @@ export default class EachAuction extends Component {
             <Card className="auction-card">
               <Link to={{pathname: '/auctions/' + auction.id, state: { modal: true }}}>
               <Card.Img variant="top" className="auction_image" alt='' src={auction.image} />
+              <Card.ImgOverlay className="info">hi</Card.ImgOverlay>
               <Card.Body>
               <Card.Title>{auction.name}</Card.Title>
               <Card.Text>
