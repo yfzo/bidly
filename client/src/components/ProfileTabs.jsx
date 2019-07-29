@@ -19,6 +19,7 @@ export default class ProfileTabs extends Component {
       // console.log("this is nameBid ", namedBid)
       var status;
       if(namedBid.winner) {
+        debugger
         // console.log("bid user_id:", namedBid.user_id)
         // console.log("auction winner:", namedBid.winner)
         if(namedBid.user_id === namedBid.winner) {
@@ -32,7 +33,6 @@ export default class ProfileTabs extends Component {
 
       return (
         <Card body className="profile_tabs">
-
           <div>{namedBid.name} - {namedBid.amount}</div>
           {status}
 
@@ -80,7 +80,6 @@ export default class ProfileTabs extends Component {
             })
               :
               ""}
-
           </Tab>
           <Tab eventKey="notifications" title="Notifications">
             {this.props.data ? this.props.data.notifications.map(notification => {

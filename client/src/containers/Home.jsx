@@ -48,7 +48,7 @@ export default class Home extends Component {
             <CardGroup>
               <Card className="home">
               <Card.Img className="background_img" variant="top" src={background} alt=""/>
-              <div class="shade"></div>
+              <div className="shade"></div>
               <Card.ImgOverlay>
                 {/* <Fade> */}
                 <Card.Title className="title-logo">
