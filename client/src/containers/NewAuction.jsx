@@ -8,7 +8,7 @@ export default class NewAuction extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      data: "" ,
+      // data: [],
       redirect: false,
       newImage: "",
       thumbnails: "",
@@ -18,7 +18,7 @@ export default class NewAuction extends Component {
 
   callAPI() {
       fetch("http://localhost:3001/auctions/new")
-          .then(res => res.text())
+          .then(res => res.json())
           .then(res => this.setState({ data: res }));
   }
 
@@ -87,6 +87,7 @@ export default class NewAuction extends Component {
           <NewAuctionForm onSubmit={(data) => {
             this.newAuctionHandler(data)
           }} 
+          category={this.state.data}
           url={this.state.newImage} 
           upload={this.imageUpload}
           error={this.state.error}    

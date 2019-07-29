@@ -25,22 +25,9 @@ export default class Auctions extends Component {
             .then(()=>console.log(this.state.data))
     }
   
-    z
-    // createAuction(){
-    //   if(this.state.data.auctions){
-    //     this.state.data.auction.forEach((item, index) => {
-    //       if(index % 2) {
-    //         this.state.auctions.push([this.state.data.auctions[index -1], this.state.data.auctions[index]])
-    //       }
-    //     })
-    //   } 
-    // }
 
     async componentWillMount() {
-        console.log('before', this.state.data)
         await this.callAPI();
-        console.log('after', this.state.data)
-        // this.createAuction()
     }
     
     previousLocation = this.props.location;
@@ -63,9 +50,6 @@ export default class Auctions extends Component {
       const queryValues = queryString.parse(this.props.location.search)
       let { location } = this.props;
 
-      console.log(auctions_arr)
-
-
       // console.log("This is location from Auctions", this.props.location)
       // console.log("This is previousLocation", this.previousLocation);
 
@@ -76,13 +60,11 @@ export default class Auctions extends Component {
       // ); // not initial render
 
       if (auctions_arr) {
-        var auctions = auctions_arr.map((auction, index) => {
+        var auctions = auctions_arr.map((auction) => {
           if((auction.category_id == queryValues.category) || !this.props.location.search){
-            // if(index % 2){
               return (
                 <EachAuction key={auction.id} auction={auction} location={location} history={this.props.history} className="each_auction"/>
               )
-              // }
         }});
         // Show all auctions if there is no query, else show filtered by category
         // var auctions = auctions_arr.map(auction => (
@@ -92,8 +74,8 @@ export default class Auctions extends Component {
 
       return (
         <div style={{display: "flex",
-                     flexDirection: "row",
-                     flexWrap: "wrap",
+                    flexDirection: "row",
+                    flexWrap: "wrap",
                     }}>
               <SideBar categories={this.state.data && this.state.data.category} />
               <div className="auctions_container">
