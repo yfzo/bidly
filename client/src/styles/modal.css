@@ -120,6 +120,18 @@
   color: #E5D9F2;
 }
 
+.btn-light {
+  margin: 0.5em 0;
+}
+
+.bid-label {
+  font-size: 0.75em;
+}
+
+.form-control.bid-input {
+  width: 100%;
+}
+
 .x-icon {
   position: absolute;
   top: 1em;
