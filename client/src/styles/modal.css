@@ -13,6 +13,10 @@
   width: 80%;
 }
 
+.modal-container {
+  z-index: 4;
+}
+
 .modal-container .nav-btn {
   z-index: 4;
   position: absolute;
@@ -60,7 +64,7 @@
 .modal-info-container {
   flex-basis: 35%;
   padding: 3em 3em 3em 3em;
-  /* height: 100%; */
+  height: 100%;
   display: flex;
   flex-direction: row;
   align-items: flex-end;
@@ -68,39 +72,48 @@
 }
 
 .wide-img {
-  width: 100%;
+  width: 90%;
   height: auto;
   position: relative;
   top: 50%;
   transform: translateY(-50%);
-}
-
-.tall-img {
-  width: auto;
-  height: 100%;
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
+.tall-img {
+  width: auto;
+  height: 90%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 .modal-info * {
-  font-family: roboto;
+  font-family: 'Open Sans', sans-serif;
   font-weight: 300;
 }
 
 .modal-name {
-  font-family: chivo;
+  font-family: raleway;
   font-size: 2rem;
   padding-bottom: 1em;
   color: #E5D9F2;
 }
 
-/* .modal-description {
-  text-align: justify;
-} */
+.modal-timer {
+  font-size: 1.25em;
+  font-family: raleway;
+}
 
 .modal-min-bid {
   padding-top: 1em;
+  font-size: 1.25em;
+  font-family: raleway;
 }
 
 .coin-icon {
