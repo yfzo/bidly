@@ -7,6 +7,9 @@ import EachAuction from '../components/EachAuction.jsx';
 import Container from 'react-bootstrap/Container';
 import '../styles/auctions.css';
 import Grid from 'react-bootstrap'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+
 export default class Auctions extends Component {
 
     constructor(props) {
@@ -72,15 +75,17 @@ export default class Auctions extends Component {
       }
 
       return (
-        <div style={{display: "flex",
-                    flexDirection: "row",
-                    flexWrap: "wrap",
-                    }} className="auctions-outer-wrapper">
+        <Row style={{display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
+        }} className="auctions-outer-wrapper">
+          <Col xs={1} style={{padding: 0, diaplay:'flex', justifyContent: 'start'}}>
               <SideBar categories={this.state.data && this.state.data.category} />
-              <div className="auctions_container">
+          </Col>
+          <Col xs={11} style={{padding: '2rem'}} className="auctions_container">
                 {this.state.data && auctions}
-              </div>
-        </div>
+          </Col>
+        </Row>
       )
     }
   }
