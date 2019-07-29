@@ -31,9 +31,13 @@ exports.seed = function(knex, Promise) {
     // knex('notifications').insert({auction_id: 1, message: 'auction-end'}),
     // knex('notifications').insert({auction_id: 1, message: 'winning-auction'}),
 
-    knex('auctions').insert({category_id: 1, name: 'snickers ice cream', description: 'lots of chocolate and tasty', min_bid: '100', end_time: Date.now() + 4000, image: 'https://i.imgur.com/EZjcSmV.jpg', user_id: 1}),
-    knex('auctions').insert({category_id: 1, name: 'oreo ice cream', description: 'creamy and tasty', min_bid: '300', end_time: Date.now() + 8000, image: 'https://i.imgur.com/vDhRudd.jpg', user_id: 2}),
-    knex('auctions').insert({category_id: 2, name: 'corgi', description: 'fluff', min_bid: '200', end_time: Date.now() + 15000, image: 'https://i.imgur.com/aXS6DOU.jpg', user_id: 2}),
+    knex('auctions').insert({category_id: 1, name: 'snickers ice cream', description: 'lots of chocolate and tasty', min_bid: '100', end_time: Date.now() + 400000, image: 'https://i.imgur.com/EZjcSmV.jpg', user_id: 1}),
+    knex('auctions').insert({category_id: 1, name: 'oreo ice cream', description: 'creamy and tasty', min_bid: '300', end_time: Date.now() + 800000, image: 'https://i.imgur.com/vDhRudd.jpg', user_id: 2}),
+    knex('auctions').insert({category_id: 2, name: 'Small Corgi', description: 'This corgi is a very good corgi. Guaranteed to make you happy. Just feed 3 times a day and walk as needed. The goodest corgi you can find in the world. You will love this corgi for sure.', min_bid: '200', end_time: Date.now() + 10000, image: 'https://i.imgur.com/aXS6DOU.jpg', user_id: 2}),
+    knex('auctions').insert({category_id: 3, name: 'Husky', description: 'This corgi is a very good corgi. Guaranteed to make you happy. Just feed 3 times a day and walk as needed. The goodest corgi you can find in the world. You will love this corgi for sure.', min_bid: '200', end_time: Date.now() + 1500000, image: 'https://i.imgur.com/sNZ0V4q.jpg', user_id: 2}),
+    knex('auctions').insert({category_id: 3, name: 'Long Table', description: 'This corgi is a very good corgi. Guaranteed to make you happy. Just feed 3 times a day and walk as needed. The goodest corgi you can find in the world. You will love this corgi for sure.', min_bid: '200', end_time: Date.now() + 1500000, image: 'https://res.cloudinary.com/dnbiul08h/image/upload/v1564366471/elb3147_ysulkd.jpg', user_id: 1}),
+    knex('auctions').insert({category_id: 3, name: 'Leica Camera', description: 'This corgi is a very good corgi. Guaranteed to make you happy. Just feed 3 times a day and walk as needed. The goodest corgi you can find in the world. You will love this corgi for sure.', min_bid: '200', end_time: Date.now() + 1500000, image: 'https://res.cloudinary.com/dnbiul08h/image/upload/v1564367093/dims_l7z5cw.jpg', user_id: 1}),
+
 
     knex('users').insert({first_name: 'Anna', last_name:'Tykhomyrova', email: 'anna@gmail.com', password:'pass123', balance:'1000' }),
     knex('users').insert({first_name: 'Asuka', last_name:'Kuwahara', email: 'asuka@gmail.com', password:'pass123', balance:'20000' }),

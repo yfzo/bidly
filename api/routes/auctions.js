@@ -4,8 +4,13 @@ var router = express.Router();
 module.exports = (knex) => {
 
   router.get("/new", function(req, res, next) {
-    res.json("new route!");
-  });
+    knex
+    .select("*")
+    .from("categories")
+    .then((cat_row) => {
+      res.json(cat_row);
+  }).catch((err) => {console.log(err)})
+})
   
   //send all categories(for side bar) and auctions data
 router.get("/", function(req, res, next) {
@@ -47,8 +52,15 @@ router.post("/", function(req, res, next) {
   oneHourAhead = Date.now() + 1000 * 60 * 60
 
   if (JSON.stringify(req.body) !== '{}' && req.body.category && req.body.name && req.body.description && req.body.min_bid && req.body.image) {
+      let cat_id = 0;
+      knex('categories')
+        .where('name', '=', req.body.category)
+        .first('*')
+        .then((row)=>{
+          cat_id = row.id
+          console.log(cat_id)
       knex('auctions').insert({
-          category_id: req.body.category,
+          category_id: cat_id,
           name: req.body.name,
           description: req.body.description,
           min_bid: req.body.min_bid,
@@ -61,7 +73,8 @@ router.post("/", function(req, res, next) {
       }).catch((err) => {
           res.send(err)
           console.log(err)      
-    })
+        })
+      }).then().catch()
   } else {
     res.send(err)
   }

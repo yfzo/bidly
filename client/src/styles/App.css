@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  font-family: 'Raleway', sans-serif;
+  height: 100vh;
+
 }
 
 .App-logo {
@@ -29,10 +32,27 @@
 }
 
 .end-notification {
-  position: absolute;
+  background:  transparent;
+  /* position: absolute; */
+  /* position: relative; */
   top: 0;
-  right: 1em;
+  /* right: 1em; */
   z-index: 1;
+}
+
+.end-notification .toast-header{
+  color: rgb(80, 78, 189);
+  background: rgb(205, 193, 255);
+}
+
+.end-notification .toast-body{
+  color: rgb(80, 78, 189);
+  background: rgba(205, 193, 255, 0.8);
+}
+
+.notification-container{
+  position: relative;
+  float: right;
 }
 
 html, body {

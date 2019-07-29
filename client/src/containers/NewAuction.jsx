@@ -8,7 +8,7 @@ export default class NewAuction extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      data: "" ,
+      // data: [],
       redirect: false,
       newImage: "",
       thumbnails: "",
@@ -18,7 +18,7 @@ export default class NewAuction extends Component {
 
   callAPI() {
       fetch("http://localhost:3001/auctions/new")
-          .then(res => res.text())
+          .then(res => res.json())
           .then(res => this.setState({ data: res }));
   }
 
@@ -87,15 +87,17 @@ export default class NewAuction extends Component {
           <NewAuctionForm onSubmit={(data) => {
             this.newAuctionHandler(data)
           }} 
-          url={this.state.newImage} upload={this.imageUpload}   
+          category={this.state.data}
+          url={this.state.newImage} 
+          upload={this.imageUpload}
+          error={this.state.error}    
           />
         {/* <CloudinaryContext cloudName="dnbiul08h"> */}
           {/* <Image publicId={this.state.thumbnails} type="fetch">
             <Transformation width="200" height="200" crop="thumb" fetchFormat="auto" />
           </Image> */}
         {/* </CloudinaryContext> */}
-        {this.state.error && 
-          <Alert variant="danger">Please fill in all fields</Alert>}
+
         </div>
       )
     }

@@ -31,12 +31,13 @@ export default class Notification extends Component {
             aria-live="polite"
             aria-atomic="true"
             style={{
-              position: 'relative',
               position: "absolute",   
               minHeight: "100px",
-              minWidth: "259px",          
-              marginLeft: "75%",
-            }}
+              minWidth: "259px",  
+              zIndex: 9999,
+              right: 0       
+            }
+            } className="notification-container"
           >
             <Toast className="end-notification" show={this.state.show} onClose={this.setShow}>
               <Toast.Header>

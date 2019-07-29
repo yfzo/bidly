@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import { faCoins, faClock } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const MILLISECONDS_IN_MIN = 60000;
 // const MILLISECONDS_IN_HR = 3600000;
@@ -123,8 +125,8 @@ export default class Timer extends Component {
 
   render() {
     return (
-      <div>
-        {!this.state.completed ? <h4>{Math.floor(this.state.minutes)}:{this.state.seconds}</h4> : <h4>Auction Ended</h4>}
+      <div className="timer-inner-container">
+        {!this.state.completed ? <div className="timer-show"><FontAwesomeIcon icon={faClock} className="coin-icon"/> {Math.floor(this.state.minutes)}:{this.state.seconds}</div> : <div className="timer-letter">Auction Ended</div>}
       </div>
     );
   }
