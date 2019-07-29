@@ -1,17 +1,109 @@
+.auctions-outer-wrapper{
+ height: 100%;
+}
 img.auction_image {
  max-width: 20rem;
  height: 15rem;
  object-fit: cover;
+ border-radius: 0.5rem 0.5rem 0 0 ;
 }
 
 .auctions_container{
  display: flex;
- justify-content: center;
+ justify-content: start;
  flex-wrap: wrap ;
  width: 88%;
 }
 
 .auction-card{
  width: 20rem;
- margin: 2rem;
+ height: 25rem;
+ margin: 3rem;
+ border: transparent;
+ border-radius: 0.5rem;
+ background: #CDC1FF;
+ -webkit-box-shadow: 0 8px 6px -6px rgb(168, 136, 172);
+ -moz-box-shadow: 0 8px 6px -6px rgb(168, 136, 172);
+      box-shadow: 0 8px 6px -6px rgb(168, 136, 172);
+}
+
+.auction-card a{
+ text-decoration: none;
+}
+.auction-card .info{
+ padding: 0.5rem;
+ align-items: baseline;
+ position: absolute;
+ background-color: white;
+ border-radius: 0.5rem 0 0 0.5rem ;
+ width: 60%;
+ height: 3rem;
+ -webkit-box-shadow: 0 8px 6px -6px rgb(168, 136, 172);
+ -moz-box-shadow: 0 8px 6px -6px rgb(168, 136, 172);
+      box-shadow: 0 8px 6px -6px rgb(168, 136, 172);
+ 
+}
+
+.auction-card .card-img-overlay{
+ top:55%;
+ left: auto;
+}
+
+.auction-card .card-body{
+ display: table;
+ padding-top: 3rem;
+ height: 10rem;
+}
+
+.auction-timer{
+ display: flex;
+}
+
+.auction-timer h4{
+ font-size: 1.4rem;
+ margin-right: 1rem;
+ color: rgb(80, 78, 189);
+}
+
+.auction-timer .card-text{
+ color: rgb(80, 78, 189);
+ margin-left: 0.7rem;
+ font-family: 'Open Sans', sans-serif;
+
+}
+
+.auction-timer .timer-inner-container{
+ margin-left: 0.7rem;
+}
+
+.auction-card .card-title{
+ text-align: start;
+ font-size: 1.6rem;
+ color: rgb(80, 78, 189);
+ border-radius: 10px;
+}
+
+.auction-card p{
+ color:rgb(80, 78, 189);
+ font-size: 1.3rem;
+ font-family: 'Open Sans', sans-serif;
+
+}
+
+.auction-card .timer-show{
+ color:rgb(80, 78, 189);
+ margin-left: 0.5rem;
+ font-size: 1.5rem;
+ font-family: 'Open Sans', sans-serif;
+}
+
+.auction-card .timer-letter{
+ color:rgb(80, 78, 189);
+ margin-left: 0.5rem;
+ font-size: 1.3rem;
+ font-family: 'Open Sans', sans-serif;
+}
+.auction-min-bid {
+ font-size: 1.4rem;
+ text-align: start;
 }

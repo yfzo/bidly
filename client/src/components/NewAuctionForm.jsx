@@ -36,7 +36,6 @@ export default class NewAuctionForm extends Component {
     return (
       <div>
         <Row id="new-auction-container">
-
           <Col xs={4} id="new-auction-img">
             {/* <img src={teacupPic} alt="Assorted-color turkish teacups on table" className="create_auction_img"></img> */}
           </Col>
