@@ -29,7 +29,7 @@ export default class NavBar extends Component {
                   <Nav.Link href="/auctions">Browse Auctions</Nav.Link>
                   <Nav.Link href="/auctions/new">Create auction</Nav.Link>
                   <Nav.Link href={profileUrl}>Profile</Nav.Link>
-                  <Button onClick={this.Logout}>Logout</Button>
+                  <Nav.Link onClick={this.Logout}>Logout</Nav.Link>
                 </Nav>
               </Navbar.Collapse>
             </Navbar>
