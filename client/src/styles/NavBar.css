@@ -20,11 +20,15 @@
 
 nav .navbar-brand{
     color: #eee !important;
-    font-family: 'Varela Round', sans-serif;
+    font-family: 'Raleway', sans-serif;
     font-size: 2rem;
 
 }
 
 nav .nav-link {
     color: #eee !important;
+}
+
+.navbar-nav {
+    font-family: raleway;
 }
