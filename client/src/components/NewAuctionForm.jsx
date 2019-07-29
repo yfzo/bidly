@@ -4,28 +4,18 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Alert from 'react-bootstrap/Alert';
+
 import teacupPic from '../create-auction.jpg';
 import '../styles/newAuction.css';
+import AuctionDetail from '../containers/AuctionDetail';
 
 export default class NewAuctionForm extends Component {
 
   submitHandler = (e) => {
     e.preventDefault();
-
-    //convert category name to integer
-    const categoryConverter = (category) => {
-      switch (category) {
-        case 'Food':
-          return 1;
-        case 'Beauty':
-          return 2;
-        case 'Home stuff':
-          return 3;
-      }
-    }
-
     const newAuction = {
-      category: categoryConverter(e.target.elements['category'].value),
+      category: e.target.elements['category'].value,
       name: e.target.elements['item_name'].value,
       description: e.target.elements['description'].value,
       image: e.target.elements['image'].value,
@@ -35,22 +25,27 @@ export default class NewAuctionForm extends Component {
   }
 
   render() {
+    const category_arr = this.props.category && this.props.category
+    if(category_arr){
+    var showCategory = category_arr.map((cat) => {
+        return(
+          <option key={cat.id} id={cat.id}>{cat.name}</option>
+        )
+      })
+  }
     return (
       <div>
-        {/* <Container> */}
         <Row id="new-auction-container">
-          <Col xs={6} id="new-auction-img">
+          <Col xs={4} id="new-auction-img">
             {/* <img src={teacupPic} alt="Assorted-color turkish teacups on table" className="create_auction_img"></img> */}
           </Col>
-          <Col xs={6} id="new-auction-form" className="align-self-center">
+          <Col xs={8} id="new-auction-form" className="align-self-center">
             <h4>What do you have to offer?</h4>
             <Form onSubmit={this.submitHandler}>
               <Form.Group controlId="category">
                 <Form.Label>Category</Form.Label>
                 <Form.Control as="select">
-                  <option>Food</option>
-                  <option>Beauty</option>
-                  <option>Home Stuff</option>
+                  {showCategory}
                 </Form.Control>
               </Form.Group>
               <Form.Group controlId="item-name">
@@ -76,13 +71,14 @@ export default class NewAuctionForm extends Component {
                 <Form.Label>Set Minimum Bid Price</Form.Label>
                 <Form.Control type="money" placeholder="...and finally, a minimum bid amount in dollars!" name="min_bid" step="1" />
               </Form.Group>
+              {this.props.error && 
+          <Alert variant="danger">Please fill in all fields</Alert>}
               <Button variant="primary" type="submit">
                 Submit
               </Button>
             </Form>
           </Col >
         </Row>
-        {/* </Container> */}
       </div>
     )
   }

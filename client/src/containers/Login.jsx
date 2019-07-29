@@ -14,8 +14,9 @@ export default class Login extends Component {
 
   login = (email, password) => {
     if (!email || !password) {
-      console.log('no info')
+      this.setState({form_error: true})
     } else {
+      this.setState({form_error: false})
       const user = {
         email: email,
         password: password,
@@ -29,10 +30,17 @@ export default class Login extends Component {
     })
     .then((response) => response.json())
     .then(function(response){
-      localStorage.setItem("user_id", response.userid)
-      t.props.changeState();
-      t.setState({ redirect: true});
-    }).catch((err) => console.log('error' + err))
+      if(!Object.keys(response).length){
+        t.setState({db_error: true})
+      } else {
+        localStorage.setItem("user_id", response.userid)
+        t.props.changeState();
+        t.setState({ redirect: true});
+      }
+    }).catch((err) => {
+      console.log('error' + err)
+      t.setState({db_error: true})
+    })
     }
   }
 
@@ -58,10 +66,12 @@ export default class Login extends Component {
       //  window.location.href = `/users/${localStorage.getItem("user_id")}`;
     }
     return (
-      <div>
-        <h2>Sign in</h2>
+      <div class="login-outer-container">
         <LoginForm onSubmit={(email, password) => {
-          this.login(email, password) }} filledform={this.state.filledform} />
+          this.login(email, password) }} 
+          filledform={this.state.filledform} 
+          form_error={this.state.form_error}
+          db_error={this.state.db_error} />
       </div>
     )
   }

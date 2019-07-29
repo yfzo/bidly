@@ -2,8 +2,6 @@
 
 #new-auction-container {
     height: 50vmax;
-    margin-left: 2em;
-    margin-right: 2em;
 }
 
 #new-auction-img {
@@ -23,4 +21,28 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+}
+
+#category{
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#item-name{
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#formDescription{
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#formMinBid{
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
 }

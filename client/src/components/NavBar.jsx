@@ -20,8 +20,8 @@ export default class NavBar extends Component {
       <div>    
         {isLoggedIn ? (
           <div>
-            <Navbar bg="light" expand="sm">
-              <Navbar.Brand href="/">Bidly</Navbar.Brand>
+            <Navbar expand="sm">
+              <Navbar.Brand href="/">bidly</Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav>
@@ -36,7 +36,7 @@ export default class NavBar extends Component {
         </div>
           ) : (
             <div>
-              <Navbar bg="light" expand="sm">
+              <Navbar expand="sm">
                 <Navbar.Brand href="/">Bidly</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">

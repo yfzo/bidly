@@ -7,6 +7,8 @@ import EachAuction from '../components/EachAuction.jsx';
 import Container from 'react-bootstrap/Container';
 import '../styles/auctions.css';
 import Grid from 'react-bootstrap'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 export default class Auctions extends Component {
 
@@ -25,22 +27,9 @@ export default class Auctions extends Component {
             .then(()=>console.log(this.state.data))
     }
   
-    z
-    // createAuction(){
-    //   if(this.state.data.auctions){
-    //     this.state.data.auction.forEach((item, index) => {
-    //       if(index % 2) {
-    //         this.state.auctions.push([this.state.data.auctions[index -1], this.state.data.auctions[index]])
-    //       }
-    //     })
-    //   } 
-    // }
 
     async componentWillMount() {
-        console.log('before', this.state.data)
         await this.callAPI();
-        console.log('after', this.state.data)
-        // this.createAuction()
     }
     
     previousLocation = this.props.location;
@@ -63,9 +52,6 @@ export default class Auctions extends Component {
       const queryValues = queryString.parse(this.props.location.search)
       let { location } = this.props;
 
-      console.log(auctions_arr)
-
-
       // console.log("This is location from Auctions", this.props.location)
       // console.log("This is previousLocation", this.previousLocation);
 
@@ -76,13 +62,11 @@ export default class Auctions extends Component {
       // ); // not initial render
 
       if (auctions_arr) {
-        var auctions = auctions_arr.map((auction, index) => {
+        var auctions = auctions_arr.map((auction) => {
           if((auction.category_id == queryValues.category) || !this.props.location.search){
-            // if(index % 2){
               return (
                 <EachAuction key={auction.id} auction={auction} location={location} history={this.props.history} className="each_auction"/>
               )
-              // }
         }});
         // Show all auctions if there is no query, else show filtered by category
         // var auctions = auctions_arr.map(auction => (
@@ -91,15 +75,17 @@ export default class Auctions extends Component {
       }
 
       return (
-        <div style={{display: "flex",
-                     flexDirection: "row",
-                     flexWrap: "wrap",
-                    }}>
+        <Row style={{display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
+        }} className="auctions-outer-wrapper">
+          <Col xs={1} style={{padding: 0, diaplay:'flex', justifyContent: 'start'}}>
               <SideBar categories={this.state.data && this.state.data.category} />
-              <div className="auctions_container">
+          </Col>
+          <Col xs={11} style={{padding: '2rem'}} className="auctions_container">
                 {this.state.data && auctions}
-              </div>
-        </div>
+          </Col>
+        </Row>
       )
     }
   }
