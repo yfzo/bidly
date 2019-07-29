@@ -14,7 +14,6 @@ export default class NewAuctionForm extends Component {
 
   submitHandler = (e) => {
     e.preventDefault();
-    debugger
     const newAuction = {
       category: e.target.elements['category'].value,
       name: e.target.elements['item_name'].value,
