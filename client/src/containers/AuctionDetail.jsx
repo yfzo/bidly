@@ -7,6 +7,8 @@ import leftArrow from '../triangle-left.svg';
 import rightArrow from '../triangle-right.svg';
 import Timer from '../components/Timer.jsx';
 import { Image } from 'cloudinary-react';
+import { faCoins, faClock } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 export default class AuctionDetail extends Component {
@@ -121,7 +123,7 @@ export default class AuctionDetail extends Component {
           left: 0,
           bottom: 0,
           right: 0,
-          background: "rgba(0, 0, 0, 0.15)"
+          background: "rgba(0, 0, 0, 0.65)"
         }}
       >
         <div
@@ -133,17 +135,18 @@ export default class AuctionDetail extends Component {
               <img onLoad={this.onImgLoad} className={this.state.imgType + " modal_image"} alt='' src={img.src} />
             </div>
             <div className="modal-info-container">
-              <div className="auction-info">
-                <div>{this.state.auction && this.state.auction.name}</div>
-                <div>{this.state.auction && this.state.auction.description}</div>
-                <div>{this.state.auction && this.state.auction.min_bid}</div>
-                <div>{this.state.auction && this.state.auction.start_time}</div>
+              <div className="modal-info">
+                <div className="modal-name">{this.state.auction && this.state.auction.name}</div>
+                <div className="modal-description">{this.state.auction && this.state.auction.description}</div>
+                <div className="modal-min-bid">
+                  <FontAwesomeIcon icon={faCoins} className="coin-icon"/> Minimum bid: ${this.state.auction && this.state.auction.min_bid}
+                </div>
 
-                {timeRemaining > 0 ? <div><Timer timeRemaining={timeRemaining} />
+                {timeRemaining > 0 ? <div className="modal-timer"><Timer timeRemaining={timeRemaining} />
                   <Bid onEnter={(bid_amount) => {
                     this.bidHandler(bid_amount)
                   }} /></div>
-                  : <h4>Auction Ended</h4>}
+                  : <div className="modal-timer"><FontAwesomeIcon icon={faClock} className="coin-icon"/> Auction Ended</div>}
 
                 {this.state.min_error && <div>Bid more than minimum bid</div>}
                 {this.state.balance_error && <div>You do not have enough balance</div>}
