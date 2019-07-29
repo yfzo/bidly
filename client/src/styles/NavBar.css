@@ -1,7 +1,5 @@
 .navbar {
     background-color: rgb(80, 78, 189);
-    /* background-color: #1D4E89; */
-    /* background-color: #A594F9; */
 }
 
 .navbar .button{
@@ -18,4 +16,15 @@
 
 .navbar-expand-md .navbar-collapse {
     justify-content: flex-end;
+}
+
+nav .navbar-brand{
+    color: #eee !important;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 2rem;
+
+}
+
+nav .nav-link {
+    color: #eee !important;
 }
