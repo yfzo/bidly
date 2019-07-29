@@ -2,6 +2,11 @@
     min-height: 40rem;
 }
 
+#login-outer-container #login-form-container{
+    margin-right: 0;
+    margin-left: 0;
+}
+
 
 #login-img {
     background: url(../images/login.jpg) no-repeat center;
@@ -51,4 +56,70 @@
 .login-outer-container h2{
     font-size: 3rem;
     padding: 1rem;
+}
+
+
+@media screen and (max-width: 1275px) {
+    #login-img {
+        background: none;
+        background-size: none;
+        flex: none;
+        display: none;
+    }
+
+    #login-form-container {
+        justify-content: center;
+        background: url(../images/login.jpg) no-repeat center;
+        background-size: cover;
+        color: white;
+    }
+
+    #login-form-inner-container {
+        margin-top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(30, 29, 58, 0.92);
+        border-radius: 10px;
+        padding-bottom: 20px;
+    }
+
+    #login-form-inner-container button {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-outer-container {
+        height: 100%;
+    }
+
+    #login-form-inner-container { 
+        margin-top: 0;
+        transform: translateY(0);
+    }
+
+    #login-form-container #login-form {
+        min-height: 0; 
+    }
+}
+
+@media (max-width: 320px) {
+    .login-outer-container {
+        height: 100%;
+    }
+
+    .login-outer-container h2 {
+        font-size: 2rem;
+    }
+
+    .form-group .form-control {
+        width: 70%;
+    }
+
+    #login-form-inner-container button {
+        padding: 0.2rem 0.5rem;
+    }
+
+    #login-form-inner-container {
+        margin-bottom: 30px;
+    }
 }
