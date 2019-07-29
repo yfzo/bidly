@@ -45,7 +45,7 @@ export default class ProfileTabs extends Component {
     let increment = 0;
     return (
       <div>
-        <Tabs defaultActiveKey="accountInfo" id="uncontrolled-tab-example">
+        <Tabs className="tabs-wrapper" defaultActiveKey="accountInfo" id="uncontrolled-tab-example">
           <Tab eventKey="accountInfo" title="Account info">
             <Card body className="profile_tabs">
                 <p id="icon-user"><i className="fas fa-user"></i></p>
@@ -56,10 +56,10 @@ export default class ProfileTabs extends Component {
                 <Form id="profile_tabs_form">
                 <div>
                   <i className="fas fa-hand-holding-usd"></i>
-                  <div id="balance"><span style={{color: "grey"}}>Balance:</span> {this.props.data.balance} &#36;</div>
+                  <div id="balance"><span style={{color: "grey"}}>Balance:</span> &#36; {this.props.data.balance}</div>
                 </div>
                   <Button onClick={this.props.onClick} id="profile_tabs_button" variant="outline-primary" type="submit">
-                    Topup
+                    Add to Balance
                     </Button>
                 </Form>
                 <Form id="button-edit">
@@ -125,10 +125,10 @@ export default class ProfileTabs extends Component {
                   return (
                     <Card>
                         <Accordion.Toggle id="my-auction-info" as={Card.Header} eventKey={increment}>
-                          
+                            <div id="my-auction-info" style={{width: "100%"}}> 
                             <td>{auction.name}</td>
                             <td>{timeRemaining > 0 ? <Timer timeRemaining={timeRemaining}/> : <h4>Auction Ended</h4>}</td>
-                            
+                            </div>
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey={increment}>
                           <Card.Body id="toggle"><span>Total bids</span> <span>&#36; </span></Card.Body>
@@ -143,19 +143,25 @@ export default class ProfileTabs extends Component {
             </div>
           </Tab>
           <Tab eventKey="notifications" title="Notifications">
-            {this.props.data ? this.props.data.notifications.map(notification => {
-              console.log("this is notification " + notification)
+            <div id="table">
+              <Table responsive="sm">
+                {this.props.data ? this.props.data.notifications.map(notification => {
+                  console.log("this is notification " + notification)
 
-              return (
-                <Card body className="profile_tabs">
-
-                  <div>{notification.message}</div>
-
-                </Card>
-              )
-            })
-              :
-              ""}
+                return (
+                  <tbody style={{borderColor: "grey",
+                                borderWidth: "1px",
+                                textAlign: "left"}}>
+                    <tr>
+                      <td><i className="fas fa-check"></i>{notification.message}</td>
+                    </tr>
+                  </tbody>
+                  )
+                })
+                :
+                ""}
+              </Table>
+            </div>
           </Tab>
         </Tabs>
       </div>

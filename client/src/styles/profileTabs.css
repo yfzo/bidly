@@ -179,7 +179,7 @@ nav {
 }
 
 .accordion {
-    padding: 15px 0;
+    padding: 15px 0 0 0;
 }
 
 #toggle {
@@ -188,4 +188,8 @@ nav {
     background-color: indigo;
     color: white;
     border-bottom: 1px solid grey;
+}
+
+.tabs-wrapper .nav-link {
+    color: indigo !important;
 }
