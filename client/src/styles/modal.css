@@ -119,3 +119,9 @@
 .coin-icon {
   color: #E5D9F2;
 }
+
+.x-icon {
+  position: absolute;
+  top: 1em;
+  left: 1em;
+}
