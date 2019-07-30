@@ -126,3 +126,7 @@ img.auction_image {
 .auction-min-bid svg {
       color: #faf098;
 }
+
+.auction-card-name {
+      font-family: lato;
+}

@@ -45,7 +45,7 @@ export default class EachAuction extends Component {
                 {timeRemaining > 0 ? <Timer timeRemaining={timeRemaining}/> : <p><FontAwesomeIcon icon={faClock} className="coin-icon"/> Auction Ended</p>}
               </Card.ImgOverlay>
               <Card.Body>
-              <Card.Title>{auction.name}</Card.Title>
+              <Card.Title className="auction-card-name">{auction.name}</Card.Title>
               <Card.Text>
               <div className="auction-min-bid">
               <FontAwesomeIcon icon={faCoins} className="coin-icon"/> Min. ${this.props.auction && this.props.auction.min_bid}
