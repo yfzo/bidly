@@ -28,6 +28,8 @@ const Graph = (props) => {
   maintainAspectRatio: true,
   scales: {
    xAxes: [{
+    // barPercentage: 0.5,
+    barThickness : 73,
     ticks: {
      beginAtZero: true,
      fontColor: 'white',
