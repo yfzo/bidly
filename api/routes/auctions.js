@@ -60,7 +60,7 @@ router.post("/", function(req, res, next) {
         .first('*')
         .then((row)=>{
           cat_id = row.id
-          console.log(cat_id)
+          console.log('this is id',  cat_id)
       knex('auctions').insert({
           category_id: cat_id,
           name: req.body.name,
