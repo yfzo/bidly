@@ -30,7 +30,7 @@ export default class AuctionDetail extends Component {
   }
 
   componentDidMount() {
-    if (this.props.match.params.id !== 'new') {
+    if (this.props.match.params.id !== 'new' && this.props.match.params.id !== null) {
       this.callAPI();
     }
   }
