@@ -37,7 +37,15 @@ html {
 
 .buttonContainer .signup{
     font-size: 2rem;
-    margin: 0 2rem 0 2rem;    
+    margin: 0 2rem 0 2rem; 
+    background-color: rgb(80, 78, 189);
+    border-color: rgb(80, 78, 189);
+    color: white;   
+}
+
+.buttonContainer .signup:hover {
+    background-color: rgb(99, 98, 190);
+    border-color: rgb(99, 98, 190);
 }
 
 .home {
@@ -59,9 +67,14 @@ html {
     font-size: 4rem;
 }
 
-.home .header-body span{
-    font-size: 3rem;
+.home .header-body h4{
+    color: rgb(184, 183, 183);
+    font-size: 2rem;
 }
+
+/* .home .header-body span{
+    font-size: 3rem;
+} */
 
 #howToButton{
     font-size: 2rem;
@@ -89,7 +102,14 @@ html {
 }
 
 #howToButton{
+    background-color: rgb(80, 78, 189);
+    border-color: rgb(80, 78, 189);
+    color: white;
+}
 
+#howToButton:hover {
+    background-color: rgb(99, 98, 190);
+    border-color: rgb(99, 98, 190);
 }
 
 .shade {

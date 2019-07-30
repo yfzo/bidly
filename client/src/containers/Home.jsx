@@ -59,12 +59,12 @@ export default class Home extends Component {
                 </Card.Title>
                 {/* </Fade> */}
                 <Card.Body className="header-body"> 
-                  <h3>Looking for something? 
-                  <span> (and fun?)</span></h3>
+                  <h3>Bid low. Earn more.</h3>
+                  <h4>An exciting new way to buy and sell online</h4>
+                  <ButtonToolbar className="howToContainer">
+                    <AnchorLink href="#howToPlay"><Button id="howToButton" variant="outline-primary" size="lg">Learn More</Button></AnchorLink>
+                  </ButtonToolbar>
                 </Card.Body>
-                <ButtonToolbar className="howToContainer">
-                <AnchorLink href="#howToPlay"><Button id="howToButton" variant="outline-primary" >See how to use</Button>    </AnchorLink>
-                </ButtonToolbar>
               </Card.ImgOverlay>
               </Card>
               </CardGroup>
