@@ -117,7 +117,7 @@ export default class ProfileTabs extends Component {
           </Tab> 
             
           <Tab eventKey="myAuctions" title="My auctions">
-            <div id="table" style={{width: '55%'}}>
+            <div id="table" className="myAuctionsTable">
               <Accordion>
               <Card id="my-auction">
                 <th>Auction name</th> 

@@ -219,10 +219,27 @@ nav {
     /* color:white; */
 }
 
+.total_info_container{
+    width: 90%;
+}
 .total_info_container p{
     font-size: 1.5rem;
 }
 
+.info-container{
+    width: 90%;
+}
 .info-container p{
     font-size: 1.2rem;
+}
+
+#table.myAuctionsTable{
+    width: 55%;
+}
+@media screen and (max-width: 1080px) {
+    
+    #table.myAuctionsTable{
+        width: 100%;
+    }
+
 }
