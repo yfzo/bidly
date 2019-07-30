@@ -52,7 +52,7 @@ const Graph = (props) => {
 
   return (
    <div className="graph-container">
-   <p>Result</p>
+   <h4 className="myauction_titles">Result</h4>
    <Bar
      data={data}
      width={150}

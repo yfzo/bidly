@@ -212,3 +212,17 @@ nav {
 .info-container{
     flex: 6
 }
+
+.myauction_titles{
+    background: #E5D9F2;
+    color:indigo;
+    /* color:white; */
+}
+
+.total_info_container p{
+    font-size: 1.5rem;
+}
+
+.info-container p{
+    font-size: 1.2rem;
+}

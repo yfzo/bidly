@@ -143,14 +143,14 @@ export default class ProfileTabs extends Component {
                         {this.props.data && <Graph data={this.props.data} auction={auction} className="bar-chart"/>}
                           {this.props.data.auctions_total.map((total) => {
                           if(auction.auctions_table_id == total.id){
-                            return <p>Total bids <span style={{paddingLeft: "2px"}}> </span>&#36;{total.sum}</p>
+                            return <React.Fragment><h4 className="myauction_titles">Total bids</h4> <p>&#36;{total.sum}</p></React.Fragment>
                           }
                           })}
                         </div>
                         <div className="info-container">
-                          <p>Desciption<p></p> {auction.description}</p>
-                          <p>Minimum bid</p><p>{auction.min_bid}</p>
-                          {auction.winner && <div><p>Winner</p> <p>{auction.email}</p><p> {auction.first_name} {auction.last_name}</p></div>}
+                          <h4 className="myauction_titles">Desciption</h4><p> {auction.description}</p>
+                          <h4 className="myauction_titles">Minimum bid</h4><p>{auction.min_bid}</p>
+                          {auction.winner && <div><h4 className="myauction_titles">Winner</h4> <p>{auction.email}</p><p> {auction.first_name} {auction.last_name}</p></div>}
                         </div>
                         </Card.Body>
                         </Accordion.Collapse>
