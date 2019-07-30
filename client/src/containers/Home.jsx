@@ -11,8 +11,11 @@ import { Link } from 'react-router-dom';
 import background from '../images/header.jpg'
 import FadeIn from '../styles/fadein.js'
 import styled, {keyframes} from 'styled-components';
-import Table from 'react-bootstrap/Table'
-import AnchorLink from 'react-anchor-link-smooth-scroll'
+import Table from 'react-bootstrap/Table';
+import AnchorLink from 'react-anchor-link-smooth-scroll';
+import step1_svg from '../images/undraw_editable_dywm.svg';
+import step2_svg from '../images/undraw_Books_l33t.svg'
+import step3_svg from '../images/undraw_winners_ao2o.svg'
 
 
 export default class Home extends Component {
@@ -66,54 +69,73 @@ export default class Home extends Component {
               </Card>
               </CardGroup>
               {/* <section className="section-steps"> */}
-                <h4 id="howToPlay" className="howToTitle">How to play Bidly</h4>
+                <h4 id="howToPlay" className="howToTitle">How do I Use Bidly?</h4>
               <CardDeck className="steps-container">
-                <Card className="step-1">
+                <Card className="step-1 home-info-card">
                   <Card.Body>
                     <Card.Title className="step-titles">Step 1</Card.Title>
-                    <Card.Text>
-                    Register/Login to bid or create an auction
+                    <Card.Img className="step-img step-img-1" variant="top" src={step1_svg} />
+                    <Card.Text className="step-card-class">
+                      <p>Do you have something you would like someone to take out of your hands? Are you a creator looking to offer your creations on an interesting and exciting new platform?</p>
+                      <p>Create a new auction and put it up for bids!</p>
                     </Card.Text>
                   </Card.Body>
                 </Card>
-                <Card>
+                <Card className="home-info-card">
                   <Card.Body>
                     <Card.Title className="step-titles">Step 2</Card.Title>
-                    <Card.Text>
-                    Make a bid and wait until the end...
+                    <Card.Img className="step-img" variant="top" src={step2_svg} />
+                    <Card.Text className="step-card-class">
+                      <p>While you're waiting for your auction to end (or if you're just interested in buying and bidding), take a look around and see what others have to offer!</p>
                     </Card.Text>
                   </Card.Body>
                 </Card>
-                <Card>
+                <Card className="home-info-card">
                   <Card.Body>
                     <Card.Title className="step-titles">Step 3</Card.Title>
-                    <Card.Text>
-                      Go to Profile page and see result!
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </CardDeck>
-              <h4 className="howToTitle">Rules</h4>
-              <CardDeck>
-                <Card className="step-1">
-                  <Card.Body>
-                    <Card.Title className="step-titles">What is Bidly?</Card.Title>
-                    <Card.Text>
-                      <div>Bidly is a strategy game based auction app that allows users to auction off items they no longer need and acquire items for a low price. 
-                        Bidly is a unique bid auction where bidders are not shown bids made by other users. 
-                        The winner of an auction is decided by the lowest unique bid at the time the auction ends.</div>
-                      <ul>
-                        <li>What is unique bid auction?</li>
-                        <li>A type of auctions that the lowest unique bidder wins</li>
-                        <li>What is the benefit for the Auctioneer?</li>
-                        <li>Auctioneer will take all the bids</li>
-                        <li>What if there is no unique bids?</li>
-                        <li>The winner will be picked randomly from pool of winners</li>
+                    <Card.Img className="step-img" variant="top" src={step3_svg} />
+                    <Card.Text className="step-card-class">
+                      <p>Profit!</p>
+                      <ul className="step-three-list">
+                        <li>See who won your auction and ship it off</li>
+                        <li>Check which auctions you won yourself</li>
+                        <li>Enjoy your profits and newfound goodies!</li>
                       </ul>
                     </Card.Text>
                   </Card.Body>
                 </Card>
-                <Card className="example">
+              </CardDeck>
+              <h3 className="howToTitle more-bidly-info-title">Alright, but what is Bidly? How is it different from other auctioning sites?</h3>
+              <CardDeck className="more-info-container">
+                <Card className="step-1 home-info-card">
+                  <Card.Body>
+                    <Card.Title className="step-titles">What is Bidly? & F.A.Q.</Card.Title>
+                    <Card.Text className="home-info-faq">
+                      <div className="bidly-info-description">Bidly is a strategy game based auction app that allows users to buy and sell items with low risk and high reward. 
+                        By utilizing the concept of a unique bid auction, buyers are able to obtain items at an otherwise impossible price.
+                      </div>
+                      <ol className="faq">
+                        <li className="faq-qa">
+                          <div className="faq-q">What is a unique bid auction?</div>
+                          <div>In a unique bid auction, winners are decided by whoever has the lowest(or highest) unique bid. For Bidly, we are using the lowest unique bid model, because we don't want our users to shell out an arm or leg in a "no guarantee" style auction.</div>
+                        </li>
+                        <li className="faq-qa">
+                          <div className="faq-q">Lowest unique bid..?</div>
+                          <div>That's the lowest bid, made a single person, just once. See our example to see how it works.</div>
+                        </li>
+                        <li className="faq-qa">
+                          <div className="faq-q">Wait what? Who would want to sell their things for the least amount of money? What's in it for the auctioneer?</div>
+                          <div>No worries, we're looking out for our sellers too. Auctioneers get to keep ALL of the bids made by bidders.</div>
+                        </li>
+                        <li className="faq-qa">
+                          <div className="faq-q">But what if there is a tie and there are no unique bids?</div>
+                          <div>As of now, the winner will be picked randomly from the pool of bidders that made the lowest, most unique bid. In the future, we hope to have bidders participate in a second lightning round, so they themselves can determine the winner!</div>
+                        </li>
+                      </ol>
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+                <Card className="example home-info-card">
                   <Card.Body>
                   <Card.Title className="step-titles">Example</Card.Title>
                   <Table striped bordered hover>
@@ -130,7 +152,7 @@ export default class Home extends Component {
                         <td>3</td>
                         <td></td>
                       </tr>
-                      <tr className="winner" style={{background: 'rgb(255,192,203, 0.9)'}}>
+                      <tr className="winner" style={{background: 'rgba(213, 255, 192, 0.9)'}}>
                         <td>$2</td>
                         <td>1</td>
                         <td>Winner!</td>
@@ -141,7 +163,7 @@ export default class Home extends Component {
                         <td></td>
                       </tr>
                       <tr>
-                        <td>$3</td>
+                        <td>$4</td>
                         <td>1</td>
                         <td></td>
                       </tr>
