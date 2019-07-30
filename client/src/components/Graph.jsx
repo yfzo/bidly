@@ -10,7 +10,6 @@ const Graph = (props) => {
       backgroundColor: 'rgba(255,99,132,1)',
       borderColor: 'rgba(255,99,132,1)',
       borderWidth: 0.5,
-      color: 'white',
       hoverBackgroundColor: 'rgba(255,99,132,0.4)',
       hoverBorderColor: 'rgba(255,99,132,1)',
       data: []
@@ -31,14 +30,15 @@ const Graph = (props) => {
    xAxes: [{
     ticks: {
      beginAtZero: true,
-     fontColor: 'white'
+     fontColor: 'white',
     }
    }],
    yAxes: [{
     ticks: {
      beginAtZero: true,
-     fontColor: 'white'
- }
+     fontColor: 'white',
+     stepSize: 1
+    }
    }]
 }
  }
@@ -51,12 +51,12 @@ const Graph = (props) => {
   })
 
   return (
-   <div class="graph-container">
+   <div className="graph-container">
    <p>Result</p>
    <Bar
      data={data}
-     width={20}
-     height={20}
+     width={150}
+     height={150}
      options={options}
    />
  </div>

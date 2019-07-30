@@ -20,18 +20,9 @@ export default class ProfileTabs extends Component {
   }
 
 
-
-
   render() {
-    let totalBidAmount = 0;
-    const calculateBidTotal = () =>{
-      this.props.data.auction_bids.map((bid) => {
-        if(this.props.auction.auctions_table_id == bid.id){
-          totalBidAmount += bid.amount;
-      }})
-      return totalBidAmount;
-    }
-    // let totalBidAmount = 0
+
+
         // const calculateRemaining = ()
     const bids = this.props.data.amounts.map(namedBid => {
     
@@ -126,9 +117,7 @@ export default class ProfileTabs extends Component {
           </Tab> 
             
           <Tab eventKey="myAuctions" title="My auctions">
-
-            <div id="table">
-            {/* {this.props.data.winner && <Graph data={this.props.data} className="bar-chart"/>} */}
+            <div id="table" style={{width: '55%'}}>
               <Accordion>
               <Card id="my-auction">
                 <th>Auction name</th> 
@@ -150,10 +139,19 @@ export default class ProfileTabs extends Component {
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey={increment}>
                           <Card.Body id="toggle">
-                      {this.props.data && <Graph data={this.props.data} auction={auction} className="bar-chart"/>}
-
-                        <p>Total bids</p><span>&#36;{this.calculateBidTotal}</span>
-                            
+                            <div className="total_info_container">
+                        {this.props.data && <Graph data={this.props.data} auction={auction} className="bar-chart"/>}
+                          {this.props.data.auctions_total.map((total) => {
+                          if(auction.auctions_table_id == total.id){
+                            return <p>Total bids <span style={{paddingLeft: "2px"}}> </span>&#36;{total.sum}</p>
+                          }
+                          })}
+                        </div>
+                        <div className="info-container">
+                          <p>Desciption<p></p> {auction.description}</p>
+                          <p>Minimum bid</p><p>{auction.min_bid}</p>
+                          {auction.winner && <div><p>Winner</p> <p>{auction.email}</p><p> {auction.first_name} {auction.last_name}</p></div>}
+                        </div>
                         </Card.Body>
                         </Accordion.Collapse>
                     </Card>

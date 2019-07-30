@@ -184,21 +184,31 @@ nav {
 
 #toggle {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     background-color: indigo;
     color: white;
     border-bottom: 1px solid grey;
 }
 
-/* .bar-chart {
-    height: 10rem;
-    width: 10rem;
-} */
+.chartjs-render-monitor {
+    height: 25rem;
+    width: 15rem;
+} 
 
 .graph-container{
-    height:20rem;
-    width:15rem;
+    height:30rem;
+    width:25rem;
 }
+
 .tabs-wrapper .nav-link {
     color: indigo !important;
+}
+
+.total_info_container{
+    flex: 6;
+}
+
+.info-container{
+    flex: 6
 }

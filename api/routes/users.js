@@ -40,7 +40,7 @@ module.exports = (knex) => {
                     data.notifications = notifications;
                     //send all bids on user's auctions
                     knex
-                    .select(knex.raw('amount, COUNT(amount), auctions.id'))
+                    .select(knex.raw('amount, COUNT(amount), SUM(amount), auctions.id'))
                     .from('bids')
                     .join("auctions", "auctions.id", "bids.auction_id")
                     .where('auctions.user_id', '=', req.params.id)
@@ -48,7 +48,19 @@ module.exports = (knex) => {
                     .orderBy(['count', 'amount'])
                     .then((auc_row) => {
                       data.auction_bids = auc_row;
-                      res.send(data)
+
+                      //sum of each auction
+                      knex
+                      .select(knex.raw('SUM(amount), auctions.id'))
+                      .from('bids')
+                      .join("auctions", "auctions.id", "bids.auction_id")
+                      .where('auctions.user_id', '=', req.params.id)
+                      .groupBy('auctions.id' )
+                      // .orderBy(['count', 'amount'])
+                      .then((auc_row) => {
+                        data.auctions_total = auc_row; 
+                        res.send(data)
+                      })
                     })
             })
           })
