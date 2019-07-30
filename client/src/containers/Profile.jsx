@@ -31,9 +31,10 @@ export default class Profile extends Component {
       if (this.state.redirect == true ) {
         return <Redirect to={'/auctions/' + this.state.data.user_id}/>
       }
-      console.log( this.state.data);
+      console.log(this.state.data);
       return (
         <div>
+
           {this.state.data && <ProfileTabs onClick={this.handleOnClick} data={this.state.data}  />}
         </div>
       )

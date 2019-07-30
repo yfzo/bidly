@@ -66,7 +66,7 @@ export default class Login extends Component {
       //  window.location.href = `/users/${localStorage.getItem("user_id")}`;
     }
     return (
-      <div class="login-outer-container">
+      <div className="login-outer-container">
         <LoginForm onSubmit={(email, password) => {
           this.login(email, password) }} 
           filledform={this.state.filledform} 

@@ -17,7 +17,6 @@ export default class Notification extends Component {
     // console.log('newProps', this.props);
     
     const newProps = this.props;
-    
     if(oldProps.notification.id !== newProps.notification.id) {
       this.setState({ show: true });
     }

@@ -184,12 +184,62 @@ nav {
 
 #toggle {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     background-color: indigo;
     color: white;
     border-bottom: 1px solid grey;
 }
 
+.chartjs-render-monitor {
+    height: 25rem;
+    width: 15rem;
+} 
+
+.graph-container{
+    height:30rem;
+    width:25rem;
+}
+
 .tabs-wrapper .nav-link {
     color: indigo !important;
+}
+
+.total_info_container{
+    flex: 6;
+}
+
+.info-container{
+    flex: 6
+}
+
+.myauction_titles{
+    background: #E5D9F2;
+    color:indigo;
+    /* color:white; */
+}
+
+.total_info_container{
+    width: 90%;
+}
+.total_info_container p{
+    font-size: 1.5rem;
+}
+
+.info-container{
+    width: 90%;
+}
+.info-container p{
+    font-size: 1.2rem;
+}
+
+#table.myAuctionsTable{
+    width: 55%;
+}
+@media screen and (max-width: 1080px) {
+    
+    #table.myAuctionsTable{
+        width: 100%;
+    }
+
 }
