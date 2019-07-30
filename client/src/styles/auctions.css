@@ -10,10 +10,13 @@ img.auction_image {
 }
 
 .auctions_container {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      padding: 2rem;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: row;
+   flex-wrap: wrap;
+   flex-flow: row wrap;
+   align-content: flex-end;
 }
 
 .auction-card {
