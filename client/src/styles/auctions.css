@@ -1,6 +1,7 @@
-.auctions-outer-wrapper{
+.auctions-outer-wrapper {
       height: 100%;
 }
+
 img.auction_image {
       max-width: 20rem;
       height: 15rem;
@@ -8,14 +9,14 @@ img.auction_image {
       border-radius: 0.5rem 0.5rem 0 0 ;
 }
 
-.auctions_container{
+.auctions_container {
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
       padding: 2rem;
 }
 
-.auction-card{
+.auction-card {
       width: 20rem;
       height: 25rem;
       margin: 2.5rem;
@@ -25,20 +26,22 @@ img.auction_image {
       -webkit-box-shadow: 0 8px 6px -6px #908e96;
       -moz-box-shadow: 0 8px 6px -6px #908e96;
             box-shadow: 0 8px 6px -6px #908e96;
+      background-color: #e8e2ff;
 }
 
-.auction-card a{
+.auction-card a {
       text-decoration: none;
 }
 
-.auction-card a:hover{
+.auction-card a:hover {
       border: transparent;
       border-radius: 0.5rem;
       -webkit-box-shadow: 5px 15px 8px 1px #908e96;
       -moz-box-shadow: 5px 15px 8px 1px #908e96;
       box-shadow: 5px 15px 8px 1px #908e96;
 }
-.auction-card .info{
+
+.auction-card .info {
       padding: 0.5rem;
       align-items: baseline;
       position: absolute;
@@ -52,68 +55,75 @@ img.auction_image {
       
 }
 
-.auction-card .card-img-overlay{
+.auction-card .card-img-overlay {
       top:55%;
       left: auto;
 }
 
-.auction-card .card-body{
+.auction-card .card-body {
       display: table;
-      padding-top: 3rem;
+      padding: 3rem 0 0 0;
       height: 10rem;
+      width: 100%;
 }
 
-.auction-timer{
+.auction-timer {
       display: flex;
 }
 
-.auction-timer h4{
+.auction-timer h4 {
       font-size: 1.4rem;
       margin-right: 1rem;
       color: rgb(80, 78, 189);
 }
 
-.auction-timer .card-text{
+.auction-timer .card-text {
       color: rgb(80, 78, 189);
       margin-left: 0.7rem;
       font-family: 'Open Sans', sans-serif;
-
+      width: 100%;
+      padding: 0.25em 0;
+      background-color: whitesmoke;
 }
 
-.auction-timer .timer-inner-container{
+.auction-timer .timer-inner-container {
       margin-left: 0.7rem;
 }
 
-.auction-card .card-title{
+.auction-card .card-title {
       text-align: start;
       font-size: 1.6rem;
       color: rgb(80, 78, 189);
       border-radius: 10px;
+      padding: 0 1.25rem;
 }
 
-.auction-card p{
+.auction-card p {
       color:rgb(80, 78, 189);
       font-size: 1.3rem;
       font-family: 'Open Sans', sans-serif;
 
 }
 
-.auction-card .timer-show{
+.auction-card .timer-show {
       color:rgb(80, 78, 189);
       margin-left: 0.5rem;
       font-size: 1.5rem;
       font-family: 'Open Sans', sans-serif;
 }
 
-.auction-card .timer-letter{
+.auction-card .timer-letter {
       color:rgb(80, 78, 189);
       margin-left: 0.5rem;
       font-size: 1.3rem;
       font-family: 'Open Sans', sans-serif;
 }
+
 .auction-min-bid {
       font-size: 1.4rem;
-      text-align: start;
+      text-align: center;
+      padding: 0.2em 0;
+      background-color: whitesmoke;
 }
 
 @media (max-width: 480px) {
@@ -163,4 +173,7 @@ img.auction_image {
       .auction-min-bid {
             font-size: 1.2rem;
       }
+
+.auction-min-bid svg {
+      color: #faf098;
 }

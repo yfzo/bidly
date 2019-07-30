@@ -36,13 +36,22 @@
 
 .buttonContainer .signup{
     font-size: 2rem;
-    margin: 0 2rem 0 2rem;    
+    margin: 0 2rem 0 2rem; 
+    background-color: rgb(80, 78, 189);
+    border-color: rgb(80, 78, 189);
+    color: white;   
+}
+
+.buttonContainer .signup:hover {
+    background-color: rgb(99, 98, 190);
+    border-color: rgb(99, 98, 190);
 }
 
 .home {
     border: none;
     text-align: justify;
     min-height:30rem;
+    background-color: rgba(230, 228, 235, 0.45);
 }
 
 
@@ -57,9 +66,14 @@
     font-size: 4rem;
 }
 
-.home .header-body span{
-    font-size: 3rem;
+.home .header-body h4{
+    color: rgb(184, 183, 183);
+    font-size: 2rem;
 }
+
+/* .home .header-body span{
+    font-size: 3rem;
+} */
 
 #howToButton{
     font-size: 2rem;
@@ -67,24 +81,34 @@
 
 #homeBrowseLink {
     text-decoration: none;
-    color: #007bff;
+    color: white; 
     font-size: 2rem;
 }
-#homeBroseButton{
 
+#homeBrowseButton {
+    background-color: rgb(80, 78, 189);
+    border-color: rgb(80, 78, 189);
+    color: white;
 }
 
 #homeBrowseButton:hover {
-    background-color: #007bff;
-    border-color: #007bff;
+    background-color: rgb(99, 98, 190);
+    border-color: rgb(99, 98, 190);
 }
 
 #homeBrowseButton:hover #homeBrowseLink {
-    color: #fff;
+    
 }
 
 #howToButton{
+    background-color: rgb(80, 78, 189);
+    border-color: rgb(80, 78, 189);
+    color: white;
+}
 
+#howToButton:hover {
+    background-color: rgb(99, 98, 190);
+    border-color: rgb(99, 98, 190);
 }
 
 .shade {
@@ -100,15 +124,21 @@
     text-align: center;
     margin: 5rem;
     font-size: 3rem;
-} 
+}
+
+.howToTitle.more-bidly-info-title {
+    font-size: 2.5rem;
+}
 
 .steps-container .step-titles {
     font-size: 2rem;
     padding: 1rem;
+    color: black;
 }
 
-.steps-container .card-deck  {
-    height: 10rem;
+.steps-container.card-deck, .more-info-container {
+    /* height: 10rem; */
+    margin: 0 1em;
 }
 .title-logo{
     font-size: 10rem;
@@ -126,4 +156,70 @@
 @-webkit-keyframes fadeIn{
     from {top: 0px;}
     to {top: 0px;}
+}
+
+.card-text {
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.step-three-list {
+    text-align: left;
+}
+
+.steps-container.card-deck .card-body, .card-deck .card-body, .auction-card {
+    -webkit-box-shadow: -1px 10px 17px -4px rgb(109, 109, 109);
+        -moz-box-shadow: -1px 10px 17px -4px rgb(109, 109, 109);
+            box-shadow: -1px 10px 17px -4px rgb(109, 109, 109);
+            /* -webkit-box-shadow: -1px 10px 17px -4px rgba(0,0,0,0.75);
+            -moz-box-shadow: -1px 10px 17px -4px rgba(0,0,0,0.75);
+            box-shadow: -1px 10px 17px -4px rgba(0,0,0,0.75); */
+}
+
+.card-deck .step-titles {
+    color: black;
+}
+
+.step-img {
+    border-radius: 50%;
+}
+
+.step-img.step-img-1 {
+    height: 210px;
+}
+
+.step-card-class {
+    padding: 1em;
+    position: relative;
+    top: 2em;
+}
+
+.home-info-card {
+    margin: 0 1em;
+}
+
+.home-info-faq {
+    text-align: left;
+}
+
+.bidly-info-description {
+    padding: 1em;
+}
+
+.faq {
+    padding: 1em 3em;
+}
+
+.faq-qa {
+    padding-bottom: 0.5em;
+}
+
+.faq-q {
+    font-weight: bold;
+}
+
+.example .card-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
