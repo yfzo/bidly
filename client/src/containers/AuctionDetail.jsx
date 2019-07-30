@@ -4,7 +4,6 @@ import { Redirect } from 'react-router';
 import Bid from '../components/Bid.jsx';
 import '../styles/modal.css';
 import Timer from '../components/Timer.jsx';
-import { Image } from 'cloudinary-react';
 import { faCoins, faClock, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 

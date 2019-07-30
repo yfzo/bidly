@@ -20,7 +20,7 @@ module.exports = (knex) => {
         console.log(row)
         // Find auctions made by that user
         knex("auctions")
-          .select('*')
+          .select('auctions.id AS auctions_table_id', "category_id", "name", "description", "min_bid", "end_time", "image", "user_id", "notifications_sent", "winner")
           .from('auctions')
           .leftJoin("users", "winner", "users.id")
           .where('user_id', '=', req.params.id)
