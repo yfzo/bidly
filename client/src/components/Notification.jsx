@@ -34,7 +34,7 @@ export default class Notification extends Component {
               minHeight: "100px",
               minWidth: "259px",  
               zIndex: 9999,
-              right: 0       
+              right: '1em'       
             }
             } className="notification-container"
           >
@@ -42,7 +42,7 @@ export default class Notification extends Component {
               <Toast.Header>
                 {/* <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" /> */}
                 <strong className="mr-auto">{this.props.notification.auctionName}</strong>
-                <small>11 mins ago</small>
+                <small>Just now</small>
               </Toast.Header>
               <Toast.Body>{this.props.notification.message}</Toast.Body>
             </Toast>
