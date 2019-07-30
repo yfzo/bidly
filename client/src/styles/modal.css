@@ -105,7 +105,7 @@
   color: #E5D9F2;
 }
 
-.modal-timer {
+.modal-timer, .modal-winning-bid {
   font-size: 1.25em;
   font-family: raleway;
 }

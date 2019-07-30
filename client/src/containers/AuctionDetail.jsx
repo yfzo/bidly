@@ -12,7 +12,7 @@ export default class AuctionDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      auction: null,
+      data: null,
       balance_error: false,
       min_error: false,
       imgType: null,
@@ -26,7 +26,7 @@ export default class AuctionDetail extends Component {
     const path = "http://localhost:3001/auctions/" + this.props.match.params.id;
     fetch(path)
       .then(res => res.json())
-      .then(res => this.setState({ auction: res }))
+      .then(res => this.setState({ data: res }))
     // .then(() => console.log(this.state.auction));
   }
 
@@ -41,10 +41,10 @@ export default class AuctionDetail extends Component {
 
     if (currentUserId) {
       //checks if typed value is more than minimum bid
-      if (num && num > this.state.auction.min_bid) {
+      if (num && num > this.state.data.auction.min_bid) {
         this.setState({ min_error: false })
         const newBid = {
-          auction_id: this.state.auction.id,
+          auction_id: this.state.data.auction.id,
           user_id: parseInt(currentUserId),
           amount: parseInt(num)
         }
@@ -100,17 +100,17 @@ export default class AuctionDetail extends Component {
       return (<React.Fragment></React.Fragment>)
     }
 
-    if (this.state.auction) {
-      var endTime = this.state.auction.end_time;
+    if (this.state.data) {
+      var endTime = this.state.data.auction.end_time;
       var currentTime = Date.now();
       var timeRemaining = endTime - currentTime;
       console.log("Time remaining:", timeRemaining);
-      var isUserAuctioneer = this.state.auction.user_id == localStorage.getItem('user_id');
+      var isUserAuctioneer = this.state.data.auction.user_id == localStorage.getItem('user_id');
     }
 
     var img = new Image();
 
-    img.src = this.state.auction && this.state.auction.image;
+    img.src = this.state.data && this.state.data.auction.image;
 
     return (
       <div className="modal-container"
@@ -135,10 +135,10 @@ export default class AuctionDetail extends Component {
             <div className="modal-info-container">
               <div className="modal-info">
                 
-                <div className="modal-name">{this.state.auction && this.state.auction.name}</div>
-                <div className="modal-description">{this.state.auction && this.state.auction.description}</div>
+                <div className="modal-name">{this.state.data && this.state.data.auction.name}</div>
+                <div className="modal-description">{this.state.data && this.state.data.auction.description}</div>
                 <div className="modal-min-bid">
-                  <FontAwesomeIcon icon={faCoins} className="coin-icon"/> Minimum bid: ${this.state.auction && this.state.auction.min_bid}
+                  <FontAwesomeIcon icon={faCoins} className="coin-icon"/> Minimum bid: ${this.state.data && this.state.data.auction.min_bid}
                 </div>
                 
                 {timeRemaining > 0 ?
@@ -147,7 +147,12 @@ export default class AuctionDetail extends Component {
                     <div>{!isUserAuctioneer && <Bid onEnter={(bid_amount) => {this.bidHandler(bid_amount)}} />}</div>
                   </div>
                 
-                  : <div className="modal-timer"><FontAwesomeIcon icon={faClock} className="coin-icon"/> Auction Ended</div>}
+                  : 
+                  <div>
+                    <div className="modal-timer"><FontAwesomeIcon icon={faClock} className="coin-icon"/> Auction Ended</div>
+                    <div className="modal-winning-bid"><FontAwesomeIcon icon={faCrown} className="coin-icon"/> {this.state.data && this.state.data.winning_bid_amount}</div>
+                  </div>
+                }
 
                 {this.state.min_error && <div>Bid more than minimum bid</div>}
                 {this.state.balance_error && <div>You do not have enough balance</div>}
