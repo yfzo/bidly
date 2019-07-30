@@ -34,13 +34,29 @@ router.get("/", function(req, res, next) {
 router.get("/:id", function(req, res, next) {
   console.log('reached auctions/:id route')
   console.log("ERROR IS IN GET ROUTE FOR AUCTIONS/:ID", req.params)
+  let data = {}
   knex
     .table("auctions")
     .where('id', '=', req.params.id)
     .first('*')
-    .then((row) => {
-      console.log(row)
-      res.send(row);
+    .then((auction) => {
+      console.log(auction)
+      data.auction = auction;
+
+      knex('bids')
+        .select(knex.raw('amount, count(amount)'))
+        .where('auction_id', '=', auction.id)
+        .groupBy('amount')
+        .orderBy(['count', 'amount'])
+        .first()
+        .then((lowest_bid) => {
+          if(lowest_bid) {
+            data.winning_bid_amount = "Winning bid: $" + lowest_bid.amount;
+          } else {
+            data.winning_bid_amount = "No bids were made";
+          }
+          res.send(data);
+        })
     })
     .catch((err) => {console.log(err)})
 });
