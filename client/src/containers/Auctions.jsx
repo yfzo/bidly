@@ -75,17 +75,17 @@ export default class Auctions extends Component {
       }
 
       return (
-        <Row style={{display: "flex",
+        <div style={{display: "flex",
         flexDirection: "row",
         flexWrap: "wrap",
         }} className="auctions-outer-wrapper">
           <Col xs={1} style={{padding: 0, diaplay:'flex', justifyContent: 'start'}}>
               <SideBar categories={this.state.data && this.state.data.category} />
           </Col>
-          <Col xs={11} style={{padding: '2rem'}} className="auctions_container">
+          <Col xs={11} className="auctions_container">
                 {this.state.data && auctions}
           </Col>
-        </Row>
+        </div>
       )
     }
   }
