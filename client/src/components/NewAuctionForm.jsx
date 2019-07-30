@@ -34,8 +34,8 @@ export default class NewAuctionForm extends Component {
       })
   }
     return (
-      <div>
-        <Row id="new-auction-container">
+      <div id="container">
+        <Row style={{marginLeft: "0", marginRight: "0"}} id="new-auction-container">
           <Col xs={4} id="new-auction-img">
             {/* <img src={teacupPic} alt="Assorted-color turkish teacups on table" className="create_auction_img"></img> */}
           </Col>
@@ -68,7 +68,7 @@ export default class NewAuctionForm extends Component {
                   Upload Image</Button>
               </Form.Group>
               <Form.Group controlId="formMinBid">
-                <Form.Label>Set Minimum Bid Price</Form.Label>
+                <Form.Label>Set Minimum Bid Price &#36;</Form.Label>
                 <Form.Control type="money" placeholder="...and finally, a minimum bid amount in dollars!" name="min_bid" step="1" />
               </Form.Group>
               {this.props.error && 
@@ -77,7 +77,7 @@ export default class NewAuctionForm extends Component {
                 Submit
               </Button>
             </Form>
-          </Col >
+          </Col>
         </Row>
       </div>
     )
