@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import ProfileTabs from '../components/ProfileTabs.jsx';
 import '../styles/profileTabs.css';
 import { Redirect } from 'react-router-dom';
-// import Graph from '../components/Graph.jsx'
 
 export default class Profile extends Component {
   constructor(props) {
@@ -35,8 +34,8 @@ export default class Profile extends Component {
       console.log(this.state.data);
       return (
         <div>
+
           {this.state.data && <ProfileTabs onClick={this.handleOnClick} data={this.state.data}  />}
-          {/* {this.state.data && <Graph onClick={this.handleOnClick} data={this.state.data}  />} */}
         </div>
       )
     }

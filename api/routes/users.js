@@ -18,12 +18,12 @@ module.exports = (knex) => {
         data.balance = row.balance;
         data.id = row.id;
         console.log(row)
-        // Find auctions made by that user
+        // Find auctions made by that user (and winner's profile)
         knex("auctions")
-          .select('auction.id AS auctions_table_id', "category_id", "name", "description", "min_bid", "end_time", "image", "user_id", "notifications_sent", "winner")
+          .select('auctions.id AS auctions_table_id', "category_id", "name", "description", "min_bid", "end_time", "image", "auctions.user_id as user_id", "notifications_sent", "winner", "first_name", "last_name", "email")
           .from('auctions')
           .leftJoin("users", "winner", "users.id")
-          .where('user_id', '=', req.params.id)
+          .where('auctions.user_id', '=', req.params.id)
           .then((auc_row) => {
             data.auctions = auc_row;
             // Find the auctions that the user bid on
@@ -38,20 +38,20 @@ module.exports = (knex) => {
                   .table("notifications")
                   .then((notifications) => {
                     data.notifications = notifications;
-                    res.send(data);
-                    // Find winners of auctions this user made
-                    // knex("auctions")
-                    // .join("users", "winner", "user_id")
-                    // .where("auctions.id", "=", req.params.id)
-                    // .then((winners) => {
-                    //   // data.winners = winners;
-                    //   for(auction of auc_row) {
-                    //     auction.winner_info = 
-                    //   }
-                    //   })
-                  })
-              })
-
+                    //send all bids on user's auctions
+                    knex
+                    .select(knex.raw('amount, COUNT(amount), auctions.id'))
+                    .from('bids')
+                    .join("auctions", "auctions.id", "bids.auction_id")
+                    .where('auctions.user_id', '=', req.params.id)
+                    .groupBy('amount', 'auctions.id' )
+                    .orderBy(['count', 'amount'])
+                    .then((auc_row) => {
+                      data.auction_bids = auc_row;
+                      res.send(data)
+                    })
+            })
+          })
       })
   })
 

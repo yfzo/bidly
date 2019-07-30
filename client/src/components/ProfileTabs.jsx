@@ -8,22 +8,37 @@ import { Link } from 'react-router-dom';
 import Table from 'react-bootstrap/Table';
 import Accordion from 'react-bootstrap/Accordion';
 import Timer from './Timer.jsx';
+import Graph from '../components/Graph.jsx'
+
+
 
 
 export default class ProfileTabs extends Component {
   constructor(props) {
     super(props);
-    this.state = { rerender: true }
+    this.state = { rerender: true}
   }
 
+
+
+
   render() {
+    let totalBidAmount = 0;
+    const calculateBidTotal = () =>{
+      this.props.data.auction_bids.map((bid) => {
+        if(this.props.auction.auctions_table_id == bid.id){
+          totalBidAmount += bid.amount;
+      }})
+      return totalBidAmount;
+    }
+    // let totalBidAmount = 0
         // const calculateRemaining = ()
     const bids = this.props.data.amounts.map(namedBid => {
+    
 
       // console.log("this is nameBid ", namedBid)
       var status;
       if(namedBid.winner) {
-        debugger
         // console.log("bid user_id:", namedBid.user_id)
         // console.log("auction winner:", namedBid.winner)
         if(namedBid.user_id === namedBid.winner) {
@@ -43,6 +58,7 @@ export default class ProfileTabs extends Component {
       )
     })
     let increment = 0;
+    // let totalBidAmount = 0;
     return (
       <div>
         <Tabs defaultActiveKey="accountInfo" id="uncontrolled-tab-example">
@@ -110,7 +126,9 @@ export default class ProfileTabs extends Component {
           </Tab> 
             
           <Tab eventKey="myAuctions" title="My auctions">
+
             <div id="table">
+            {/* {this.props.data.winner && <Graph data={this.props.data} className="bar-chart"/>} */}
               <Accordion>
               <Card id="my-auction">
                 <th>Auction name</th> 
@@ -121,17 +139,23 @@ export default class ProfileTabs extends Component {
                   var endTime = auction.end_time;
                   var currentTime = Date.now();
                   var timeRemaining = endTime - currentTime;
-                
+                  
                   return (
                     <Card>
                         <Accordion.Toggle id="my-auction-info" as={Card.Header} eventKey={increment}>
                           
                             <td>{auction.name}</td>
-                            <td>{timeRemaining > 0 ? <Timer timeRemaining={timeRemaining}/> : <h4>Auction Ended</h4>}</td>
-                            
+                            <td>{timeRemaining > 0 ? <Timer timeRemaining={timeRemaining}/> : <h4>Auction Ended</h4>}</td>                            
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey={increment}>
-                          <Card.Body id="toggle"><span>Total bids</span> <span>&#36; </span></Card.Body>
+                          <Card.Body id="toggle">
+                      {this.props.data && <Graph data={this.props.data} auction={auction} className="bar-chart"/>}
+
+                        <p>Total bids</p><span>&#36;{this.calculateBidTotal}</span>
+                            
+                          <div className="chart-container">
+                          </div>
+                        </Card.Body>
                         </Accordion.Collapse>
                     </Card>
                   )
@@ -148,9 +172,7 @@ export default class ProfileTabs extends Component {
 
               return (
                 <Card body className="profile_tabs">
-
                   <div>{notification.message}</div>
-
                 </Card>
               )
             })

@@ -1,41 +1,63 @@
 import React, {Component} from 'react';
 import {Bar} from 'react-chartjs-2';
 const Graph = (props) => {
+ console.log(props)
  const data = {
   labels: [],
   datasets: [
     {
-      label: 'My First dataset',
-      backgroundColor: 'rgba(255,99,132,0.2)',
+      label: 'Number of bids',
+      backgroundColor: 'rgba(255,99,132,1)',
       borderColor: 'rgba(255,99,132,1)',
-      borderWidth: 1,
+      borderWidth: 0.5,
+      color: 'white',
       hoverBackgroundColor: 'rgba(255,99,132,0.4)',
       hoverBorderColor: 'rgba(255,99,132,1)',
-      data: [65, 59, 80, 81, 56, 55, 40]
+      data: []
     }
   ]
  };
 
- const bidders = []
- const auctionData = this.props.data.auctions.map((auction)=>{
-  this.props.data.amounts.map(namedBid => {
-  if(auction.id === namedBid.auction_id){
-   bidders.push(namedBid.user_id)
+ const options = {
+   legend: {
+    labels: {
+
+       // This more specific font property overrides the global property
+     fontColor: 'white'
+    }
+   },
+  maintainAspectRatio: true,
+  scales: {
+   xAxes: [{
+    ticks: {
+     beginAtZero: true,
+     fontColor: 'white'
+    }
+   }],
+   yAxes: [{
+    ticks: {
+     beginAtZero: true,
+     fontColor: 'white'
+ }
+   }]
+}
+ }
+
+  props.data.auction_bids.map((bid)=>{
+  if(props.auction.auctions_table_id == bid.id){
+   data.labels.push(bid.amount)
+   data.datasets[0].data.push(bid.count)
   }
   })
- })
-
 
   return (
-   <div>
-   <h2>Bar Example (custom size)</h2>
+   <div class="graph-container">
+   <p>Result</p>
    <Bar
      data={data}
-     width={100}
-     height={50}
-     options={{
-       maintainAspectRatio: false
-     }}
+     width={20}
+     height={20}
+     options={options}
    />
  </div>
   );

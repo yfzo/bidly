@@ -189,3 +189,13 @@ nav {
     color: white;
     border-bottom: 1px solid grey;
 }
+
+/* .bar-chart {
+    height: 10rem;
+    width: 10rem;
+} */
+
+.graph-container{
+    height:20rem;
+    width:15rem;
+}
