@@ -1,5 +1,10 @@
 .navbar.side-bar{
  min-height: 40rem;
+ height: 100vh;
 }
 
-
+@media screen and (max-width: 480px) {
+    .navbar.side-bar {
+        height: 0;
+    }
+}
