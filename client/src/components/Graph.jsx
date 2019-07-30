@@ -7,11 +7,11 @@ const Graph = (props) => {
   datasets: [
     {
       label: 'Number of bids',
-      backgroundColor: 'rgba(255,99,132,1)',
-      borderColor: 'rgba(255,99,132,1)',
+      backgroundColor: 'white',
+      borderColor: 'white',
       borderWidth: 0.5,
-      hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-      hoverBorderColor: 'rgba(255,99,132,1)',
+      hoverBackgroundColor: 'rgb(176, 174, 247)',
+      hoverBorderColor: 'rgb(176, 174, 247)',
       data: []
     }
   ]
