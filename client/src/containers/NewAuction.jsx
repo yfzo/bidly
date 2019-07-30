@@ -79,7 +79,7 @@ export default class NewAuction extends Component {
     render() {
 
       if (this.state.redirect == true ) {
-        return <Redirect to='/' />
+        return <Redirect to='/auctions' />
       }
 
       return (
