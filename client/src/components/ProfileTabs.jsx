@@ -8,7 +8,8 @@ import { Link } from 'react-router-dom';
 import Table from 'react-bootstrap/Table';
 import Accordion from 'react-bootstrap/Accordion';
 import Timer from './Timer.jsx';
-import Graph from '../components/Graph.jsx'
+import Graph from '../components/Graph.jsx';
+import Col from 'react-bootstrap/Col';
 
 
 
@@ -120,8 +121,8 @@ export default class ProfileTabs extends Component {
             <div id="table" className="myAuctionsTable">
               <Accordion>
               <Card id="my-auction">
-                <th>Auction name</th> 
-                <th>Time</th>
+              <Col id="auction-name" xs={6}><th>Auction name</th></Col>
+              <Col id="auction-time" xs={6}><th>Time</th></Col>
               </Card>
                 {this.props.data ? this.props.data.auctions.map(auction => {
                   increment++;
@@ -133,8 +134,8 @@ export default class ProfileTabs extends Component {
                     <Card>
                         <Accordion.Toggle id="my-auction-info" as={Card.Header} eventKey={increment}>
                             <div id="my-auction-info" style={{width: "100%"}}> 
-                            <td>{auction.name}</td>
-                            <td>{timeRemaining > 0 ? <Timer timeRemaining={timeRemaining}/> : <h4>Auction Ended</h4>}</td>  
+                            <Col id="auction-name" xs={6}><td>{auction.name}</td></Col>
+                            <Col id="auction-time" xs={6}><td>{timeRemaining > 0 ? <Timer id="auction-time" timeRemaining={timeRemaining}/> : <td id="auction-time">Auction Ended</td>}</td></Col>  
                             </div>                          
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey={increment}>

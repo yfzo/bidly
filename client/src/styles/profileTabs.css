@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
+.profile_tabs,
+.tab-content,
+#toggle {
+    font-family: 'Lato', sans-serif;
+}
+
 #auction_name_wrapper {
     display: inline-block;
 }
@@ -19,13 +27,13 @@
     padding-left: 5px;
     padding-right: 5px;
     float: right;
-    background-color: indigo;
+    background-color:rgb(80, 78, 189);
     color: white;
-    border-color: indigo;
+    border-color: rgb(80, 78, 189);
 }
 
 #profile_tabs_button:hover {
-    color: indigo;
+    color:rgb(80, 78, 189);
     background-color: white;
 }
 
@@ -54,19 +62,23 @@
 
 .nav-tabs a:hover {
     border-radius: 10px;
-    background-color: #E5D9F2;
+    background-color: #e0d9f2;
 } 
 
 
 .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
     border-radius: 10px;
-    background-color: #E5D9F2;
-    color: indigo;
+    background-color: #e0d9f2;
+    color:rgb(80, 78, 189);
+}
+
+.tabs-wrapper .nav-link {
+    color:rgb(80, 78, 189) !important;
 }
 
 .profile_tabs {
     border-radius: 10px;
-    background-color: #E5D9F2;
+    background-color:#e0d9f2;
     text-align: left;
     width: 30%;
     height: 100%;
@@ -82,13 +94,13 @@
     padding-left: 5px;
     padding-right: 5px;
     margin-top: 8px;
-    background-color: indigo;
+    background-color: rgb(80, 78, 189);
     color: white;
-    border-color: indigo;
+    border-color:rgb(80, 78, 189);
 }
 
 .profile_tabs .button-edit:hover {
-    color: indigo;
+    color:rgb(80, 78, 189);
     background-color: white;
 }
 
@@ -102,7 +114,7 @@
 
 .fas, .far {
     margin-right: 10px;
-    color: indigo;
+    color:rgb(80, 78, 189);
 }
 
 #icon-user {
@@ -174,8 +186,16 @@ nav {
 
 #my-auction-info {
     display: flex;
-    justify-content: space-around;
+    line-height: 2rem;
     border-bottom: 1px solid grey;
+}
+
+#my-auction-info:hover {
+    background-color: rgb(176, 174, 247);
+}
+
+#my-auction-info h4 {
+    font-size: 1rem;
 }
 
 .accordion {
@@ -186,7 +206,7 @@ nav {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    background-color: indigo;
+    background-color:rgb(55, 53, 128);
     color: white;
     border-bottom: 1px solid grey;
 }
@@ -199,10 +219,6 @@ nav {
 .graph-container{
     height:30rem;
     width:25rem;
-}
-
-.tabs-wrapper .nav-link {
-    color: indigo !important;
 }
 
 .total_info_container{
@@ -236,6 +252,19 @@ nav {
 #table.myAuctionsTable{
     width: 55%;
 }
+
+#auction-name {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#auction-time {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
 @media screen and (max-width: 1080px) {
     
     #table.myAuctionsTable{
