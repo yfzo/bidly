@@ -9,7 +9,8 @@ module.exports = (knex) => {
     .from("categories")
     .then((cat_row) => {
       res.json(cat_row);
-  }).catch((err) => {console.log(err)})
+    })
+    .catch((err) => {console.log(err)})
 })
   
   //send all categories(for side bar) and auctions data
@@ -32,7 +33,7 @@ router.get("/", function(req, res, next) {
 //find the id from params and send its data
 router.get("/:id", function(req, res, next) {
   console.log('reached auctions/:id route')
-  console.log(req.params)
+  console.log("ERROR IS IN GET ROUTE FOR AUCTIONS/:ID", req.params)
   knex
     .table("auctions")
     .where('id', '=', req.params.id)
@@ -41,6 +42,7 @@ router.get("/:id", function(req, res, next) {
       console.log(row)
       res.send(row);
     })
+    .catch((err) => {console.log(err)})
 });
 
 

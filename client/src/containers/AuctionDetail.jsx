@@ -63,7 +63,7 @@ export default class AuctionDetail extends Component {
               window.location.href = '/auctions' //redirects to auctions page
             }
           }).catch((err) =>
-            console.log(err), //do not remove this console log
+            console.log("THE ERROR IS IN AUCTIONDETAIL:", err), //do not remove this console log
             this.setState({ balance_error: true })
           )
       } else {

@@ -139,7 +139,7 @@ function findWinner(auction) {
         .select('user_id')
         .where('amount', '=', lowest_bid.amount)
         .then((users) => {
-          console.log(users)
+          console.log("ERROR IS IN FINDWINNER:", users)
 
           // Chooses winner randomly from pool of users with winning bids if all bid amounts have more than one bidder(i.e., tie) 
           if(users.length > 1) {
