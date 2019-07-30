@@ -83,3 +83,58 @@
         width: 71%;
     }
 }
+
+@media (max-width: 414px) {
+    #new-auction-form .form-control {
+        width: 83%;
+    }
+}
+
+@media (max-width: 375px) {
+    #new-auction-form h4 {
+        font-size: 1.2rem;
+    }
+
+    label {
+        font-size: 1rem;
+    }
+
+    #new-auction-form {
+        padding: 1em 0;
+    }
+}
+
+@media (max-width: 375px) {
+
+    #new-auction-form {
+        padding: 0.5em 0;
+    }
+
+    .form-control {
+        font-size: 0.98rem;
+    }
+}
+
+@media (max-width: 320px) {
+
+    #new-auction-form {
+        padding: 0 0;
+    }
+
+    .form-control {
+        font-size: 0.85rem;
+    }
+
+    .form-group {
+        margin-bottom: 0.3rem;
+    }
+
+    .form-group .btn {
+        padding: .1rem .1rem;
+        margin-bottom: 7px;
+    }
+
+    #new-auction-form h4 {
+         margin-top: 7px;
+    }
+}
