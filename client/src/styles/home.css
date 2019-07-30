@@ -198,3 +198,9 @@ html {
 .faq-q {
     font-weight: bold;
 }
+
+.example .card-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
