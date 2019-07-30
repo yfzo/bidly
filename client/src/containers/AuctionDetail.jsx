@@ -4,7 +4,7 @@ import { Redirect } from 'react-router';
 import Bid from '../components/Bid.jsx';
 import '../styles/modal.css';
 import Timer from '../components/Timer.jsx';
-import { faCoins, faClock, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faCoins, faClock, faTimes, faCrown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
@@ -15,7 +15,8 @@ export default class AuctionDetail extends Component {
       auction: null,
       balance_error: false,
       min_error: false,
-      imgType: null
+      imgType: null,
+      isUserAuctioneer: null
     };
     // this.onImgLoad = this.onImgLoad.bind(this);
     // console.log("This is history from details", this.props.history)
@@ -104,7 +105,7 @@ export default class AuctionDetail extends Component {
       var currentTime = Date.now();
       var timeRemaining = endTime - currentTime;
       console.log("Time remaining:", timeRemaining);
-      var isUserAuctioneer = this.state.auction.user_id == localStorage.getItem('user_id')
+      var isUserAuctioneer = this.state.auction.user_id == localStorage.getItem('user_id');
     }
 
     var img = new Image();
@@ -139,11 +140,13 @@ export default class AuctionDetail extends Component {
                 <div className="modal-min-bid">
                   <FontAwesomeIcon icon={faCoins} className="coin-icon"/> Minimum bid: ${this.state.auction && this.state.auction.min_bid}
                 </div>
-
-                {timeRemaining > 0 ? <div className="modal-timer"><Timer timeRemaining={timeRemaining} />
-                  <Bid onEnter={(bid_amount) => {
-                    this.bidHandler(bid_amount)
-                  }} /></div>
+                
+                {timeRemaining > 0 ?
+                  <div>
+                    <div className="modal-timer"><Timer timeRemaining={timeRemaining} /></div>
+                    <div>{!isUserAuctioneer && <Bid onEnter={(bid_amount) => {this.bidHandler(bid_amount)}} />}</div>
+                  </div>
+                
                   : <div className="modal-timer"><FontAwesomeIcon icon={faClock} className="coin-icon"/> Auction Ended</div>}
 
                 {this.state.min_error && <div>Bid more than minimum bid</div>}
