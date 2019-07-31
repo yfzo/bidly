@@ -15,8 +15,8 @@ img.auction_image {
    justify-content: center;
    flex-direction: row;
    flex-wrap: wrap;
-   flex-flow: row wrap;
-   align-content: flex-end;
+   flex-flow: wrap;
+   align-content: flex-start;
 }
 
 .auction-card {
