@@ -7,6 +7,7 @@
     background: url(../images/register.jpg) no-repeat center;
     background-size: cover;
 }
+
 #validationCustom01{
     display: table;
     margin-left:auto; 
@@ -60,4 +61,79 @@
 h2{
     font-size: 3rem;
     padding: 1rem;
+}
+
+@media  (max-width: 1024px) {
+    #register-form {
+        margin-bottom: 0;
+    }
+}
+
+@media  (max-width: 480px) {
+    #register-img {
+        background: none;
+        background-size: none;
+        display: none;
+    }
+
+    #register-form {
+        margin-bottom: 115px; 
+        background-color: rgba(30, 29, 58, 0.92);
+        border-radius: 10px;
+        padding-bottom: 20px;
+    }
+
+    #register-form-container {
+        display: flex;
+        justify-content: center;
+        background: url(../images/register.jpg) no-repeat center;
+        background-size: cover;
+        color: white;
+    }
+
+    #register-form-container .col-6 {
+        flex: 0 0 55%;
+        max-width: 55%;
+    }
+
+    .register h2 {
+        font-size: 2.5rem;
+    }
+
+    #register-form {
+        margin-bottom: 0;
+    }
+}
+
+@media  (max-width: 414px) {
+    #register-form {
+        margin-bottom: 0;
+    }
+
+    #register-form-container {
+        height: 100vh;
+    }
+}
+
+@media  (max-width: 375px) {
+    .register h2 {
+        font-size: 2rem;
+    }
+
+    #register-form {
+        margin-bottom: 0;
+    }
+}
+
+@media  (max-width: 360px) {
+    #register-form {
+        margin-bottom: 0;
+    }
+}
+
+@media  (max-width: 320px) {
+    .register .btn {
+        padding: .1rem .1rem;
+        margin-top: 10px;
+    }
 }
