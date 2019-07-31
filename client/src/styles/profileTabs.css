@@ -143,7 +143,7 @@ nav {
     box-shadow: 5px 5px 5px 0px grey;
     transform: translateX(-50%);
     margin-left: 50%;
-    background-color: #E5D9F2;
+    background-color: #e0d9f2;
 }
 
 .table {
@@ -271,4 +271,111 @@ nav {
         width: 100%;
     }
 
+
+    .graph-container {
+        display: none;
+    }
+
+}
+
+@media (max-width: 1024px) {
+    #table {
+        width: 116%;
+    }
+
+    .profile_tabs, .tab-content, #toggle {
+        width: 66%;
+        margin-left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+@media (max-width: 425px) {
+    .tab-content>.active {
+        display: inline-block;
+    }
+
+    .profile_tabs, .tab-content, #toggle {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        transform: none;
+    }
+
+    .tab-content #table {
+        width: 100%;
+        margin-top: 25px;
+    }
+
+    #profile_tabs_button {
+        margin-left: 10px;
+    }
+
+    #toggle {
+        display: inline-block;
+    }
+
+    .info-container {
+        width: 100%;
+    }
+
+    .total_info_container {
+        width: 100%;
+    }
+
+    #toggle h4 {
+        font-size: 1.3rem;
+    }
+
+    .total_info_container p {
+        font-size: 1.2rem;
+    }
+
+    .table td:first-child {
+        width: 40%;
+    }
+}
+
+@media (max-width: 375px) {
+    .profile_tabs, #toggle {
+        width: 89%;
+    }
+
+    .tab-content #table {
+        width: 100%;
+    }
+
+    .info-container p {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 320px) {    
+    .tab-content #table {
+        width: 96%;
+    }
+
+    #profile_tabs_button {
+        padding: 1px;
+        font-size: 1rem;
+        line-height: 1;
+        display: inline-block;
+        width: 60px;
+    }
+
+    .tab-content>.active {
+        width: 100%;
+    }
+
+    #toggle h4 {
+        font-size: 1.1rem;
+    }
+
+    .total_info_container p {
+        font-size: 1rem;
+    }
+
+    .info-container p {
+        font-size: 1rem;
+    }
 }

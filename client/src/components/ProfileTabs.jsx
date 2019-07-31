@@ -150,7 +150,7 @@ export default class ProfileTabs extends Component {
                         </div>
                         <div className="info-container">
                           <h4 className="myauction_titles">Desciption</h4><p> {auction.description}</p>
-                          <h4 className="myauction_titles">Minimum bid</h4><p>{auction.min_bid}</p>
+                          <h4 className="myauction_titles">Minimum bid</h4><p>&#36; {auction.min_bid}</p>
                           {auction.winner && <div><h4 className="myauction_titles">Winner</h4> <p>{auction.email}</p><p> {auction.first_name} {auction.last_name}</p></div>}
                         </div>
                         </Card.Body>
