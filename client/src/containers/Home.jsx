@@ -121,7 +121,7 @@ export default class Home extends Component {
                         </li>
                         <li className="faq-qa">
                           <div className="faq-q">Lowest unique bid..?</div>
-                          <div>That's the lowest bid, made a single person, just once. See our example to see how it works.</div>
+                          <div>That's the lowest bid, made by a single person, just once. Check out our example to see how it works.</div>
                         </li>
                         <li className="faq-qa">
                           <div className="faq-q">Wait what? Who would want to sell their things for the least amount of money? What's in it for the auctioneer?</div>
