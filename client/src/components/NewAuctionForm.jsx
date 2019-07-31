@@ -6,7 +6,6 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 
-import teacupPic from '../create-auction.jpg';
 import '../styles/newAuction.css';
 import AuctionDetail from '../containers/AuctionDetail';
 
