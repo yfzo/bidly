@@ -67,7 +67,7 @@ router.post("/", function(req, res, next) {
   console.log('reached auction post route')
 
   //calculate one minute ahead 
-  oneMinuteAhead = Date.now() + 1000 * 60
+  oneHourAhead = Date.now() + 1000 * 60 * 60
 
   if (JSON.stringify(req.body) !== '{}' && req.body.category && req.body.name && req.body.description && req.body.min_bid && req.body.image) {
       let cat_id = 0;
@@ -82,7 +82,7 @@ router.post("/", function(req, res, next) {
           name: req.body.name,
           description: req.body.description,
           min_bid: req.body.min_bid,
-          end_time: oneMinuteAhead,
+          end_time: oneHourAhead,
           image: req.body.image,
           user_id: req.body.user_id
       }).then((response) => {
