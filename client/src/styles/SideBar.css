@@ -1,14 +1,11 @@
-.navbar.side-bar {
-    min-height: 40rem;
-    height: 100vh;
+#wrapper .navbar-expand-lg .navbar-collapse {
+    justify-content: flex-start;
 }
 
-@media screen and (max-width: 480px) {
-    .navbar.side-bar {
-        height: 0;
-    }
+#wrapper .navbar-expand-sm .navbar-collapse {
+    justify-content: flex-start;
 }
 
-div#wrapper {
-    width: 100%;
+#wrapper .navbar-expand-md .navbar-collapse {
+    justify-content: flex-start;
 }
