@@ -144,6 +144,14 @@ img.auction_image {
       .auction-card .info {
             width: 81%;
       }
+
+      .auctions-outer-wrapper {
+            z-index: 1;
+      }
+      #wrapper nav {
+            z-index: 999;
+            opacity: 0.8;
+      }  
 }
 
 @media (max-width: 375px) {

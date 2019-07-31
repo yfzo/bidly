@@ -16,9 +16,7 @@ export default class SideBar extends Component {
     // }
 
     return (
-        <div style={{ display: "inline-block",
-                      width: '100%'
-                    }}
+        <div style={{ display: "inline-block", width: "max-content"}}
                     id="wrapper">
           <Navbar expand="sm" style={{alignItems: "baseline"
                     }} className="side-bar">

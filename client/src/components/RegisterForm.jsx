@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 export default class RegisterForm extends Component {
   render () {
   return (
-      <Row id="register-form-container">
+      <Row style={{marginLeft: "0", marginRight: "0"}} id="register-form-container">
         <Col xs={6} id="register-img" />
         <Col xs={6} id="register-form" className="align-self-center">
         <Form className="register">
