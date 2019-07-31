@@ -29,7 +29,9 @@ const Graph = (props) => {
   scales: {
    xAxes: [{
     // barPercentage: 0.5,
-    barThickness : 73,
+    barThickness : 'flex',
+    maxBarThickness: 70,
+
     ticks: {
      beginAtZero: true,
      fontColor: 'white',
