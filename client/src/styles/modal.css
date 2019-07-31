@@ -137,3 +137,12 @@
   top: 1em;
   left: 1em;
 }
+
+
+@media screen and (max-width: 480px) {
+  .wrapper-flexbox {
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: center;
+  }
+}
