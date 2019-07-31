@@ -58,6 +58,11 @@
     padding: 1rem;
 }
 
+#login-form-inner-container {
+    margin-top: 50%;
+    transform: translateY(-50%);
+}
+
 
 @media screen and (max-width: 1275px) {
     #login-img {
