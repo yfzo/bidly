@@ -9,7 +9,6 @@ import '../styles/home.css';
 import { Redirect } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import background from '../images/header.jpg'
-import FadeIn from '../styles/fadein.js'
 import styled, {keyframes} from 'styled-components';
 import Table from 'react-bootstrap/Table';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
@@ -41,10 +40,6 @@ export default class Home extends Component {
       const profileUrl = "users/" + localStorage.getItem('user_id')
       const isLoggedIn = localStorage.getItem('user_id') !== null
 
-      //animation
-      const Fade = styled.div`
-      animation: ${FadeIn} 2s linear infinite;
-      `
       return (
         <div>
             <div className="home">

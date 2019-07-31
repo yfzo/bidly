@@ -148,15 +148,6 @@
     
 }
 
-@keyframes fadeIn {
-    from {top: 0px;}
-    to {top: 0px;}
-}
-
-@-webkit-keyframes fadeIn{
-    from {top: 0px;}
-    to {top: 0px;}
-}
 
 .card-text {
     text-align: center;
