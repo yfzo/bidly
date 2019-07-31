@@ -223,3 +223,178 @@
     flex-direction: column;
     justify-content: center;
 }
+
+.card-body img {
+    height: 210px;
+}
+
+@media (max-width: 1024px) {
+    .title-logo {
+        font-size: 9rem;
+    }
+
+    .home .header-body {
+        font-size: 4rem;
+    }
+
+    .home .header-body {
+        top: 10rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .title-logo {
+        font-size: 6rem;
+    }
+
+    .home .header-body h3 {
+        font-size: 2rem;
+    }
+
+    .home .header-body {
+        top: 7rem;
+    }
+
+    .background_img {
+        height: 54vh;
+    }
+
+    .card .howToContainer {
+        right: 50%;
+    }
+}
+
+@media (max-width: 414px) {
+    .title-logo {
+        font-size: 4rem;
+    }
+
+    .home .header-body h3 {
+        font-size: 1.8rem;
+    }
+
+    .home .header-body h4 {
+        font-size: 1.8rem;
+    }
+
+    .home .header-body {
+        top: 5rem;
+    }
+
+    .background_img {
+        height: 66vh;
+    }
+
+    .card .howToContainer {
+        right: 45%;
+    }
+
+    #howToButton {
+        font-size: 1.8rem;
+    }
+
+    .howToContainer.btn-group-lg>.btn, .btn-lg {
+        padding: .2rem 1rem;
+    }
+
+    .howToTitle.more-bidly-info-title {
+        font-size: 2rem;
+    }
+
+    .howToTitle {
+        margin: 2rem;
+        font-size: 2.4rem;
+    }
+
+    .more-info-container .btn {
+        padding: .1rem .1rem;
+    }
+
+    #homeBrowseLink {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 375px) {
+    .title-logo {
+        font-size: 3rem;
+    }
+
+    .home .header-body h3 {
+        font-size: 1.4rem;
+    }
+
+    .home .header-body h4 {
+        font-size: 1.4rem;
+    }
+
+    .background_img {
+        height: 72vh;
+    }
+
+    .home .header-body {
+        top: 4rem;
+    }
+
+    #howToButton {
+        font-size: 1.3rem;
+    }
+
+    .card .howToContainer {
+        right: 55%;
+    }
+
+    .howToContainer.btn-group-lg>.btn, .btn-lg {
+        padding: .2rem 1rem;
+    }
+
+    .howToTitle.more-bidly-info-title {
+        font-size: 1.8rem;
+    }
+
+    .more-info-container .btn {
+        padding: .1rem .1rem;
+    }
+
+    #homeBrowseLink {
+        font-size: 1.5rem;
+    }
+
+    .howToTitle {
+        margin: 1rem;
+        font-size: 2rem;
+    }
+
+    .steps-container .step-titles {
+        font-size: 1.8rem;
+    }
+}
+
+
+@media (max-width: 360px) {
+    .background_img {
+        height: 75vh;
+    }
+
+    .howToTitle.more-bidly-info-title {
+        font-size: 1.6rem;
+    }
+
+    .howToTitle {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 320px) {
+    .background_img {
+        height: 85vh;
+    }
+
+    .card .howToContainer {
+        right: 48%;
+    }
+
+    .home-info-card {
+        margin: 0 0;
+    }
+}
