@@ -138,7 +138,7 @@ nav {
 #table {
     border-radius: 10px;
     margin-top: 10vh;
-    width: 45%;
+    width: 65%;
     height: 100%;
     box-shadow: 5px 5px 5px 0px grey;
     transform: translateX(-50%);
@@ -350,9 +350,20 @@ nav {
     }
 }
 
-@media (max-width: 320px) {    
+@media (max-width: 360px) {
+    .profile_tabs {
+        width: 100%;
+    }
+}
+
+@media (max-width: 320px) { 
+    
+    .profile_tabs {
+        width: 83%;
+    }
+
     .tab-content #table {
-        width: 96%;
+        width: 100%;
     }
 
     #profile_tabs_button {

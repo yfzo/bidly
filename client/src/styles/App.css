@@ -59,3 +59,12 @@ html, body {
   height: 100%;
 }
 
+@media (max-width: 480px) {
+  .toast {
+    max-width: 100%;
+  }
+
+  .end-notification {
+    right: 0; 
+  }
+}

@@ -138,7 +138,7 @@ img.auction_image {
       } */
 
       .tall-img {
-            max-height: 335px;
+            max-height: 304px;
       }
 
       .auction-container {
@@ -151,6 +151,7 @@ img.auction_image {
 
       .wide-img {
             max-width: 83%;
+            max-height: 304px;
       }
       
       .modal-info-container {
@@ -224,7 +225,7 @@ img.auction_image {
 
 @media (max-width: 320px) {
       .tall-img {
-            max-height: 239px;
+            max-height: 232px;
       }
 
       .auction-card .info {
