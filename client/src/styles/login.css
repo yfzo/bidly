@@ -1,12 +1,7 @@
-#login-form-container{
-    min-height: 40rem;
-}
-
-#login-outer-container #login-form-container{
+#login-outer-container #login-form-container {
     margin-right: 0;
     margin-left: 0;
 }
-
 
 #login-img {
     background: url(../images/login.jpg) no-repeat center;
@@ -19,48 +14,48 @@
     align-self: center;
 }
 
-.form-group{
+.form-group {
     width: 100%;
     /* text-align: center; */
 }
 
-#formBasicEmail{
+#formBasicEmail {
     display: table;
     margin-left:auto; 
     margin-right:auto;
 }
 
-#formBasicPassword{
+#formBasicPassword {
     display: table;
     margin-left:auto; 
     margin-right:auto;
-}
-#login-form{
+} 
+
+#login-form {
     display:flex;
     justify-content: center;
     padding: 2em 0;
-    height: 100vm;
+   
     width: 100%;
 }
 
-.login-outer-container{
+#login-form-container #login-form {
+    min-height: 0;
+}
+
+.login-outer-container {
     height: 100vm;
 }
 
-#login-form-inner-container{
+#login-form-inner-container {
     min-height: 100vm;
     min-width: 100%;
     justify-content: flex-start;
 }
 
-.login-outer-container h2{
+.login-outer-container h2 {
     font-size: 3rem;
     padding: 1rem;
-}
-
-#login-form-inner-container {
-    margin-top: 50%;
-    transform: translateY(-50%);
 }
 
 

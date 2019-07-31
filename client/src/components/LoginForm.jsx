@@ -24,7 +24,7 @@ export default class LoginForm extends Component {
   }
   render() {
     return (
-        <Row style={{marginLeft: "0", marginRight: "0", height: "100%"}} id="login-form-container">
+        <Row style={{marginLeft: "0", marginRight: "0", height: "100vh"}} id="login-form-container">
           <Col xs={6} id="login-img" />
           <Col xs={6} id="login-form" className="align-self-center">
         <Form onSubmit={this.loginHandler} id="login-form-inner-container">
