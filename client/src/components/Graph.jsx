@@ -20,7 +20,6 @@ const Graph = (props) => {
  const options = {
    legend: {
     labels: {
-
        // This more specific font property overrides the global property
      fontColor: 'white'
     }
@@ -28,7 +27,6 @@ const Graph = (props) => {
   maintainAspectRatio: true,
   scales: {
    xAxes: [{
-    // barPercentage: 0.5,
     barThickness : 'flex',
     maxBarThickness: 70,
 
@@ -36,23 +34,30 @@ const Graph = (props) => {
      beginAtZero: true,
      fontColor: 'white',
     }
-   }],
-   yAxes: [{
+  }],
+  yAxes: [{
     ticks: {
-     beginAtZero: true,
-     fontColor: 'white',
-     stepSize: 1
+      beginAtZero: true,
+      fontColor: 'white',
+      stepSize: 1
     }
    }]
 }
  }
 
+  //sorting process
+    let objects = [] //put all amounts/bids in an array to be sorted
   props.data.auction_bids.map((bid)=>{
   if(props.auction.auctions_table_id == bid.id){
-   data.labels.push(bid.amount)
-   data.datasets[0].data.push(bid.count)
+    objects.push({amount: bid.amount, count: bid.count})
   }
   })
+
+    let sortedObject = objects.sort((a, b) =>  a.amount - b.amount )
+    sortedObject.forEach((object) => {  
+      data.labels.push(object.amount)
+      data.datasets[0].data.push(object.count)
+    })
 
   return (
    <div className="graph-container">
