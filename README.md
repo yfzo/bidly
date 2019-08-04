@@ -48,6 +48,7 @@ Bidly is a strategy game based auction app that allows users to buy and sell ite
 - Knex
 - React
 - React Router
+- WebSocket
 - react-chartjs-2
 - Cloudinary API
 
