@@ -1,4 +1,4 @@
-# "Bidly"
+# Bidly
 ## Final Project (Lighthouse Labs Web Development Bootcamp)
 
 ## Contributors: Asuka Kuwahara, Anna Tykhomyrova, Yifei Zhou
