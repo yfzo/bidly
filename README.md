@@ -1,4 +1,5 @@
-# "Bidly" - Final Project (Lighthouse Labs Web Development Bootcamp)
+# "Bidly"
+## Final Project (Lighthouse Labs Web Development Bootcamp)
 
 ## Contributors: Asuka Kuwahara, Anna Tykhomyrova, Yifei Zhou
 
@@ -8,7 +9,7 @@ Bidly is a strategy game based auction app that allows users to buy and sell ite
 ## Final Product
 ### Home page
 !["Screenshot of Home Page"](https://github.com/asucarlos/bidly/blob/master/docs/Homescreen.png)
-blob/master/
+
 !["Screenshot of Explanation"](https://github.com/asucarlos/bidly/blob/master/docs/explanation.png)
 
 ### Auction page
@@ -28,7 +29,7 @@ blob/master/
 !["Screenshot of My auctions"](https://github.com/asucarlos/bidly/blob/master/docs/my_auctions.png)
 
 ### Responsive design
-!["Screenshot of Responsive auctioins"](https://github.com/asucarlos/bidly/blob/master/docs/responsive_auctioins.png)
+!["Screenshot of Responsive auctioins"](https://github.com/asucarlos/bidly/blob/master/docs/responsive_auctions.png)
 
 !["Screenshot of Responsive auctioins detail"](https://github.com/asucarlos/bidly/blob/master/docs/responsive_detail.png)
 
