@@ -7,6 +7,7 @@
 Bidly is a strategy game based auction app that allows users to buy and sell items with low risk and high reward. By utilizing the concept of a unique bid auction, buyers are able to obtain items at an otherwise impossible price.
 
 ## Final Product
+See on live https://bidlyy.herokuapp.com/
 ### Home page
 !["Screenshot of Home Page"](https://github.com/asucarlos/bidly/blob/master/docs/Homescreen.png)
 
