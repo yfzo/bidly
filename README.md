@@ -4,7 +4,7 @@
 ## Contributors: Asuka Kuwahara, Anna Tykhomyrova, Yifei Zhou
 
 ## Overview
-Bidly is a strategy game based auction app that allows users to buy and sell items with low risk and high reward. By utilizing the concept of a unique bid auction, buyers are able to obtain items at an otherwise impossible price.
+Bidly is a strategy game based auctioning app that allows users to buy and sell items with low risk and high reward. By utilizing the concept of a unique bid auction, buyers are able to obtain items at otherwise impossible prices, without sellers losing out.
 
 ## Final Product
 See on live https://bidlyy.herokuapp.com/
@@ -36,10 +36,13 @@ See on live https://bidlyy.herokuapp.com/
 
 ## Getting started
 1. Fork this repository, then clone your fork of this repository.
-2. Install dependencies using the npm install command in both the root folder as well as    the "server" folder.
-3. Start the web server using the npm start command while in the "api" folder. 
-   You will also need to start the client by navigating to the root folder and running  this npm start command there as well. The app will be served at http://localhost:3000.
-   Go to http://localhost:3000/ in your browser.
+2. Install dependencies using the npm install command in both the "api" directory as well as the "client" directory.
+3. Create a local PG database for Bidly.
+4. Create your .env file based on api/.env.example.
+5. Run `knex migrate:latest` to set up your db.
+6. Run `knex seed:run` to seed the db.
+7. Start the web server using the npm start command while in the "api" folder. 
+   You will also need to start the client by navigating to the client folder and running this npm start command there as well. The app will be served at http://localhost:3000. Go to http://localhost:3000/ in your browser.
 
 
 ## Tech Stack
