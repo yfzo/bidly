@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LoginForm from '../components/LoginForm.jsx'; 
+import LoginForm from '../components/LoginForm.jsx';
 import '../styles/login.css';
 import { Redirect } from 'react-router-dom';
 
@@ -23,9 +23,9 @@ export default class Login extends Component {
       }
     console.log('reached login frontend' + email + password)
     let t = this
-    fetch("http://localhost:3000/login", {
+    fetch("http://localhost:3001/login", {
       method: 'POST',
-      body: JSON.stringify(user), 
+      body: JSON.stringify(user),
       headers: {"Content-Type": "application/json"},
     })
     .then((response) => response.json())
@@ -54,7 +54,7 @@ export default class Login extends Component {
   //   }
   //   currentUserId && socket.send(JSON.stringify(userInfo))
   // }
-  //s 
+  //s
 
   render() {
     // console.log(50, this.props)
@@ -68,8 +68,8 @@ export default class Login extends Component {
     return (
       <div className="login-outer-container">
         <LoginForm onSubmit={(email, password) => {
-          this.login(email, password) }} 
-          filledform={this.state.filledform} 
+          this.login(email, password) }}
+          filledform={this.state.filledform}
           form_error={this.state.form_error}
           db_error={this.state.db_error} />
       </div>
