@@ -7,8 +7,6 @@ var cors = require("cors");
 const ENV         = process.env.ENV || "development";
 const knexConfig = require('./knexfile')    // require environment's settings from knexfile
 const knex = require('knex')(knexConfig[ENV]);              // connect to DB via knex using env's settings
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 
 //listing routes
 var indexRouter = require('./routes/index');
@@ -59,37 +57,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-// authentication helper methods
-app.hashPassword = (password) => {
-  return bcrypt.hashSync(password, bcrypt.genSaltSync(8));
-}
-
-app.comparePassword = (hashPassword, password) => {
-  return bcrypt.compareSync(password, hashPassword);
-}
-
-/**
- * isValidEmail helper method
- * @param {string} email
- * @returns {Boolean} True or False
- */
-app.isValidEmail = (email) => {
-  return /\S+@\S+\.\S+/.test(email);
-}
-
-/**
- * Generate Token
- * @param {string} id
- * @returns {string} token
- */
-app.generateToken = (id) => {
-  const token = jwt.sign({
-    userId: id
-  },
-    process.env.SECRET, { expiresIn: '7d' }
-  );
-    return token;
-  }
 
 module.exports = app;
