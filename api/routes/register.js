@@ -12,6 +12,8 @@ router.get("/", function(req, res, next) {
 router.post("/", function(req, res, next) {
   console.log('reached registration post route')
 
+  let email = req.body.email
+
   if (JSON.stringify(req.body) !== '{}' && req.body.email && req.body.first_name && req.body.last_name && req.body.password) {
       knex('users').insert({
           id: uuidv4(),
@@ -21,15 +23,31 @@ router.post("/", function(req, res, next) {
           last_name: req.body.last_name,
           balance: 0
       }).then((response) => {
-          console.log('user created')
-          res.send(response)
-      }).catch((err) => {
-          res.send(err)
-          console.log(err)
-        })
-  } else {
-    res.send(err)
-  }
+          knex
+            .table("users")
+            .where('email', '=', email)
+            .first('*')
+            .then((user) => {
+              res.cookie('user_id', user.id)
+              res.send({userid: user.id})
+              console.log('user created')
+              console.log(response)
+              res.send(response)
+            }).catch(error => {
+              console.log(error)
+              res.send(error)
+            })
+      })
+      //     console.log('user created')
+      //     console.log(response)
+      //     res.send(response)
+      // }).catch((err) => {
+      //     res.send(err)
+      //     console.log(err)
+      //   })
+      } else {
+        res.send(err)
+      }
 })
 
 return router
