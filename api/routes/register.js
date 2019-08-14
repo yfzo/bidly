@@ -14,8 +14,7 @@ router.post("/", function(req, res, next) {
 
   if (JSON.stringify(req.body) !== '{}' && req.body.email && req.body.first_name && req.body.last_name && req.body.password) {
       knex('users').insert({
-          // id: uuidv4(),
-          id: 5,
+          id: uuidv4(),
           email: req.body.email,
           password: Helper.hashPassword(req.body.password),
           first_name: req.body.first_name,
