@@ -34,10 +34,10 @@ export default class Register extends Component {
       if(!Object.keys(response).length){
         t.setState({db_error: true})
       } else {
-        // localStorage.setItem("user_id", response.userid)
-        // t.props.changeState();
+        localStorage.setItem("user_id", response.userid)
+        t.props.changeState();
         console.log(response);
-        // t.setState({ redirect: true});
+        t.setState({ redirect: true});
       }
     }).catch((err) => {
       console.log('error' + err)
@@ -46,6 +46,11 @@ export default class Register extends Component {
     }
   }
     render() {
+      if (this.state.redirect === true ) {
+        console.log(52, "user loggedin!")
+        return <Redirect to={'/users/' + localStorage.getItem("user_id")} />
+        //  window.location.href = `/users/${localStorage.getItem("user_id")}`;
+      }
       return (
         <div>
           <RegisterForm onSubmit={(firstName, lastName, email, password, address) => {

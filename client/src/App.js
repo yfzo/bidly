@@ -30,8 +30,8 @@ function PrivateRoute ({component: Component, isLoggedIn, ...rest}) {
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
-      apiResponse: "" , 
+    this.state = {
+      apiResponse: "" ,
       loggedIn: localStorage.getItem("user_id") ? true : false,
       latestNotification: null
     };
@@ -88,13 +88,13 @@ class App extends Component {
           {/* <div><AuctionDetail /></div> */}
 
           {this.state.latestNotification && <Notification notification={this.state.latestNotification} />}
-          
+
           <Switch>
             <PrivateRoute isLoggedIn={this.state.loggedIn} path="/auctions/new" component={NewAuction} />
             <Route path="/auctions" component={Auctions} />
           </Switch>
           <Route path="/login" render={() => (<Login changeState={() => this.changeState()}/>)}/>
-          <Route path="/register" component={Register} />
+          <Route path="/register" render={() => (<Register changeState={() => this.changeState()}/>)} />
           <Route exact path="/" component={Home} />
 
           <PrivateRoute isLoggedIn={this.state.loggedIn} path='/users/:id' component={Profile} />
