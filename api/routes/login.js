@@ -1,5 +1,6 @@
 var express = require("express");
 var router = express.Router();
+var Helper = require('../Helper.js');
 
 module.exports = (knex) => {
 
@@ -14,11 +15,14 @@ router.post("/", function(req, res, next) {
   knex
     .table("users")
     .where('email', '=', req.body.email)
-    .where('password', '=', req.body.password)
     .first('*')
     .then((user) => {
-      res.cookie('user_id', user.id)
-      res.send({userid: user.id})
+      if (!Helper.comparePassword(user.password, req.body.password)) {
+        return res.status(400).send({'message': 'The credentials you provided are incorrect'});
+      } else {
+        res.cookie('user_id', user.id)
+        res.send({userid: user.id})
+      }
     })
     .catch(error => {
       console.log(error)
