@@ -42,11 +42,11 @@ export default class AuctionDetail extends Component {
     if (currentUserId) {
       // debugger
       //checks if typed value is more than minimum bid
-      if (num && parseInt(num) < this.state.data.auction.min_bid) {
+      if (num && parseInt(num) > this.state.data.auction.min_bid) {
         this.setState({ min_error: false })
         const newBid = {
           auction_id: this.state.data.auction.id,
-          user_id: parseInt(currentUserId),
+          user_id: currentUserId,
           amount: parseInt(num)
         }
 
@@ -155,7 +155,7 @@ export default class AuctionDetail extends Component {
                   </div>
                 }
 
-                {this.state.min_error && <div>Bid more than minimum bid</div>}
+                {this.state.min_error && <div>Bid less than minimum bid</div>}
                 {this.state.balance_error && <div>You do not have enough balance</div>}
 
                 <div className="modal-close-button" onClick={this.back}><FontAwesomeIcon icon={faTimes} size="2x" className="x-icon"/></div>
