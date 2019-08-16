@@ -20,8 +20,9 @@ router.post("/", function(req, res, next) {
       if (!Helper.comparePassword(user.password, req.body.password)) {
         return res.status(400).send({'message': 'The credentials you provided are incorrect'});
       } else {
-        res.cookie('user_id', user.id)
-        res.send({userid: user.id})
+        const token = Helper.generateToken(user.id);
+        res.cookie('user_id', token)
+        res.send({userid: token})
       }
     })
     .catch(error => {

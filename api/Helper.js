@@ -39,6 +39,12 @@ const Helper = {
       process.env.SECRET, { expiresIn: '7d' }
     );
     return token;
+  },
+
+  verifyToken(token) {
+    jwt.verify(token, process.env.SECRET, function(err, decoded){
+      return decoded;
+    })
   }
 }
 
