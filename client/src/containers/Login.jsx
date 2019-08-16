@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import LoginForm from '../components/LoginForm.jsx';
 import '../styles/login.css';
 import { Redirect } from 'react-router-dom';
+import jwt from 'jsonwebtoken';
 
 
 export default class Login extends Component {
@@ -9,6 +10,7 @@ export default class Login extends Component {
     super(props);
     this.state = {
       redirect: false,
+      decodedId: null
     }
   }
 
@@ -35,6 +37,7 @@ export default class Login extends Component {
       } else {
         localStorage.setItem("user_id", response.userid)
         t.props.changeState();
+        t.verifyToken(localStorage.getItem('user_id'))
         t.setState({ redirect: true});
       }
     }).catch((err) => {
@@ -42,6 +45,13 @@ export default class Login extends Component {
       t.setState({db_error: true})
     })
     }
+  }
+
+  verifyToken(token) {
+    let t = this;
+    jwt.verify(token, 'super-secret-sauce', function(err, decoded){
+      t.setState({decodedId: decoded.userId})
+    })
   }
 
   // componentWillUnmount() {
@@ -60,9 +70,8 @@ export default class Login extends Component {
     // console.log(50, this.props)
     // console.log(51, this.state.redirect)
     if (this.state.redirect === true ) {
-
       console.log(52, "user loggedin!")
-      return <Redirect to={'/users/' + localStorage.getItem("user_id")} />
+      return <Redirect to={'/users/' + this.state.decodedId} />
       //  window.location.href = `/users/${localStorage.getItem("user_id")}`;
     }
     return (

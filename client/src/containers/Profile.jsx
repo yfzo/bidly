@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ProfileTabs from '../components/ProfileTabs.jsx';
 import '../styles/profileTabs.css';
 import { Redirect } from 'react-router-dom';
+import jwt from 'jsonwebtoken';
 
 export default class Profile extends Component {
   constructor(props) {
@@ -22,14 +23,20 @@ export default class Profile extends Component {
           .then(res => ("this is data" + console.log(this.state.data)))
   }
 
+  verifyToken(token) {
+    jwt.verify(token, process.env.SECRET, function(err, decoded){
+      return decoded;
+    })
+  }
+
   componentDidMount() {
       console.log("blahblah")
       this.callAPI();
   }
-  
+
     render() {
       if (this.state.redirect == true ) {
-        return <Redirect to={'/auctions/' + this.state.data.user_id}/>
+        return <Redirect to={'/auctions/' + this.verifyToken(localStorage.getItem('user_id'))}/>
       }
       console.log(this.state.data);
       return (
