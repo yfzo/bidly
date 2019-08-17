@@ -6,6 +6,7 @@ import '../styles/modal.css';
 import Timer from '../components/Timer.jsx';
 import { faCoins, faClock, faTimes, faCrown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import jwt from 'jsonwebtoken';
 
 
 export default class AuctionDetail extends Component {
@@ -36,6 +37,14 @@ export default class AuctionDetail extends Component {
     }
   }
 
+  verifyToken(token) {
+    let theThing = null;
+    jwt.verify(token, 'super-secret-sauce', function(err, decoded){
+      theThing = decoded;
+    })
+    return theThing.userId;
+  }
+
   bidHandler = (num) => {
     const currentUserId = localStorage.getItem('user_id');
 
@@ -46,7 +55,7 @@ export default class AuctionDetail extends Component {
         this.setState({ min_error: false })
         const newBid = {
           auction_id: this.state.data.auction.id,
-          user_id: currentUserId,
+          user_id: this.verifyToken(currentUserId),
           amount: parseInt(num)
         }
 

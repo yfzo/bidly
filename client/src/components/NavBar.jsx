@@ -23,8 +23,11 @@ export default class NavBar extends Component {
 
   render() {
     //store user specific URL
-    const profileUrl = "/users/" + this.verifyToken(localStorage.getItem('user_id'))
     const isLoggedIn = localStorage.getItem('user_id') !== null
+    let profileUrl = "/users/"
+    if (isLoggedIn) {
+      profileUrl = "/users/" + this.verifyToken(localStorage.getItem('user_id'))
+    }
     return (
       <div>
         {isLoggedIn ? (
