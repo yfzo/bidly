@@ -3,11 +3,12 @@ import NewAuctionForm from '../components/NewAuctionForm.jsx';
 import { Redirect } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Button';
+import jwt from 'jsonwebtoken';
 
 export default class NewAuction extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       // data: [],
       redirect: false,
       newImage: "",
@@ -26,10 +27,18 @@ export default class NewAuction extends Component {
       this.callAPI();
   }
 
+  verifyToken(token) {
+    let theThing = null;
+    jwt.verify(token, 'super-secret-sauce', function(err, decoded){
+      theThing = decoded;
+    })
+    return theThing.userId;
+  }
+
   newAuctionHandler = (data) =>{
     //set data to be sent to db in newAuction
     const newAuction = {
-      user_id: localStorage.getItem('user_id'),
+      user_id: this.verifyToken(localStorage.getItem('user_id')),
       category: data.category,
       name: data.name,
       description: data.description,
@@ -39,7 +48,7 @@ export default class NewAuction extends Component {
 
     fetch("http://localhost:3001/auctions", {
       method: 'POST',
-      body: JSON.stringify(newAuction), 
+      body: JSON.stringify(newAuction),
       headers: {"Content-Type": "application/json"}
     })
     .then((response) => {
@@ -51,7 +60,7 @@ export default class NewAuction extends Component {
         this.setState({error: true})
         throw Error(`Request rejected with status ${response.status}`);
       }
-    }).then((response) => 
+    }).then((response) =>
       console.log(response)
     ).catch((err) => console.log('error' + err))
 
@@ -63,15 +72,15 @@ export default class NewAuction extends Component {
 
   //upload image and get response (url) using cloudinary widget
   imageUpload = () => {
-  window.cloudinary.openUploadWidget({ 
-    cloud_name: 'dnbiul08h', 
+  window.cloudinary.openUploadWidget({
+    cloud_name: 'dnbiul08h',
     upload_preset: 'ubpwiohr',
     tags:['final_project'],
     thumbnails: '.image_upload' },
       (error, result) => {
         if(result.event === 'success'){
           this.setState({
-            newImage: result.info.secure_url, 
+            newImage: result.info.secure_url,
             thumbnails: result.info.thumbnail_url})
         }
     });
@@ -83,14 +92,14 @@ export default class NewAuction extends Component {
       }
 
       return (
-        <div>  
+        <div>
           <NewAuctionForm onSubmit={(data) => {
             this.newAuctionHandler(data)
-          }} 
+          }}
           category={this.state.data}
-          url={this.state.newImage} 
+          url={this.state.newImage}
           upload={this.imageUpload}
-          error={this.state.error}    
+          error={this.state.error}
           />
         {/* <CloudinaryContext cloudName="dnbiul08h"> */}
           {/* <Image publicId={this.state.thumbnails} type="fetch">

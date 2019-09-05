@@ -38,7 +38,7 @@ app.use('/users', usersRouter(knex));
 // app.use("/testAPI", testAPIRouter);
 app.use('/auctions', auctionsRouter(knex));
 app.use('/bids', bidsRouter(knex));
-app.use("/register", registerRouter);
+app.use("/register", registerRouter(knex));
 app.use("/login", loginRouter(knex));
 
 
