@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {Bar} from 'react-chartjs-2';
 const Graph = (props) => {
- console.log(props)
- const data = {
+  console.log(props)
+  //data to be passed as parameters of the graph
+  const data = {
   labels: [],
   datasets: [
     {
@@ -15,15 +16,15 @@ const Graph = (props) => {
       data: []
     }
   ]
- };
+  };
 
- const options = {
-   legend: {
+  const options = {
+  legend: {
     labels: {
        // This more specific font property overrides the global property
-     fontColor: 'white'
+    fontColor: 'white'
     }
-   },
+  },
   maintainAspectRatio: true,
   scales: {
    xAxes: [{
@@ -46,7 +47,7 @@ const Graph = (props) => {
  }
 
   //sorting process
-    let objects = [] //put all amounts/bids in an array to be sorted
+    let objects = [] //store all amounts/bids in an array to be sorted
   props.data.auction_bids.map((bid)=>{
   if(props.auction.auctions_table_id == bid.id){
     objects.push({amount: bid.amount, count: bid.count})
@@ -60,15 +61,15 @@ const Graph = (props) => {
     })
 
   return (
-   <div className="graph-container">
-   <h4 className="myauction_titles">Result</h4>
-   <Bar
-     data={data}
-     width={150}
-     height={150}
-     options={options}
-   />
- </div>
+  <div className="graph-container">
+  <h4 className="myauction_titles">Result</h4>
+  <Bar
+    data={data}
+    width={150}
+    height={150}
+    options={options}
+  />
+</div>
   );
 }
 

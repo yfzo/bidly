@@ -36,7 +36,7 @@ const wss = new SocketServer({ server });
 SocketServer.prototype.broadcast = function(msg) {
   this.clients.forEach((client) => {
       if (client.readyState === 1) {
-          client.send(JSON.stringify(msg));
+        client.send(JSON.stringify(msg));
       }
   });
 };
