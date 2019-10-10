@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import LoginForm from '../components/LoginForm.jsx';
+import LoginForm from '../components/LoginForm.jsx'; 
 import '../styles/login.css';
 import { Redirect } from 'react-router-dom';
-import jwt from 'jsonwebtoken';
 
 
 export default class Login extends Component {
@@ -10,7 +9,6 @@ export default class Login extends Component {
     super(props);
     this.state = {
       redirect: false,
-      decodedId: null
     }
   }
 
@@ -25,9 +23,9 @@ export default class Login extends Component {
       }
     console.log('reached login frontend' + email + password)
     let t = this
-    fetch("http://localhost:3001/login", {
+    fetch("http://localhost:3000/login", {
       method: 'POST',
-      body: JSON.stringify(user),
+      body: JSON.stringify(user), 
       headers: {"Content-Type": "application/json"},
     })
     .then((response) => response.json())
@@ -37,7 +35,6 @@ export default class Login extends Component {
       } else {
         localStorage.setItem("user_id", response.userid)
         t.props.changeState();
-        t.verifyToken(localStorage.getItem('user_id'))
         t.setState({ redirect: true});
       }
     }).catch((err) => {
@@ -45,13 +42,6 @@ export default class Login extends Component {
       t.setState({db_error: true})
     })
     }
-  }
-
-  verifyToken(token) {
-    let t = this;
-    jwt.verify(token, 'super-secret-sauce', function(err, decoded){
-      t.setState({decodedId: decoded.userId})
-    })
   }
 
   // componentWillUnmount() {
@@ -64,21 +54,22 @@ export default class Login extends Component {
   //   }
   //   currentUserId && socket.send(JSON.stringify(userInfo))
   // }
-  //s
+  //s 
 
   render() {
     // console.log(50, this.props)
     // console.log(51, this.state.redirect)
     if (this.state.redirect === true ) {
+
       console.log(52, "user loggedin!")
-      return <Redirect to={'/users/' + this.state.decodedId} />
+      return <Redirect to={'/users/' + localStorage.getItem("user_id")} />
       //  window.location.href = `/users/${localStorage.getItem("user_id")}`;
     }
     return (
       <div className="login-outer-container">
         <LoginForm onSubmit={(email, password) => {
-          this.login(email, password) }}
-          filledform={this.state.filledform}
+          this.login(email, password) }} 
+          filledform={this.state.filledform} 
           form_error={this.state.form_error}
           db_error={this.state.db_error} />
       </div>

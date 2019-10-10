@@ -6,7 +6,6 @@ import '../styles/modal.css';
 import Timer from '../components/Timer.jsx';
 import { faCoins, faClock, faTimes, faCrown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import jwt from 'jsonwebtoken';
 
 
 export default class AuctionDetail extends Component {
@@ -37,30 +36,21 @@ export default class AuctionDetail extends Component {
     }
   }
 
-  verifyToken(token) {
-    let theThing = null;
-    jwt.verify(token, 'super-secret-sauce', function(err, decoded){
-      theThing = decoded;
-    })
-    return theThing.userId;
-  }
-
   bidHandler = (num) => {
     const currentUserId = localStorage.getItem('user_id');
 
     if (currentUserId) {
-      // debugger
       //checks if typed value is more than minimum bid
-      if (num && parseInt(num) > this.state.data.auction.min_bid) {
+      if (num && num > this.state.data.auction.min_bid) {
         this.setState({ min_error: false })
         const newBid = {
           auction_id: this.state.data.auction.id,
-          user_id: this.verifyToken(currentUserId),
+          user_id: parseInt(currentUserId),
           amount: parseInt(num)
         }
 
-        //post request checks if the balance is enough,
-        // deducts from balance and store in bids table
+        //post request checks if the balance is enough, 
+        // deducts from balance and store in bids table 
         fetch("http://localhost:3001/bids", {
           method: 'POST',
           body: JSON.stringify(newBid),
@@ -144,29 +134,29 @@ export default class AuctionDetail extends Component {
             </div>
             <div className="modal-info-container">
               <div className="modal-info">
-
+                
                 <div className="modal-name">{this.state.data && this.state.data.auction.name}</div>
                 <div className="modal-description">{this.state.data && this.state.data.auction.description}</div>
                 <div className="modal-min-bid">
                   <FontAwesomeIcon icon={faCoins} className="coin-icon"/> Minimum bid: ${this.state.data && this.state.data.auction.min_bid}
                 </div>
-
+                
                 {timeRemaining > 0 ?
                   <div>
                     <div className="modal-timer"><Timer timeRemaining={timeRemaining} /></div>
                     <div>{!isUserAuctioneer && <Bid onEnter={(bid_amount) => {this.bidHandler(bid_amount)}} />}</div>
                   </div>
-
-                  :
+                
+                  : 
                   <div>
                     <div className="modal-timer"><FontAwesomeIcon icon={faClock} className="coin-icon"/> Auction Ended</div>
                     <div className="modal-winning-bid"><FontAwesomeIcon icon={faCrown} className="coin-icon"/> {this.state.data && this.state.data.winning_bid_amount}</div>
                   </div>
                 }
 
-                {this.state.min_error && <div>Bid less than minimum bid</div>}
+                {this.state.min_error && <div>Bid more than minimum bid</div>}
                 {this.state.balance_error && <div>You do not have enough balance</div>}
-
+                
                 <div className="modal-close-button" onClick={this.back}><FontAwesomeIcon icon={faTimes} size="2x" className="x-icon"/></div>
               </div>
             </div>
