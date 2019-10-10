@@ -4,7 +4,6 @@ import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
 import '../styles/NavBar.css';
-import jwt from 'jsonwebtoken';
 
 export default class NavBar extends Component {
   Logout = () => {
@@ -13,23 +12,12 @@ export default class NavBar extends Component {
     window.location.href = '/';
   }
 
-  verifyToken(token) {
-    let theThing = null;
-    jwt.verify(token, 'super-secret-sauce', function(err, decoded){
-      theThing = decoded;
-    })
-    return theThing.userId;
-  }
-
   render() {
     //store user specific URL
+    const profileUrl = "/users/" + localStorage.getItem('user_id')
     const isLoggedIn = localStorage.getItem('user_id') !== null
-    let profileUrl = "/users/"
-    if (isLoggedIn) {
-      profileUrl = "/users/" + this.verifyToken(localStorage.getItem('user_id'))
-    }
     return (
-      <div>
+      <div>    
         {isLoggedIn ? (
           <div>
             <Navbar expand="sm">
