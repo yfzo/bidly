@@ -20,7 +20,7 @@
     "node-sass-middleware": "^0.9.8",
     "pg": "^6.0.2",
     "uuid": "^3.3.2",
-    "ws": "7.0.1"
+    "ws": "7.4.6"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"
