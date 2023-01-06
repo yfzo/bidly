@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "node-sass": "4.5.0",
-    "sass-loader": "6.0.0"
+    "sass-loader": "6.0.7"
   },
   "proxy": "http://localhost:3001",
   "scripts": {
